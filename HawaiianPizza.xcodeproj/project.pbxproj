@@ -1,0 +1,534 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */; };
+		CC7504EF2C5124E300394D1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EE2C5124E300394D1B /* ContentView.swift */; };
+		CC7504F12C5124E400394D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7504F02C5124E400394D1B /* Assets.xcassets */; };
+		CC7504F42C5124E400394D1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7504F32C5124E400394D1B /* Preview Assets.xcassets */; };
+		CC7504FA2C5124E400394D1B /* HawaiianPizza Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CC7504F92C5124E400394D1B /* HawaiianPizza Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CC7504FF2C5124E400394D1B /* HawaiianPizzaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504FE2C5124E400394D1B /* HawaiianPizzaApp.swift */; };
+		CC7505012C5124E400394D1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7505002C5124E400394D1B /* ContentView.swift */; };
+		CC7505032C5124E400394D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7505022C5124E400394D1B /* Assets.xcassets */; };
+		CC7505062C5124E400394D1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7505052C5124E400394D1B /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC7504FB2C5124E400394D1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC7504E12C5124E200394D1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC7504F82C5124E400394D1B;
+			remoteInfo = "HawaiianPizza Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CC75050C2C5124E400394D1B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				CC7504FA2C5124E400394D1B /* HawaiianPizza Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CC7504E92C5124E300394D1B /* HawaiianPizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HawaiianPizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawaiianPizzaApp.swift; sourceTree = "<group>"; };
+		CC7504EE2C5124E300394D1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC7504F02C5124E400394D1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC7504F32C5124E400394D1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CC7504F92C5124E400394D1B /* HawaiianPizza Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HawaiianPizza Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7504FE2C5124E400394D1B /* HawaiianPizzaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawaiianPizzaApp.swift; sourceTree = "<group>"; };
+		CC7505002C5124E400394D1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC7505022C5124E400394D1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC7505052C5124E400394D1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC7504E62C5124E300394D1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC7504F62C5124E400394D1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC7504E02C5124E200394D1B = {
+			isa = PBXGroup;
+			children = (
+				CC7504EB2C5124E300394D1B /* HawaiianPizza */,
+				CC7504FD2C5124E400394D1B /* HawaiianPizza Watch App */,
+				CC7504EA2C5124E300394D1B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC7504EA2C5124E300394D1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504E92C5124E300394D1B /* HawaiianPizza.app */,
+				CC7504F92C5124E400394D1B /* HawaiianPizza Watch App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC7504EB2C5124E300394D1B /* HawaiianPizza */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */,
+				CC7504EE2C5124E300394D1B /* ContentView.swift */,
+				CC7504F02C5124E400394D1B /* Assets.xcassets */,
+				CC7504F22C5124E400394D1B /* Preview Content */,
+			);
+			path = HawaiianPizza;
+			sourceTree = "<group>";
+		};
+		CC7504F22C5124E400394D1B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504F32C5124E400394D1B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CC7504FD2C5124E400394D1B /* HawaiianPizza Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504FE2C5124E400394D1B /* HawaiianPizzaApp.swift */,
+				CC7505002C5124E400394D1B /* ContentView.swift */,
+				CC7505022C5124E400394D1B /* Assets.xcassets */,
+				CC7505042C5124E400394D1B /* Preview Content */,
+			);
+			path = "HawaiianPizza Watch App";
+			sourceTree = "<group>";
+		};
+		CC7505042C5124E400394D1B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CC7505052C5124E400394D1B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC7504E82C5124E300394D1B /* HawaiianPizza */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC75050D2C5124E400394D1B /* Build configuration list for PBXNativeTarget "HawaiianPizza" */;
+			buildPhases = (
+				CC7504E52C5124E300394D1B /* Sources */,
+				CC7504E62C5124E300394D1B /* Frameworks */,
+				CC7504E72C5124E300394D1B /* Resources */,
+				CC75050C2C5124E400394D1B /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC7504FC2C5124E400394D1B /* PBXTargetDependency */,
+			);
+			name = HawaiianPizza;
+			productName = HawaiianPizza;
+			productReference = CC7504E92C5124E300394D1B /* HawaiianPizza.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CC7504F82C5124E400394D1B /* HawaiianPizza Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC7505092C5124E400394D1B /* Build configuration list for PBXNativeTarget "HawaiianPizza Watch App" */;
+			buildPhases = (
+				CC7504F52C5124E400394D1B /* Sources */,
+				CC7504F62C5124E400394D1B /* Frameworks */,
+				CC7504F72C5124E400394D1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HawaiianPizza Watch App";
+			productName = "HawaiianPizza Watch App";
+			productReference = CC7504F92C5124E400394D1B /* HawaiianPizza Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC7504E12C5124E200394D1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					CC7504E82C5124E300394D1B = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					CC7504F82C5124E400394D1B = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = CC7504E42C5124E200394D1B /* Build configuration list for PBXProject "HawaiianPizza" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC7504E02C5124E200394D1B;
+			productRefGroup = CC7504EA2C5124E300394D1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC7504E82C5124E300394D1B /* HawaiianPizza */,
+				CC7504F82C5124E400394D1B /* HawaiianPizza Watch App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC7504E72C5124E300394D1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7504F42C5124E400394D1B /* Preview Assets.xcassets in Resources */,
+				CC7504F12C5124E400394D1B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC7504F72C5124E400394D1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7505062C5124E400394D1B /* Preview Assets.xcassets in Resources */,
+				CC7505032C5124E400394D1B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC7504E52C5124E300394D1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7504EF2C5124E300394D1B /* ContentView.swift in Sources */,
+				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC7504F52C5124E400394D1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7505012C5124E400394D1B /* ContentView.swift in Sources */,
+				CC7504FF2C5124E400394D1B /* HawaiianPizzaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC7504FC2C5124E400394D1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC7504F82C5124E400394D1B /* HawaiianPizza Watch App */;
+			targetProxy = CC7504FB2C5124E400394D1B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CC7505072C5124E400394D1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CC7505082C5124E400394D1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		CC75050A2C5124E400394D1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.leewanjae.HawaiianPizza;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leewanjae.HawaiianPizza.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		CC75050B2C5124E400394D1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.leewanjae.HawaiianPizza;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leewanjae.HawaiianPizza.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+		CC75050E2C5124E400394D1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza/Preview Content\"";
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leewanjae.HawaiianPizza;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CC75050F2C5124E400394D1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza/Preview Content\"";
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leewanjae.HawaiianPizza;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC7504E42C5124E200394D1B /* Build configuration list for PBXProject "HawaiianPizza" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC7505072C5124E400394D1B /* Debug */,
+				CC7505082C5124E400394D1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC7505092C5124E400394D1B /* Build configuration list for PBXNativeTarget "HawaiianPizza Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC75050A2C5124E400394D1B /* Debug */,
+				CC75050B2C5124E400394D1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC75050D2C5124E400394D1B /* Build configuration list for PBXNativeTarget "HawaiianPizza" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC75050E2C5124E400394D1B /* Debug */,
+				CC75050F2C5124E400394D1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC7504E12C5124E200394D1B /* Project object */;
+}
