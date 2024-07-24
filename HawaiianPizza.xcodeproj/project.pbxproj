@@ -16,6 +16,7 @@
 		CC7505012C5124E400394D1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7505002C5124E400394D1B /* ContentView.swift */; };
 		CC7505032C5124E400394D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7505022C5124E400394D1B /* Assets.xcassets */; };
 		CC7505062C5124E400394D1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7505052C5124E400394D1B /* Preview Assets.xcassets */; };
+		CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC75051A2C512B4100394D1B /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		CC7505002C5124E400394D1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CC7505022C5124E400394D1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7505052C5124E400394D1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CC75051A2C512B4100394D1B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		CC7505192C5128BE00394D1B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CC75051A2C512B4100394D1B /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			files = (
 				CC7504EF2C5124E300394D1B /* MainView.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
+				CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
