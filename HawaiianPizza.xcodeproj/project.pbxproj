@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */; };
-		CC7504EF2C5124E300394D1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EE2C5124E300394D1B /* ContentView.swift */; };
+		CC7504EF2C5124E300394D1B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EE2C5124E300394D1B /* MainView.swift */; };
 		CC7504F12C5124E400394D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7504F02C5124E400394D1B /* Assets.xcassets */; };
 		CC7504F42C5124E400394D1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7504F32C5124E400394D1B /* Preview Assets.xcassets */; };
 		CC7504FA2C5124E400394D1B /* HawaiianPizza Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CC7504F92C5124E400394D1B /* HawaiianPizza Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -45,7 +45,7 @@
 /* Begin PBXFileReference section */
 		CC7504E92C5124E300394D1B /* HawaiianPizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HawaiianPizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawaiianPizzaApp.swift; sourceTree = "<group>"; };
-		CC7504EE2C5124E300394D1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC7504EE2C5124E300394D1B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CC7504F02C5124E400394D1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7504F32C5124E400394D1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CC7504F92C5124E400394D1B /* HawaiianPizza Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HawaiianPizza Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,9 +94,9 @@
 		CC7504EB2C5124E300394D1B /* HawaiianPizza */ = {
 			isa = PBXGroup;
 			children = (
-				CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */,
-				CC7504EE2C5124E300394D1B /* ContentView.swift */,
-				CC7504F02C5124E400394D1B /* Assets.xcassets */,
+				CC7505142C51274C00394D1B /* Application */,
+				CC7505132C51273100394D1B /* Sources */,
+				CC7505122C51271400394D1B /* Resources */,
 				CC7504F22C5124E400394D1B /* Preview Content */,
 			);
 			path = HawaiianPizza;
@@ -127,6 +127,86 @@
 				CC7505052C5124E400394D1B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CC7505102C5126EE00394D1B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CC7505112C5126F300394D1B /* Presentations */ = {
+			isa = PBXGroup;
+			children = (
+				CC7505172C51287400394D1B /* Main */,
+			);
+			path = Presentations;
+			sourceTree = "<group>";
+		};
+		CC7505122C51271400394D1B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504F02C5124E400394D1B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CC7505132C51273100394D1B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CC7505102C5126EE00394D1B /* Model */,
+				CC7505152C5127DA00394D1B /* Helper */,
+				CC7505112C5126F300394D1B /* Presentations */,
+				CC7505162C5127F600394D1B /* Extensions */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		CC7505142C51274C00394D1B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CC7505152C5127DA00394D1B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		CC7505162C5127F600394D1B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CC7505172C51287400394D1B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CC7505182C5128B800394D1B /* View */,
+				CC7505192C5128BE00394D1B /* ViewModel */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CC7505182C5128B800394D1B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC7504EE2C5124E300394D1B /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC7505192C5128BE00394D1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC7504EF2C5124E300394D1B /* ContentView.swift in Sources */,
+				CC7504EF2C5124E300394D1B /* MainView.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
