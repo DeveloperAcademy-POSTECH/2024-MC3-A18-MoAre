@@ -17,6 +17,15 @@
 		CC7505032C5124E400394D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7505022C5124E400394D1B /* Assets.xcassets */; };
 		CC7505062C5124E400394D1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7505052C5124E400394D1B /* Preview Assets.xcassets */; };
 		CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC75051A2C512B4100394D1B /* MainViewModel.swift */; };
+		CC9739672C52B1C700C75466 /* CoreDataTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9739622C52B1C700C75466 /* CoreDataTestView.swift */; };
+		CC9739682C52B1C700C75466 /* CoreDataTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9739642C52B1C700C75466 /* CoreDataTestViewModel.swift */; };
+		CC9739712C52B1E200C75466 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9739692C52B1E200C75466 /* CoreDataManager.swift */; };
+		CC9739722C52B1E200C75466 /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC97396A2C52B1E200C75466 /* HawaiianPizza.xcdatamodeld */; };
+		CC9739732C52B1E200C75466 /* Routine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97396B2C52B1E200C75466 /* Routine+CoreDataClass.swift */; };
+		CC9739742C52B1E200C75466 /* Routine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97396C2C52B1E200C75466 /* Routine+CoreDataProperties.swift */; };
+		CC9739752C52B1E200C75466 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97396D2C52B1E200C75466 /* Task+CoreDataClass.swift */; };
+		CC9739762C52B1E200C75466 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC97396E2C52B1E200C75466 /* Task+CoreDataProperties.swift */; };
+		CC9739792C52B1E900C75466 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9739772C52B1E900C75466 /* DataProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +64,15 @@
 		CC7505022C5124E400394D1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC7505052C5124E400394D1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CC75051A2C512B4100394D1B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CC9739622C52B1C700C75466 /* CoreDataTestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestView.swift; sourceTree = "<group>"; };
+		CC9739642C52B1C700C75466 /* CoreDataTestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestViewModel.swift; sourceTree = "<group>"; };
+		CC9739692C52B1E200C75466 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CC97396B2C52B1E200C75466 /* Routine+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CC97396C2C52B1E200C75466 /* Routine+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CC97396D2C52B1E200C75466 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CC97396E2C52B1E200C75466 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CC9739702C52B1E200C75466 /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
+		CC9739772C52B1E900C75466 /* DataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +159,7 @@
 		CC7505112C5126F300394D1B /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
+				CC9739662C52B1C700C75466 /* Test */,
 				CC7505172C51287400394D1B /* Main */,
 			);
 			path = Presentations;
@@ -157,6 +176,8 @@
 		CC7505132C51273100394D1B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CC9739782C52B1E900C75466 /* Protocols */,
+				CC97396F2C52B1E200C75466 /* Data */,
 				CC7505102C5126EE00394D1B /* Model */,
 				CC7505152C5127DA00394D1B /* Helper */,
 				CC7505112C5126F300394D1B /* Presentations */,
@@ -210,6 +231,52 @@
 				CC75051A2C512B4100394D1B /* MainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CC9739632C52B1C700C75466 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC9739622C52B1C700C75466 /* CoreDataTestView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC9739652C52B1C700C75466 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CC9739642C52B1C700C75466 /* CoreDataTestViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CC9739662C52B1C700C75466 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				CC9739632C52B1C700C75466 /* View */,
+				CC9739652C52B1C700C75466 /* ViewModel */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		CC97396F2C52B1E200C75466 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CC9739692C52B1E200C75466 /* CoreDataManager.swift */,
+				CC97396A2C52B1E200C75466 /* HawaiianPizza.xcdatamodeld */,
+				CC97396B2C52B1E200C75466 /* Routine+CoreDataClass.swift */,
+				CC97396C2C52B1E200C75466 /* Routine+CoreDataProperties.swift */,
+				CC97396D2C52B1E200C75466 /* Task+CoreDataClass.swift */,
+				CC97396E2C52B1E200C75466 /* Task+CoreDataProperties.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		CC9739782C52B1E900C75466 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC9739772C52B1E900C75466 /* DataProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +381,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC9739732C52B1E200C75466 /* Routine+CoreDataClass.swift in Sources */,
+				CC9739792C52B1E900C75466 /* DataProtocol.swift in Sources */,
+				CC9739712C52B1E200C75466 /* CoreDataManager.swift in Sources */,
+				CC9739722C52B1E200C75466 /* HawaiianPizza.xcdatamodeld in Sources */,
 				CC7504EF2C5124E300394D1B /* MainView.swift in Sources */,
+				CC9739762C52B1E200C75466 /* Task+CoreDataProperties.swift in Sources */,
+				CC9739742C52B1E200C75466 /* Routine+CoreDataProperties.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
+				CC9739752C52B1E200C75466 /* Task+CoreDataClass.swift in Sources */,
 				CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */,
+				CC9739682C52B1C700C75466 /* CoreDataTestViewModel.swift in Sources */,
+				CC9739672C52B1C700C75466 /* CoreDataTestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +689,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CC97396A2C52B1E200C75466 /* HawaiianPizza.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC9739702C52B1E200C75466 /* HawaiianPizza.xcdatamodel */,
+			);
+			currentVersion = CC9739702C52B1E200C75466 /* HawaiianPizza.xcdatamodel */;
+			name = HawaiianPizza.xcdatamodeld;
+			path = "/Users/leewanjae/Desktop/apple/2024-MC3-A18-Hawaiian-pizza/HawaiianPizza/Sources/Data/HawaiianPizza.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CC7504E12C5124E200394D1B /* Project object */;
 }
