@@ -12,6 +12,7 @@ struct HawaiianPizzaApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+//            CoreDataTestView() 루틴 추가 코어데이터 테스트
         }
     }
 }
