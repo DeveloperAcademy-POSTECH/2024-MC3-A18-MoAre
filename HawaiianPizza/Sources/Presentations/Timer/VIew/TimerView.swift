@@ -23,16 +23,19 @@ struct TimerView: View {
     @State private var totalSkipTime: TimeInterval = 0
     
     let dummytasks = [
-        DummyTask(taskTime: 30, taskSkipTime: 10, taskName: "Task 1", iconName: "tshirt"),
-        DummyTask(taskTime: 45, taskSkipTime: 15, taskName: "Task 2", iconName: "tshirt.fill"),
-        DummyTask(taskTime: 60, taskSkipTime: 20, taskName: "Task 3", iconName: "tshirt")
+        DummyTask(taskTime: 10, taskSkipTime: 10, taskName: "Task 1", iconName: "tshirt"),
+        DummyTask(taskTime: 6, taskSkipTime: 15, taskName: "Task 2", iconName: "tshirt.fill"),
+        DummyTask(taskTime: 5, taskSkipTime: 20, taskName: "Task 3", iconName: "tshirt"),
+        DummyTask(taskTime: 6, taskSkipTime: 15, taskName: "Task 4", iconName: "tshirt.fill"),
+        DummyTask(taskTime: 5, taskSkipTime: 20, taskName: "Task 5", iconName: "tshirt")
     ]
     
     var body: some View {
         VStack {
             HStack(spacing: 0) {
                 ForEach(0..<3) { index in
-                    if let task = getTask(at: currentTaskIndex + index - 1) {
+                    let adjustedIndex = currentTaskIndex + index - 1
+                    if let task = getTask(at: adjustedIndex) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.gray.opacity(0.2))
@@ -42,11 +45,11 @@ struct TimerView: View {
                                 .scaledToFit()
                                 .frame(width: index == 1 ? 50 : 40, height: index == 1 ? 50 : 40)
                         }
-                    }
-                    if index < 2 {
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.5))
-                            .frame(width: 60, height: 2)
+                        if index < 2 && (currentTaskIndex != 0 || index != 0) && (currentTaskIndex != dummytasks.count - 1 || index != 1) {
+                            Rectangle()
+                                .fill(Color.gray.opacity(0.5))
+                                .frame(width: 60, height: 2)
+                        }
                     }
                 }
             }
@@ -104,7 +107,7 @@ struct TimerView: View {
             Button(action: {
                 nextTask()
             }) {
-                Text("다음 루틴")
+                Text(currentTaskIndex == dummytasks.count - 1 ? "완료" : "다음 루틴")
                     .font(.system(size: 20, weight: .bold, design: .monospaced))
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.black)
