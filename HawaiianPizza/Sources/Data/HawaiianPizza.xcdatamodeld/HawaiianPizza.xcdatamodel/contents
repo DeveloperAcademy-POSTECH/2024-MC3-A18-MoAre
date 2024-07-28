@@ -2,23 +2,20 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="Routine" representedClassName="Routine" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="routineTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="routineTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="routineTitle" optional="YES" attributeType="String"/>
-        <attribute name="totalSkipTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalSkipTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="routine" inverseEntity="Task"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="taskIcon" optional="YES" attributeType="String"/>
         <attribute name="taskName" optional="YES" attributeType="String"/>
-        <attribute name="taskSkipTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="taskTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskSkipTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="taskTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="routine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Routine" inverseName="tasks" inverseEntity="Routine"/>
     </entity>
     <entity name="Time" representedClassName="Time" syncable="YES" codeGenerationType="class">
-        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-    </entity>
-    <entity name="Weather" representedClassName="Weather" syncable="YES" codeGenerationType="class">
-        <attribute name="state" optional="YES" attributeType="String"/>
+        <attribute name="startTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>
