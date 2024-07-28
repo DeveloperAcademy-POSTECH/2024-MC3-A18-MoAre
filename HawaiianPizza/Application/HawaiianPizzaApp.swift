@@ -12,8 +12,9 @@ struct HawaiianPizzaApp: App {
     var body: some Scene {
         WindowGroup {
 //            MainView()
-            CoreDataTestView()
-//            WeatherTestView()
+//            CoreDataTestView()
+            CompleteView()
+            //            WeatherTestView()
         }
     }
 }

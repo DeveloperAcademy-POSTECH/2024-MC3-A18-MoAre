@@ -12,7 +12,14 @@ struct CompleteView: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            
             LottieView(loopMode: .playOnce, jsonName: "complete")
+                .frame(width: 300, height: 300)
+                .padding()
+            Text("\(viewModel.completeRoutine?.totalSkipTime ?? 0)")
+            
+            Spacer()
         }
     }
 }
