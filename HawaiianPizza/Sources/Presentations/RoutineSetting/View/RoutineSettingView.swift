@@ -69,7 +69,7 @@ struct RoutineSettingView: View {
                 .padding(.vertical, 8)
             )
             .sheet(isPresented: $showSheet) {
-              AddTaskView()
+                AddTaskView()
                 .presentationDetents([
                   .fraction(0.4)
                 ])
