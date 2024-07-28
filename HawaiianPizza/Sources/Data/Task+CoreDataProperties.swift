@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  HawaiianPizza
 //
-//  Created by LeeWanJae on 7/25/24.
+//  Created by LeeWanJae on 7/28/24.
 //
 //
 
@@ -16,12 +16,12 @@ extension Task {
         return NSFetchRequest<Task>(entityName: "Task")
     }
 
-    @NSManaged public var id: UUID
-    @NSManaged public var taskIcon: String
-    @NSManaged public var taskTime: Date
-    @NSManaged public var taskSkipTime: Date?
-    @NSManaged public var taskName: String
-    @NSManaged public var routine: Routine
+    @NSManaged public var id: UUID?
+    @NSManaged public var taskIcon: String?
+    @NSManaged public var taskName: String?
+    @NSManaged public var taskSkipTime: Int32
+    @NSManaged public var taskTime: Int32
+    @NSManaged public var routine: Routine?
 
 }
 

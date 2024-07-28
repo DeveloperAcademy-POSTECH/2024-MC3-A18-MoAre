@@ -2,7 +2,7 @@
 //  Routine+CoreDataProperties.swift
 //  HawaiianPizza
 //
-//  Created by LeeWanJae on 7/25/24.
+//  Created by LeeWanJae on 7/28/24.
 //
 //
 
@@ -16,11 +16,11 @@ extension Routine {
         return NSFetchRequest<Routine>(entityName: "Routine")
     }
 
-    @NSManaged public var id: UUID
-    @NSManaged public var routineTitle: String
-    @NSManaged public var routineTime: Date
-    @NSManaged public var totalSkipTime: Date?
-    @NSManaged public var tasks: NSSet
+    @NSManaged public var id: UUID?
+    @NSManaged public var routineTime: Int32
+    @NSManaged public var routineTitle: String?
+    @NSManaged public var totalSkipTime: Int32
+    @NSManaged public var tasks: NSSet?
 
 }
 
