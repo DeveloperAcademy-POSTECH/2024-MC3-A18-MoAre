@@ -70,9 +70,10 @@ extension CoreDataManager: DataProtocol {
         }
     
     // MARK: - Task Methods
-    func createTask(routine: Routine, taskTime: Date, taskSkipTime: Date, taskName: String) -> Task {
+    func createTask(taskIcon: String, routine: Routine, taskTime: Date, taskSkipTime: Date, taskName: String) -> Task {
         let task = Task(context: viewContext)
         task.id = UUID()
+        task.taskIcon = taskIcon
         task.routine = routine
         task.taskTime = taskTime
         task.taskSkipTime = taskSkipTime

@@ -8,12 +8,21 @@
 import SwiftUI
 import CoreLocation
 
-struct WeatherView: View {
-    @StateObject private var viewModel = WeatherViewModel()
+struct WeatherTestView: View {
+    @StateObject private var viewModel = WeatherTestViewModel()
     
     var body: some View {
         VStack {
-            Text("WeatherKit Test")
+            if !viewModel.dailyWeather.isEmpty {
+                Text("오늘의 날씨는 \(viewModel.dailyWeather[0].condition)")
+                VStack {
+                    Text("최저 기온:\(viewModel.dailyWeather[0].lowTemperature.value)")
+                    Text("최고 기온: \(viewModel.dailyWeather[0].highTemperature.value)")
+                }
+            } else {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
         }
         .task {
             await viewModel.fetchDailyWeather()
@@ -22,5 +31,5 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView()
+    WeatherTestView()
 }

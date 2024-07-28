@@ -16,6 +16,7 @@ final class WeatherHelper {
     
     private init() { }
     
+    // 현재 시점의 날씨
     func fetchCurrentWeather(location: CLLocation) async throws -> CurrentWeather {
         let weather = try await WeatherService.shared.weather(for: location)
         let current = weather.currentWeather
@@ -23,6 +24,7 @@ final class WeatherHelper {
         return current
     }
     
+    // 최대 10일
     func fetchDailyWeather(location: CLLocation) async throws ->  Forecast<DayWeather> {
         let weather = try await WeatherService.shared.weather(for: location)
         let daily = weather.dailyForecast
