@@ -11,8 +11,9 @@ import SwiftUI
 struct HawaiianPizzaApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+//            MainView()
 //            CoreDataTestView() 루틴 추가 코어데이터 테스트
+            WeatherTestView()
         }
     }
 }

@@ -17,6 +17,7 @@ extension Task {
     }
 
     @NSManaged public var id: UUID
+    @NSManaged public var taskIcon: String
     @NSManaged public var taskTime: Date
     @NSManaged public var taskSkipTime: Date?
     @NSManaged public var taskName: String
