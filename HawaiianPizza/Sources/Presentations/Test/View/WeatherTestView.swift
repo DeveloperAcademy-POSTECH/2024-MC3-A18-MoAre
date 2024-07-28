@@ -18,6 +18,10 @@ struct WeatherTestView: View {
                 VStack {
                     Text("최저 기온:\(viewModel.dailyWeather[0].lowTemperature.value)")
                     Text("최고 기온: \(viewModel.dailyWeather[0].highTemperature.value)")
+                    Text("풍속: \(viewModel.dailyWeather[0].wind.speed.value)")
+                    Image(systemName: "\(viewModel.dailyWeather[0].symbolName)")
+                    Text("심볼 이름: \(viewModel.dailyWeather[0].symbolName)")
+                    Text("강설량: \(viewModel.dailyWeather[0].snowfallAmount.value)")
                 }
             } else {
                 ProgressView()
