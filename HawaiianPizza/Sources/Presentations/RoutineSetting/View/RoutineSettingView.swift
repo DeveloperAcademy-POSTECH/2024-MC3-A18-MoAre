@@ -12,6 +12,8 @@ struct RoutineSettingView: View {
   @StateObject private var viewModel = RoutineSettingViewModel()
   @State private var editMode: EditMode = .active
   @State var showSheet: Bool = false
+  @State private var newTaskTitle: String = ""
+  @State private var newTaskIcon: String = ""
   
   var body: some View {
     VStack(spacing: 0) {
@@ -69,9 +71,9 @@ struct RoutineSettingView: View {
                 .padding(.vertical, 8)
             )
             .sheet(isPresented: $showSheet) {
-              AddTaskView()
+              AddTaskView(newTaskTitle: $newTaskTitle, newTaskIcon: $newTaskIcon, onAdd: addTask)
                 .presentationDetents([
-                  .fraction(0.4)
+                  .fraction(0.47)
                 ])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(20)
@@ -117,6 +119,14 @@ struct RoutineSettingView: View {
         .padding(.horizontal, 20)
       })
     }
+  }
+  
+  private func addTask() {
+    let newTask = DummyItem(icon: newTaskIcon, title: newTaskTitle)
+    viewModel.items.append(newTask)
+    newTaskTitle = ""
+    newTaskIcon = ""
+    showSheet = false
   }
 }
 
