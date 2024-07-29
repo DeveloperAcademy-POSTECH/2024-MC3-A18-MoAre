@@ -13,7 +13,7 @@ struct CompleteView: View {
                         await viewModel.fetchDailyWeather()
                     }
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             showProgressView = true
                         }
                     }

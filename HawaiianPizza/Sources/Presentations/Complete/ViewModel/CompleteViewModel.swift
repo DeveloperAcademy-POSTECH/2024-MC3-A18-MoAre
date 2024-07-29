@@ -20,6 +20,7 @@ class CompleteViewModel: ObservableObject {
     
     init() {
         LocationHelper.shared.checkLocationAuthorization()
+        addNotiObserver()
         fetchLocation()
         fetchRoutines(selectedRoutineID: nil)
     }
@@ -28,10 +29,15 @@ class CompleteViewModel: ObservableObject {
         if let location = LocationHelper.shared.currentLocation {
             currentLocation = location
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.fetchLocation()
+                print("fetchLocation 호출")
             }
         }
+    }
+    
+    func addNotiObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLocationUpdate), name: .locationUpdate, object: nil)
     }
     
     @objc private func handleLocationUpdate(_ notification: Notification) {

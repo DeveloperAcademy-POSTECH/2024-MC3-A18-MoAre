@@ -43,5 +43,6 @@ extension LocationHelper: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.currentLocation = location
+        NotificationCenter.default.post(name: .locationUpdate, object: nil, userInfo: ["location": location])
     }
 }
