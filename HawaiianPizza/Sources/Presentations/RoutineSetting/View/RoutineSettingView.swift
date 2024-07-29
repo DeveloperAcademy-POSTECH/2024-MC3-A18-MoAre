@@ -122,7 +122,7 @@ struct RoutineSettingView: View {
   }
   
   private func addTask() {
-    let newTask = DummyItem(icon: newTaskIcon, title: newTaskTitle)
+    let newTask = RoutineSettingItem(icon: newTaskIcon, title: newTaskTitle)
     viewModel.items.append(newTask)
     newTaskTitle = ""
     newTaskIcon = ""
