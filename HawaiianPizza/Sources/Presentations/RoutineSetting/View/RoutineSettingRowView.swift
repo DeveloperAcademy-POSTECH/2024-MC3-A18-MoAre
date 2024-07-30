@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoutineSettingRowView: View {
-  let item: DummyItem
+  let item: RoutineSettingItem
   let onDelete: () -> Void
   
   var body: some View {

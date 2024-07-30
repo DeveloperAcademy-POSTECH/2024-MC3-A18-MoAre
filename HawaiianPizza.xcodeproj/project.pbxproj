@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		0012A0622C52C2FD00C5D195 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0012A0612C52C2FD00C5D195 /* TimerView.swift */; };
+		6E1A58FA2C566DA200590664 /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A58F82C566DA200590664 /* HawaiianPizza.xcdatamodeld */; };
+		6E1A58FC2C566DE900590664 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A58FB2C566DE900590664 /* AddTaskView.swift */; };
 		6E4ACB562C540753008AACCD /* RoutineSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB552C540753008AACCD /* RoutineSettingView.swift */; };
 		6E4ACB5B2C540783008AACCD /* RoutineSettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB5A2C540783008AACCD /* RoutineSettingRowView.swift */; };
 		6E4ACB5F2C540796008AACCD /* TaskIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB5E2C540796008AACCD /* TaskIconView.swift */; };
 		6E4ACB612C5407A1008AACCD /* RoutineSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */; };
-		6E4ACB632C5407A7008AACCD /* DummyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB622C5407A7008AACCD /* DummyItem.swift */; };
+		6E4ACB632C5407A7008AACCD /* RoutineSettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB622C5407A7008AACCD /* RoutineSettingItem.swift */; };
 		6E4ACB652C5407B5008AACCD /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB642C5407B5008AACCD /* AddTaskViewModel.swift */; };
 		6E4ACB692C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB682C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift */; };
+		6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60D4C42C57C765003D2770 /* RoutineItem.swift */; };
+		6E60D4C72C57C8DE003D2770 /* MainRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60D4C62C57C8DE003D2770 /* MainRowView.swift */; };
 		6E94643B2C52569400995FB9 /* RoutinePlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94643A2C52569400995FB9 /* RoutinePlanningView.swift */; };
 		6E94643F2C5256F100995FB9 /* PlanningRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94643E2C5256F100995FB9 /* PlanningRowView.swift */; };
 		6E9464412C5256FA00995FB9 /* PlanningCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9464402C5256FA00995FB9 /* PlanningCellView.swift */; };
@@ -74,13 +78,17 @@
 
 /* Begin PBXFileReference section */
 		0012A0612C52C2FD00C5D195 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		6E1A58F92C566DA200590664 /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
+		6E1A58FB2C566DE900590664 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		6E4ACB552C540753008AACCD /* RoutineSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingView.swift; sourceTree = "<group>"; };
 		6E4ACB5A2C540783008AACCD /* RoutineSettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingRowView.swift; sourceTree = "<group>"; };
 		6E4ACB5E2C540796008AACCD /* TaskIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIconView.swift; sourceTree = "<group>"; };
 		6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingViewModel.swift; sourceTree = "<group>"; };
-		6E4ACB622C5407A7008AACCD /* DummyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyItem.swift; sourceTree = "<group>"; };
+		6E4ACB622C5407A7008AACCD /* RoutineSettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingItem.swift; sourceTree = "<group>"; };
 		6E4ACB642C5407B5008AACCD /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		6E4ACB682C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusWithBorderModifier.swift; sourceTree = "<group>"; };
+		6E60D4C42C57C765003D2770 /* RoutineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItem.swift; sourceTree = "<group>"; };
+		6E60D4C62C57C8DE003D2770 /* MainRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowView.swift; sourceTree = "<group>"; };
 		6E94643A2C52569400995FB9 /* RoutinePlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePlanningView.swift; sourceTree = "<group>"; };
 		6E94643E2C5256F100995FB9 /* PlanningRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningRowView.swift; sourceTree = "<group>"; };
 		6E9464402C5256FA00995FB9 /* PlanningCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningCellView.swift; sourceTree = "<group>"; };
@@ -173,7 +181,7 @@
 				6E4ACB552C540753008AACCD /* RoutineSettingView.swift */,
 				6E4ACB5A2C540783008AACCD /* RoutineSettingRowView.swift */,
 				6E4ACB5E2C540796008AACCD /* TaskIconView.swift */,
-				CC1E06D02C561F4D00B35763 /* AddTaskView.swift */,
+				6E1A58FB2C566DE900590664 /* AddTaskView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */,
-				6E4ACB622C5407A7008AACCD /* DummyItem.swift */,
+				6E4ACB622C5407A7008AACCD /* RoutineSettingItem.swift */,
 				6E4ACB642C5407B5008AACCD /* AddTaskViewModel.swift */,
 			);
 			path = ViewModel;
@@ -369,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7504EE2C5124E300394D1B /* MainView.swift */,
+				6E60D4C62C57C8DE003D2770 /* MainRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -377,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				CC75051A2C512B4100394D1B /* MainViewModel.swift */,
+				6E60D4C42C57C765003D2770 /* RoutineItem.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -561,7 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC1E06D12C561F4D00B35763 /* AddTaskView.swift in Sources */,
+				6E1A58FC2C566DE900590664 /* AddTaskView.swift in Sources */,
 				6E4ACB562C540753008AACCD /* RoutineSettingView.swift in Sources */,
 				CC9739792C52B1E900C75466 /* DataProtocol.swift in Sources */,
 				CC9739712C52B1E200C75466 /* CoreDataManager.swift in Sources */,
@@ -576,6 +586,10 @@
 				CC1E06F02C5645B800B35763 /* LocationHelper.swift in Sources */,
 				6E4ACB612C5407A1008AACCD /* RoutineSettingViewModel.swift in Sources */,
 				6E4ACB652C5407B5008AACCD /* AddTaskViewModel.swift in Sources */,
+				CC9739742C52B1E200C75466 /* Routine+CoreDataProperties.swift in Sources */,
+				CCE054DD2C53961A00E4E54F /* WeatherTestViewModel.swift in Sources */,
+				6E60D4C72C57C8DE003D2770 /* MainRowView.swift in Sources */,
+				6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
 				CCE054E22C560FD300E4E54F /* CompleteView.swift in Sources */,
 				CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */,
@@ -583,6 +597,9 @@
 				CC9739682C52B1C700C75466 /* CoreDataTestViewModel.swift in Sources */,
 				CC1E06D62C56292200B35763 /* LottieView.swift in Sources */,
 				6E4ACB632C5407A7008AACCD /* DummyItem.swift in Sources */,
+				6E4ACB692C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift in Sources */,
+				CC9739672C52B1C700C75466 /* CoreDataTestView.swift in Sources */,
+				6E4ACB632C5407A7008AACCD /* RoutineSettingItem.swift in Sources */,
 				6E4ACB692C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift in Sources */,
 				CC9739672C52B1C700C75466 /* CoreDataTestView.swift in Sources */,
 				6E4ACB5F2C540796008AACCD /* TaskIconView.swift in Sources */,
