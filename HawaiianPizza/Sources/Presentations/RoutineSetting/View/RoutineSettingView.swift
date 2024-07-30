@@ -50,7 +50,6 @@ struct RoutineSettingView: View {
         Color.white.ignoresSafeArea()
         
         // MARK: - 루틴 관리 List
-        NavigationView {
           List {
             Button(action: {
               showSheet.toggle()
@@ -98,7 +97,6 @@ struct RoutineSettingView: View {
           .onAppear {
             self.editMode = .active
           }
-        }
       }
       .padding(.horizontal, 16)
       
