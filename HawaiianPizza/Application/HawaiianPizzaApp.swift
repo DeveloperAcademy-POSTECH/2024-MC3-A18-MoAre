@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct HawaiianPizzaApp: App {
-    var body: some Scene {
-        WindowGroup {
-//            MainView()
-//            CoreDataTestView()
-            CompleteView()
-            //            WeatherTestView()
-        }
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+  
+  var body: some Scene {
+    WindowGroup {
+      MainView()
+//      CoreDataTestView()
+//      CompleteView()
     }
+  }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
   @StateObject private var viewModel = MainViewModel()
+  @State private var showTimePicker = false
+  @State private var selectedTime = (hour: 00, minute: 00)
   
   var body: some View {
     VStack(spacing: 0) {
@@ -22,29 +24,43 @@ struct MainView: View {
       .padding(.top, 27)
       .padding(.bottom, 24)
       
-      HStack {
-        RoundedRectangle(cornerRadius: 20)
-          .fill(Color(UIColor.systemGray4))
-          .frame(height: 130)
-          .overlay(
-            Text("09")
+      Button(action: {
+        // MARK: - DatePicker : View 수정 예정
+        self.showTimePicker.toggle()
+      }, label: {
+        HStack {
+          RoundedRectangle(cornerRadius: 20)
+            .fill(Color(UIColor.systemGray4))
+            .frame(height: 130)
+            .overlay(
+              Text("\(String(format: "%02d", selectedTime.hour))")
+                .font(.system(size: 120, weight: .light))
+                .foregroundStyle(.black)
+            )
+          
+          VStack {
+            Text(":")
               .font(.system(size: 120, weight: .light))
-          )
-        
-        VStack {
-          Text(":")
-            .font(.system(size: 120, weight: .light))
-            .padding(.bottom)
+              .foregroundStyle(.black)
+              .padding(.bottom)
+          }
+          .frame(height: 130)
+          
+          RoundedRectangle(cornerRadius: 20)
+            .fill(Color(UIColor.systemGray4))
+            .frame(height: 130)
+            .overlay(
+              Text("\(String(format: "%02d", selectedTime.minute))")
+                .font(.system(size: 120, weight: .light))
+                .foregroundStyle(.black)
+            )
         }
-        .frame(height: 130)
-        
-        RoundedRectangle(cornerRadius: 20)
-          .fill(Color(UIColor.systemGray4))
-          .frame(height: 130)
-          .overlay(
-            Text("30")
-              .font(.system(size: 120, weight: .light))
-          )
+      })
+      .buttonStyle(PlainButtonStyle())
+      .sheet(isPresented: $showTimePicker) {
+        TimePickerView(selectedTime: $selectedTime, showTimePicker: $showTimePicker)
+          .presentationDetents([.fraction(0.4)])
+          .presentationCornerRadius(20)
       }
       
       HStack {
@@ -82,6 +98,12 @@ struct MainView: View {
     .padding(.horizontal, 16)
     
     Spacer()
+  }
+  
+  private var timeFormatter: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    return formatter
   }
 }
 
