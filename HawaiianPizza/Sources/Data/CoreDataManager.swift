@@ -39,12 +39,12 @@ extension CoreDataManager: DataProtocol {
     }
     
     // MARK: - Routine Methods
-    func createRoutine(routineTitle: String, routineTime: Date, totalSkipTime: Date) -> Routine {
+    func createRoutine(routineTitle: String, routineTime: Int, totalSkipTime: Int) -> Routine {
         let routine = Routine(context: viewContext)
         routine.id = UUID()
         routine.routineTitle = routineTitle
-        routine.routineTime = routineTime
-        routine.totalSkipTime = totalSkipTime
+        routine.routineTime = Int32(routineTime)
+        routine.totalSkipTime = Int32(totalSkipTime)
         saveContext()
         return routine
     }
@@ -70,13 +70,13 @@ extension CoreDataManager: DataProtocol {
         }
     
     // MARK: - Task Methods
-    func createTask(taskIcon: String, routine: Routine, taskTime: Date, taskSkipTime: Date, taskName: String) -> Task {
+    func createTask(taskIcon: String, routine: Routine, taskTime: Int, taskSkipTime: Int, taskName: String) -> Task {
         let task = Task(context: viewContext)
         task.id = UUID()
         task.taskIcon = taskIcon
         task.routine = routine
-        task.taskTime = taskTime
-        task.taskSkipTime = taskSkipTime
+        task.taskTime = Int32(taskTime)
+        task.taskSkipTime = Int32(taskSkipTime)
         task.taskName = taskName
         saveContext()
         return task
@@ -98,33 +98,10 @@ extension CoreDataManager: DataProtocol {
         saveContext()
     }
     
-    // MARK: - Weather Methods
-    func createWeather(state: String) -> Weather {
-        let weather = Weather(context: viewContext)
-        weather.state = state
-        saveContext()
-        return weather
-    }
-    
-    func fetchAllWeather() -> [Weather] {
-        let request: NSFetchRequest<Weather> = Weather.fetchRequest()
-        do {
-            return try viewContext.fetch(request)
-        } catch {
-            print("Failed to fetch weather: \(error)")
-            return []
-        }
-    }
-    
-    func deleteWeather(_ weather: Weather) {
-        viewContext.delete(weather)
-        saveContext()
-    }
-    
     // MARK: - Time Methods
-    func createTime(startTime: Date) -> Time {
+    func createTime(startTime: Int) -> Time {
         let time = Time(context: viewContext)
-        time.startTime = startTime
+        time.startTime = Int32(startTime)
         saveContext()
         return time
     }

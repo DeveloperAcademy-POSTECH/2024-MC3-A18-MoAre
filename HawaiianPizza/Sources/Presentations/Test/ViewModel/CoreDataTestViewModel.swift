@@ -14,7 +14,7 @@ class CoreDataTestViewModel: ObservableObject {
         fetchRoutines()
     }
     
-    func addRoutine(routineTitle: String, routineTime: Date, skipTime: Date) {
+    func addRoutine(routineTitle: String, routineTime: Int, skipTime: Int) {
         let newRoutine = CoreDataManager.shared.createRoutine(
             routineTitle: routineTitle,
             routineTime: routineTime,
