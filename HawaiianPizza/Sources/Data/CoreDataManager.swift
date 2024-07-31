@@ -70,8 +70,8 @@ extension CoreDataManager: DataProtocol {
         }
     
     // MARK: - Task Methods
-    func createTask(taskIcon: String, routine: Routine, taskTime: Int, taskSkipTime: Int, taskName: String) -> Task {
-        let task = Task(context: viewContext)
+    func createTask(taskIcon: String, routine: Routine, taskTime: Int, taskSkipTime: Int, taskName: String) -> Tasks {
+        let task = Tasks(context: viewContext)
         task.id = UUID()
         task.taskIcon = taskIcon
         task.routine = routine
@@ -82,8 +82,8 @@ extension CoreDataManager: DataProtocol {
         return task
     }
     
-    func fetchTasks(for routine: Routine) -> [Task] {
-        let request: NSFetchRequest<Task> = Task.fetchRequest()
+    func fetchTasks(for routine: Routine) -> [Tasks] {
+        let request: NSFetchRequest<Tasks> = Tasks.fetchRequest()
         request.predicate = NSPredicate(format: "routine == %@", routine)
         do {
             return try viewContext.fetch(request)
@@ -93,15 +93,15 @@ extension CoreDataManager: DataProtocol {
         }
     }
     
-    func deleteTask(_ task: Task) {
+    func deleteTask(_ task: Tasks) {
         viewContext.delete(task)
         saveContext()
     }
     
     // MARK: - Time Methods
-    func createTime(startTime: Int) -> Time {
+    func createTime(startTime: Date) -> Time {
         let time = Time(context: viewContext)
-        time.startTime = Int32(startTime)
+        time.startTime = startTime
         saveContext()
         return time
     }

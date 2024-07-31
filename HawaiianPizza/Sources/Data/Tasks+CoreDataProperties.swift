@@ -1,8 +1,8 @@
 //
-//  Task+CoreDataProperties.swift
+//  Tasks+CoreDataProperties.swift
 //  HawaiianPizza
 //
-//  Created by LeeWanJae on 7/28/24.
+//  Created by LeeWanJae on 7/31/24.
 //
 //
 
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension Task {
+extension Tasks {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Task> {
-        return NSFetchRequest<Task>(entityName: "Task")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Tasks> {
+        return NSFetchRequest<Tasks>(entityName: "Tasks")
     }
 
     @NSManaged public var id: UUID?
@@ -25,6 +25,6 @@ extension Task {
 
 }
 
-extension Task : Identifiable {
+extension Tasks : Identifiable {
 
 }
