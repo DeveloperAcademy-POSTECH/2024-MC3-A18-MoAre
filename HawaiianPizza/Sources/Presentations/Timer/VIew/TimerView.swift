@@ -5,10 +5,18 @@
 //  Created by Pil_Gaaang on 7/26/24.
 //
 
+//
+//  TimerView.swift
+//  HawaiianPizza
+//
+//  Created by Pil_Gaaang on 7/26/24.
+//
+
 import SwiftUI
 
 struct TimerView: View {
-    @ObservedObject var timerManager = TimerViewModel()
+    @StateObject private var timerManager = TimerViewModel()
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         VStack {
@@ -100,6 +108,9 @@ struct TimerView: View {
         .padding()
         .onAppear {
             timerManager.startTask()
+        }
+        .onChange(of: scenePhase) { newPhase in
+            timerManager.handleScenePhaseChange(newPhase)
         }
     }
 }
