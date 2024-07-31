@@ -28,10 +28,10 @@ extension Routine {
 extension Routine {
 
     @objc(addTasksObject:)
-    @NSManaged public func addToTasks(_ value: Task)
+    @NSManaged public func addToTasks(_ value: Tasks)
 
     @objc(removeTasksObject:)
-    @NSManaged public func removeFromTasks(_ value: Task)
+    @NSManaged public func removeFromTasks(_ value: Tasks)
 
     @objc(addTasks:)
     @NSManaged public func addToTasks(_ values: NSSet)
