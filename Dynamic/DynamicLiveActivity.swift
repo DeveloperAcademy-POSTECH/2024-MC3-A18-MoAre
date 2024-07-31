@@ -9,46 +9,90 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-struct DynamicAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
-        // Dynamic stateful properties about your activity go here!
-        var emoji: String
-    }
-
-    // Fixed non-changing properties about your activity go here!
-    var name: String
-}
-
 struct DynamicLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: DynamicAttributes.self) { context in
-            // Lock screen/banner UI goes here
             VStack {
-                Text("Hello \(context.state.emoji)")
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("남은 시간")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.black)
+                        HStack {
+                            Text(String(format: "%02d", Int(context.state.remainingTime) / 60))
+                                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                            Text(":")
+                                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                            Text(String(format: "%02d", Int(context.state.remainingTime) % 60))
+                                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    ZStack {
+                        Circle()
+                            .fill(Color.gray.opacity(0.2))
+                            .frame(width: 60, height: 60)
+                        Image(systemName: context.state.iconName)  // 아이콘 이름 사용
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                    }
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(20)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                
+                ProgressBar(progress: CGFloat(context.state.remainingTime) / CGFloat(60))
+                    .frame(height: 10)
+                    .padding(.top, -5)
             }
+            .padding()
             .activityBackgroundTint(Color.cyan)
             .activitySystemActionForegroundColor(Color.black)
-
         } dynamicIsland: { context in
             DynamicIsland {
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
+                    VStack(alignment: .leading) {
+                        Text("남은 시간")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.black)
+                        HStack {
+                            Text(String(format: "%02d", Int(context.state.remainingTime) / 60))
+                                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                            Text(":")
+                                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                            Text(String(format: "%02d", Int(context.state.remainingTime) % 60))
+                                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                        }
+                    }
                 }
+                
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                    ZStack {
+                        Circle()
+                            .fill(Color.gray.opacity(0.2))
+                            .frame(width: 60, height: 60)
+                        Image(systemName: context.state.iconName)  // 아이콘 이름 사용
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                    }
                 }
+                
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.emoji)")
-                    // more content
+                    ProgressBar(progress: CGFloat(context.state.remainingTime) / CGFloat(60))
+                        .frame(height: 10)
+                        .padding(.top, -5)
                 }
             } compactLeading: {
-                Text("L")
+                Text("남은 시간")
             } compactTrailing: {
-                Text("T \(context.state.emoji)")
+                Text(String(format: "%02d:%02d", Int(context.state.remainingTime) / 60, Int(context.state.remainingTime) % 60))
             } minimal: {
-                Text(context.state.emoji)
+                Text("타이머")
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
@@ -56,25 +100,24 @@ struct DynamicLiveActivity: Widget {
     }
 }
 
-extension DynamicAttributes {
-    fileprivate static var preview: DynamicAttributes {
-        DynamicAttributes(name: "World")
+struct ProgressBar: View {
+    var progress: CGFloat
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                // 전체 바의 배경
+                Rectangle()
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                
+                // 남은 시간에 따른 프로그레스
+                Rectangle()
+                    .fill(Color.black)
+                    .frame(width: geometry.size.width * progress * 2, height: geometry.size.height)
+                    .animation(.linear(duration: 1), value: progress)
+            }
+            .cornerRadius(2)
+        }
     }
-}
-
-extension DynamicAttributes.ContentState {
-    fileprivate static var smiley: DynamicAttributes.ContentState {
-        DynamicAttributes.ContentState(emoji: "😀")
-     }
-     
-     fileprivate static var starEyes: DynamicAttributes.ContentState {
-         DynamicAttributes.ContentState(emoji: "🤩")
-     }
-}
-
-#Preview("Notification", as: .content, using: DynamicAttributes.preview) {
-   DynamicLiveActivity()
-} contentStates: {
-    DynamicAttributes.ContentState.smiley
-    DynamicAttributes.ContentState.starEyes
 }
