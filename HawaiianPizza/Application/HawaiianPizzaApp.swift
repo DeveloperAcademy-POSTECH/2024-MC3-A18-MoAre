@@ -13,16 +13,8 @@ struct HawaiianPizzaApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            MainView()
-//            CoreDataTestView()
-            //            WeatherTestView()
-            NavigationStack(path:$coordinator.path) {
                 MainView()
                     .environmentObject(coordinator)
-                    .navigationDestination(for: ViewDestination.self){ destination in
-                        coordinator.setView(destination: destination)
-                    }
             }
         }
     }
-}
