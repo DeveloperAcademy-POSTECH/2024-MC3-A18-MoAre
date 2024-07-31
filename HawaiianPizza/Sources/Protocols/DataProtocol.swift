@@ -21,7 +21,7 @@ protocol TaskManaging {
 }
 
 protocol TimeManaging {
-    func createTime(startTime: Int) -> Time
+    func createTime(startTime: Date) -> Time
     func fetchAllTimes() -> [Time]
     func deleteTime(_ time: Time)
 }

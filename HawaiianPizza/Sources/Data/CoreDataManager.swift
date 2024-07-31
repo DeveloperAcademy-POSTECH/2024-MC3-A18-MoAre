@@ -99,9 +99,9 @@ extension CoreDataManager: DataProtocol {
     }
     
     // MARK: - Time Methods
-    func createTime(startTime: Int) -> Time {
+    func createTime(startTime: Date) -> Time {
         let time = Time(context: viewContext)
-        time.startTime = Int32(startTime)
+        time.startTime = startTime
         saveContext()
         return time
     }

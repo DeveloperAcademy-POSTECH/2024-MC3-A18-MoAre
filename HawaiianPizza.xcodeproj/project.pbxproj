@@ -29,15 +29,15 @@
 		CC1E06D42C5628E000B35763 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CC1E06D32C5628E000B35763 /* Lottie */; };
 		CC1E06D62C56292200B35763 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06D52C56292200B35763 /* LottieView.swift */; };
 		CC1E06D82C5629EF00B35763 /* complete.json in Resources */ = {isa = PBXBuildFile; fileRef = CC1E06D72C5629EF00B35763 /* complete.json */; };
-		CC1E06EB2C562E8000B35763 /* Routine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06E72C562E8000B35763 /* Routine+CoreDataClass.swift */; };
-		CC1E06EC2C562E8000B35763 /* Routine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06E82C562E8000B35763 /* Routine+CoreDataProperties.swift */; };
-		CC1E06ED2C562E8000B35763 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06E92C562E8000B35763 /* Task+CoreDataClass.swift */; };
-		CC1E06EE2C562E8000B35763 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06EA2C562E8000B35763 /* Task+CoreDataProperties.swift */; };
 		CC1E06F02C5645B800B35763 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06EF2C5645B800B35763 /* LocationHelper.swift */; };
 		CC1E06FB2C582B1500B35763 /* Extension + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06FA2C582B1500B35763 /* Extension + Notification.swift */; };
 		CC1E06FD2C58C95D00B35763 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06FC2C58C95D00B35763 /* Coordinator.swift */; };
 		CC1E07002C58CCAF00B35763 /* ViewDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06FF2C58CCAF00B35763 /* ViewDestination.swift */; };
 		CC2054C12C59FF6400155C92 /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC2054BF2C59FF6400155C92 /* HawaiianPizza.xcdatamodeld */; };
+		CC2054C62C5A079800155C92 /* Routine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054C22C5A079800155C92 /* Routine+CoreDataClass.swift */; };
+		CC2054C72C5A079800155C92 /* Routine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054C32C5A079800155C92 /* Routine+CoreDataProperties.swift */; };
+		CC2054C82C5A079800155C92 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054C42C5A079800155C92 /* Task+CoreDataClass.swift */; };
+		CC2054C92C5A079800155C92 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054C52C5A079800155C92 /* Task+CoreDataProperties.swift */; };
 		CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */; };
 		CC7504EF2C5124E300394D1B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7504EE2C5124E300394D1B /* MainView.swift */; };
 		CC7504F12C5124E400394D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7504F02C5124E400394D1B /* Assets.xcassets */; };
@@ -103,15 +103,15 @@
 		6EAF20232C59227800724343 /* alarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.caf; sourceTree = "<group>"; };
 		CC1E06D52C56292200B35763 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		CC1E06D72C5629EF00B35763 /* complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = complete.json; sourceTree = "<group>"; };
-		CC1E06E72C562E8000B35763 /* Routine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CC1E06E82C562E8000B35763 /* Routine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CC1E06E92C562E8000B35763 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CC1E06EA2C562E8000B35763 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC1E06EF2C5645B800B35763 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		CC1E06FA2C582B1500B35763 /* Extension + Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Notification.swift"; sourceTree = "<group>"; };
 		CC1E06FC2C58C95D00B35763 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CC1E06FF2C58CCAF00B35763 /* ViewDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDestination.swift; sourceTree = "<group>"; };
 		CC2054C02C59FF6400155C92 /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
+		CC2054C22C5A079800155C92 /* Routine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CC2054C32C5A079800155C92 /* Routine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CC2054C42C5A079800155C92 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CC2054C52C5A079800155C92 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC7504E92C5124E300394D1B /* HawaiianPizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HawaiianPizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawaiianPizzaApp.swift; sourceTree = "<group>"; };
 		CC7504EE2C5124E300394D1B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -445,10 +445,10 @@
 			isa = PBXGroup;
 			children = (
 				CC2054BF2C59FF6400155C92 /* HawaiianPizza.xcdatamodeld */,
-				CC1E06E72C562E8000B35763 /* Routine+CoreDataClass.swift */,
-				CC1E06E82C562E8000B35763 /* Routine+CoreDataProperties.swift */,
-				CC1E06E92C562E8000B35763 /* Task+CoreDataClass.swift */,
-				CC1E06EA2C562E8000B35763 /* Task+CoreDataProperties.swift */,
+				CC2054C22C5A079800155C92 /* Routine+CoreDataClass.swift */,
+				CC2054C32C5A079800155C92 /* Routine+CoreDataProperties.swift */,
+				CC2054C42C5A079800155C92 /* Task+CoreDataClass.swift */,
+				CC2054C52C5A079800155C92 /* Task+CoreDataProperties.swift */,
 				CC9739692C52B1E200C75466 /* CoreDataManager.swift */,
 			);
 			path = Data;
@@ -597,16 +597,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC2054C62C5A079800155C92 /* Routine+CoreDataClass.swift in Sources */,
+				CC2054C72C5A079800155C92 /* Routine+CoreDataProperties.swift in Sources */,
+				CC2054C82C5A079800155C92 /* Task+CoreDataClass.swift in Sources */,
+				CC2054C92C5A079800155C92 /* Task+CoreDataProperties.swift in Sources */,
 				6E1A58FC2C566DE900590664 /* AddTaskView.swift in Sources */,
 				6E4ACB562C540753008AACCD /* RoutineSettingView.swift in Sources */,
 				CC9739792C52B1E900C75466 /* DataProtocol.swift in Sources */,
 				CC9739712C52B1E200C75466 /* CoreDataManager.swift in Sources */,
 				CCE054E42C560FDD00E4E54F /* CompleteViewModel.swift in Sources */,
-				CC1E06EB2C562E8000B35763 /* Routine+CoreDataClass.swift in Sources */,
-				CC1E06EC2C562E8000B35763 /* Routine+CoreDataProperties.swift in Sources */,
-				CC1E06ED2C562E8000B35763 /* Task+CoreDataClass.swift in Sources */,
 				CC2054C12C59FF6400155C92 /* HawaiianPizza.xcdatamodeld in Sources */,
-				CC1E06EE2C562E8000B35763 /* Task+CoreDataProperties.swift in Sources */,
 				CC7504EF2C5124E300394D1B /* MainView.swift in Sources */,
 				0012A0622C52C2FD00C5D195 /* TimerView.swift in Sources */,
 				CC1E07002C58CCAF00B35763 /* ViewDestination.swift in Sources */,
