@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
   @StateObject private var viewModel = MainViewModel()
+  @EnvironmentObject var coordinator: Coordinator
+          
   @State private var showTimePicker = false
   @State private var selectedTime = (hour: 00, minute: 00)
   
@@ -90,14 +92,18 @@ struct MainView: View {
             MainRowView(item: item)
               .padding(.trailing, 3)
             
-          }
+            
+            Spacer()
+               
         }
-      }
-      .padding(.top, 19)
     }
     .padding(.horizontal, 16)
-    
+    .navigationDestination(for: ViewDestination.self){ destination in
+                coordinator.setView(destination: destination)
+            }
+        
     Spacer()
+        
   }
   
   private var timeFormatter: DateFormatter {
@@ -108,5 +114,5 @@ struct MainView: View {
 }
 
 #Preview {
-  MainView()
+    MainView()
 }

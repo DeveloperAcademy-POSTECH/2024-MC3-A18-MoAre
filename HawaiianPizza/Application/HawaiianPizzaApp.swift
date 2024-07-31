@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct HawaiianPizzaApp: App {
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var coordinator = Coordinator()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
   
-  var body: some Scene {
-    WindowGroup {
-      MainView()
-//      CoreDataTestView()
-//      CompleteView()
+    var body: some Scene {
+        WindowGroup {
+                MainView()
+                    .environmentObject(coordinator)
+        }
     }
-  }
 }
