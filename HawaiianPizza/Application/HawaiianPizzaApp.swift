@@ -10,11 +10,12 @@ import SwiftUI
 @main
 struct HawaiianPizzaApp: App {
     @StateObject private var coordinator = Coordinator()
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+  
     var body: some Scene {
         WindowGroup {
                 MainView()
                     .environmentObject(coordinator)
-            }
         }
     }
+}
