@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - 부리 : 잔디 심기 전체 뷰
 struct RoutinePlanningView: View {
+  @EnvironmentObject var coordinator: Coordinator
+    
   @State private var totalMinutes: Int = 0
   @State var routineTitle: String = ""
   
@@ -79,7 +81,7 @@ struct RoutinePlanningView: View {
       Spacer()
       
       Button(action: {
-        
+          coordinator.push(destination: .main)
       }, label: {
         ZStack {
           RoundedRectangle(cornerRadius: 10)
