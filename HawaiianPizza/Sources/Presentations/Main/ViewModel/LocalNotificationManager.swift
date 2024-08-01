@@ -12,8 +12,17 @@ struct Noti {
   var title: String
 }
 
-class LocalNotificationManager {
+class LocalNotificationManager: ObservableObject {
+  @Published var navigateToView: Bool = false
   var notifications = [Noti]()
+  
+  init() {
+    NotificationCenter.default.addObserver(forName: NSNotification.Name("NotificationManagerUpdate"), object: nil, queue: .main) { [weak self] notification in
+      if let showTimerView = notification.userInfo?["showTimerView"] as? Bool {
+        self?.navigateToView = showTimerView
+      }
+    }
+  }
   
   func requestPermission() -> Void {
     UNUserNotificationCenter

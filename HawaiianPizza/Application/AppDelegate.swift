@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SwiftUI
 import UserNotifications
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
   
+  @EnvironmentObject var localNotificationManager: LocalNotificationManager
   var window: UIWindow?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -20,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   
   // 알림 눌렀을 때 호출되는 메소드
   func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    DispatchQueue.main.async {
+      let notificationManager = NotificationCenter.default.publisher(for: NSNotification.Name("NotificationManagerUpdate"))
+      NotificationCenter.default.post(name: NSNotification.Name("NotificationManagerUpdate"), object: nil, userInfo: ["showTimerView": true])
+    }
     cancelAllNotifications()
     completionHandler()
   }
