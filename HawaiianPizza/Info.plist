@@ -14,6 +14,25 @@
 				<string>Moare</string>
 			</array>
 		</dict>
+	<key>NSLiveActivityUsageDescription</key>
+	<string>라이브 액티비티를 사용하여 타이머를 표시합니다.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UIBackgroundModes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+		<key>fetch</key>
+		<string>0</string>
+		<key>processing</key>
+		<string>0</string>
+	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
 	</array>
 </dict>
 </plist>
