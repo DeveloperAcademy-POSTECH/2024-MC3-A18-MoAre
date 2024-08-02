@@ -39,6 +39,7 @@
 		6EAF20202C591A8900724343 /* UIDatePickerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF201F2C591A8900724343 /* UIDatePickerWrapper.swift */; };
 		6EAF20222C591C7200724343 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAF20212C591C7200724343 /* TimePickerView.swift */; };
 		6EAF20242C59227800724343 /* alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6EAF20232C59227800724343 /* alarm.caf */; };
+		6ECBF6652C5B5D400002665E /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBF6632C5B5D400002665E /* HawaiianPizza.xcdatamodeld */; };
 		CC1E06D42C5628E000B35763 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CC1E06D32C5628E000B35763 /* Lottie */; };
 		CC1E06D62C56292200B35763 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E06D52C56292200B35763 /* LottieView.swift */; };
 		CC1E06D82C5629EF00B35763 /* complete.json in Resources */ = {isa = PBXBuildFile; fileRef = CC1E06D72C5629EF00B35763 /* complete.json */; };
@@ -143,6 +144,7 @@
 		6EAF201F2C591A8900724343 /* UIDatePickerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDatePickerWrapper.swift; sourceTree = "<group>"; };
 		6EAF20212C591C7200724343 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		6EAF20232C59227800724343 /* alarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.caf; sourceTree = "<group>"; };
+		6ECBF6642C5B5D400002665E /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
 		CC1E06D52C56292200B35763 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		CC1E06D72C5629EF00B35763 /* complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = complete.json; sourceTree = "<group>"; };
 		CC1E06EF2C5645B800B35763 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
