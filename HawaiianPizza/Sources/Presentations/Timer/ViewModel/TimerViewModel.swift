@@ -21,11 +21,11 @@ class TimerViewModel: ObservableObject {
     var activity: Activity<DynamicAttributes>?
 
     let dummytasks = [
-        DummyTask(taskTime: 600, taskSkipTime: 10, taskName: "물 마시기", iconName: "tshirt"),
-        DummyTask(taskTime: 400, taskSkipTime: 15, taskName: "영양제 먹기", iconName: "tshirt.fill"),
-        DummyTask(taskTime: 500, taskSkipTime: 20, taskName: "가방 챙기기", iconName: "tshirt"),
-        DummyTask(taskTime: 600, taskSkipTime: 15, taskName: "씻기", iconName: "tshirt.fill"),
-        DummyTask(taskTime: 700, taskSkipTime: 20, taskName: "옷 입기", iconName: "tshirt")
+        DummyTask(taskTime: 60, taskSkipTime: 10, taskName: "물 마시기", iconName: "tshirt"),
+        DummyTask(taskTime: 40, taskSkipTime: 15, taskName: "영양제 먹기", iconName: "tshirt.fill"),
+        DummyTask(taskTime: 50, taskSkipTime: 20, taskName: "가방 챙기기", iconName: "tshirt"),
+        DummyTask(taskTime: 60, taskSkipTime: 15, taskName: "씻기", iconName: "tshirt.fill"),
+        DummyTask(taskTime: 70, taskSkipTime: 20, taskName: "옷 입기", iconName: "tshirt")
     ]
 
     init() {

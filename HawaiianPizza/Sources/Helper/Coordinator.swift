@@ -37,6 +37,8 @@ final class Coordinator: ObservableObject {
             CompleteView()
         case .routineDetail:
             RoutineDetailView()
+        case .tensecond:
+                   TenSecView()
         }
     }
 }
