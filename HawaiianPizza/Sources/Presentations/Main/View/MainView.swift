@@ -88,7 +88,7 @@ struct MainView: View {
               if let routineStartTime = viewModel.selectedRoutine.flatMap({ selectedID in
                 viewModel.items.first { $0.id == selectedID }.map { routine in
                   let selectedTotalMinutes = selectedTime.hour * 60 + selectedTime.minute
-                  let totalMinutes = selectedTotalMinutes - routine.routineTime
+                  let totalMinutes = selectedTotalMinutes - Int(routine.routineTime)
                   let adjustedMinutes = (totalMinutes + 1440) % 1440
                   return (hour: adjustedMinutes / 60, minute: adjustedMinutes % 60)
                 }
@@ -156,13 +156,13 @@ struct MainView: View {
             HStack(spacing: 0) {
               ForEach(viewModel.items) { item in
                 MainItemView(
+                  viewModel: viewModel,
                   item: item,
                   isSelected: viewModel.selectedRoutine == item.id,
                   onSelect: {
-                    viewModel.toggleRoutineSelection(for: selectedTime, routineID: item.id)
+                      viewModel.toggleRoutineSelection(for: selectedTime, routineID: item.id ?? UUID())
                   },
                   seeDetail: {
-                    // MARK: - 이안 선생님 여기로 이동하시면 되세요!!!!! 루틴 아이디 여기서 받으시면 돼요!!!!!!!
                     coordinator.push(destination: .routineSetting)
                   }
                 )
@@ -181,6 +181,9 @@ struct MainView: View {
           
         }
         Spacer()
+      }
+      .onAppear {
+          viewModel.fetchRoutine()
       }
       .navigationDestination(for: ViewDestination.self){ destination in
         coordinator.setView(destination: destination)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-  @Published var items: [RoutineItem] = []
+  @Published var items: [Routine] = []
   
   @Published var selectedRoutine: RoutineItem.ID?
   
@@ -16,22 +16,13 @@ class MainViewModel: ObservableObject {
   
   init(localNotificationManager: LocalNotificationManager) {
     self.localNotificationManager = localNotificationManager
-    self.items = [
-      RoutineItem(routineTime: 1, routineTitle: "Daily Routine", totalSkipTime: 0, tasks: [
-        TaskItem(taskIcon: "tshirt", taskName: "일어나기", taskSkipTime: 0, taskTime: 25),
-        TaskItem(taskIcon: "tshirt", taskName: "샤워하기", taskSkipTime: 0, taskTime: 55),
-        TaskItem(taskIcon: "tshirt", taskName: "스킨케어", taskSkipTime: 0, taskTime: 15),
-        TaskItem(taskIcon: "tshirt", taskName: "옷 입기", taskSkipTime: 0, taskTime: 5)
-      ]),
-      RoutineItem(routineTime: 150, routineTitle: "Special Routine", totalSkipTime: 0, tasks: [
-        TaskItem(taskIcon: "tshirt", taskName: "샤워하기", taskSkipTime: 0, taskTime: 50),
-        TaskItem(taskIcon: "tshirt", taskName: "스킨케어", taskSkipTime: 0, taskTime: 20),
-        TaskItem(taskIcon: "tshirt", taskName: "메이크업", taskSkipTime: 0, taskTime: 70),
-        TaskItem(taskIcon: "tshirt", taskName: "옷 입기", taskSkipTime: 0, taskTime: 10)
-      ])
-    ]
+      fetchRoutine()
   }
   
+  func fetchRoutine() {
+      items = CoreDataManager.shared.fetchAllRoutines()
+  }
+    
   func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
     if selectedRoutine == routineID {
       // 같은 루틴을 다시 눌렀을 경우 모든 알림을 제거하고 선택을 해제
@@ -51,7 +42,7 @@ class MainViewModel: ObservableObject {
           let routine = items.first(where: { $0.id == selectedRoutineID }) else { return }
     
     let selectedTotalMinutes = selectedTime.hour * 60 + selectedTime.minute
-    let totalMinutes = selectedTotalMinutes - routine.routineTime
+    let totalMinutes = selectedTotalMinutes - Int(routine.routineTime)
     // 음수일 경우 전날 시간으로 변환
     let adjustedMinutes = (totalMinutes + 1440) % 1440
     
@@ -79,4 +70,15 @@ class MainViewModel: ObservableObject {
       )
     }
   }
+    
+    func formattedTime(from totalMinutes: Int) -> String {
+        let time = timeFromMinutes(totalMinutes)
+        return "\(time.hour)H \(time.minute)M"
+    }
+    
+    private func timeFromMinutes(_ totalMinutes: Int) -> (hour: Int, minute: Int) {
+        let hour = totalMinutes / 60
+        let minute = totalMinutes % 60
+        return (hour, minute)
+    }
 }

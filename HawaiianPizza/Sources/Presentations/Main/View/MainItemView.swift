@@ -8,33 +8,31 @@
 import SwiftUI
 
 struct MainItemView: View {
-  let item: RoutineItem
+  @ObservedObject var viewModel: MainViewModel
+    
+  let item: Routine
   let isSelected: Bool
   let onSelect: () -> Void
   let seeDetail: () -> Void
   
   var totalDuration: Int {
-    item.tasks.map { $0.taskTime }.reduce(0, +)
-  }
-  
-  var routineTime: (hour: Int, minute: Int) {
-    timeFromMinutes(item.routineTime)
+      item.tasksArray.map { Int($0.taskTime) }.reduce(0, +)
   }
   
   var body: some View {
     VStack(spacing: 0) {
       HStack(spacing: 0) {
-        Text("\(item.routineTitle)")
+          Text(item.routineTitle ?? "루틴명이 없습니다")
           .font(.title3)
           .fontWeight(.semibold)
           .foregroundStyle(isSelected ? Color.black : Color(red: 0.6, green: 0.62, blue: 0.64))
 
         Spacer()
-        
-        Text("\(routineTime.hour)H \(routineTime.minute)M")
-          .font(.title3)
-          .bold()
-          .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+          
+          Text("\(viewModel.formattedTime(from: Int(item.routineTime)))")
+              .font(.title3)
+              .bold()
+              .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
       }
       .padding(.top, 12)
       .padding(.bottom, 10)
@@ -45,13 +43,13 @@ struct MainItemView: View {
       
       ZStack(alignment: .top) {
         VStack(spacing: 0) {
-          ForEach(item.tasks.prefix(6).indices, id: \.self) { i in
-            let widthRatio = CGFloat(item.tasks[i].taskTime) / CGFloat(totalDuration)
-            MainRowView(title: item.tasks[i].taskName, duration: item.tasks[i].taskTime, widthRatio: widthRatio, isSelected: isSelected)
+          ForEach(item.tasksArray.prefix(6).indices, id: \.self) { i in
+            let widthRatio = CGFloat(item.tasksArray[i].taskTime) / CGFloat(totalDuration)
+              MainRowView(title: item.tasksArray[i].taskName, duration: Int(item.tasksArray[i].taskTime), widthRatio: widthRatio, isSelected: isSelected)
               .padding(.bottom, 8)
           }
         }
-        .padding(.top, 16)
+        .padding(.top, 30)
         .padding(.horizontal, 20)
         
         HStack(spacing: 0) {
@@ -97,9 +95,5 @@ struct MainItemView: View {
       isSelected ? Color(red: 1, green: 0.88, blue: 0.87) : Color(red: 0.92, green: 0.93, blue: 0.91))
   }
   
-  private func timeFromMinutes(_ totalMinutes: Int) -> (hour: Int, minute: Int) {
-    let hour = totalMinutes / 60
-    let minute = totalMinutes % 60
-    return (hour, minute)
-  }
+   
 }

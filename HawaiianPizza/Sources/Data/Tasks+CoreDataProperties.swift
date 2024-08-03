@@ -17,12 +17,10 @@ extension Tasks {
     }
 
     @NSManaged public var id: UUID?
-    @NSManaged public var taskIcon: String?
-    @NSManaged public var taskName: String?
+    @NSManaged public var taskIcon: String
+    @NSManaged public var taskName: String
     @NSManaged public var taskSkipTime: Int32
     @NSManaged public var taskTime: Int32
-    @NSManaged public var routine: Routine?
-
 }
 
 extension Tasks : Identifiable {
