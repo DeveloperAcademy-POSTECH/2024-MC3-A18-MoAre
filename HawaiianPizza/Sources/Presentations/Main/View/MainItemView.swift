@@ -11,6 +11,7 @@ struct MainItemView: View {
   let item: RoutineItem
   let isSelected: Bool
   let onSelect: () -> Void
+  let seeDetail: () -> Void
   
   var totalDuration: Int {
     item.tasks.map { $0.taskTime }.reduce(0, +)
@@ -41,16 +42,39 @@ struct MainItemView: View {
       
       Divider()
         .background(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-        .padding(.bottom, 16)
       
-      VStack(spacing: 0) {
-        ForEach(item.tasks.prefix(6).indices, id: \.self) { i in
-          let widthRatio = CGFloat(item.tasks[i].taskTime) / CGFloat(totalDuration)
-          MainRowView(title: item.tasks[i].taskName, duration: item.tasks[i].taskTime, widthRatio: widthRatio, isSelected: isSelected)
-            .padding(.bottom, 8)
+      ZStack(alignment: .top) {
+        VStack(spacing: 0) {
+          ForEach(item.tasks.prefix(6).indices, id: \.self) { i in
+            let widthRatio = CGFloat(item.tasks[i].taskTime) / CGFloat(totalDuration)
+            MainRowView(title: item.tasks[i].taskName, duration: item.tasks[i].taskTime, widthRatio: widthRatio, isSelected: isSelected)
+              .padding(.bottom, 8)
+          }
+        }
+        .padding(.top, 16)
+        .padding(.horizontal, 20)
+        
+        HStack(spacing: 0) {
+          Spacer()
+          Button(action: {
+            seeDetail()
+          }, label: {
+            HStack(spacing: 0) {
+              Text("더보기")
+                .font(.system(size: 12))
+                .fontWeight(.semibold)
+                .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+                .padding(.trailing, 8)
+              Image(systemName: "chevron.forward")
+                .resizable()
+                .frame(width: 6, height: 13)
+                .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+            }
+          })
+          .padding(.top, 8)
+          .padding(.trailing, 16)
         }
       }
-      .padding(.horizontal, 20)
       
       Spacer()
       
