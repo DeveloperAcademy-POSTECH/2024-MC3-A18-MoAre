@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainItemView: View {
+    @EnvironmentObject var coordinator: Coordinator
   let item: RoutineItem
   let isSelected: Bool
   let onSelect: () -> Void
