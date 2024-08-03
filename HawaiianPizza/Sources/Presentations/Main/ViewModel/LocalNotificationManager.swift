@@ -64,4 +64,14 @@ class LocalNotificationManager: ObservableObject {
       }
     }
   }
+  
+  func removeAllPendingNotifications() {
+    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    print("알림이 모두 지워졌습니다.")
+  }
+  
+  // MARK: - 나중에 알람 말고 새로운 알림을 만들 때 사용할 듯 (특정 알림 삭제)
+  func removeNotification(identifier: String) {
+    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+  }
 }

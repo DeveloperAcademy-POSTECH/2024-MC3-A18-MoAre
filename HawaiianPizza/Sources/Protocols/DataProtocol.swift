@@ -9,14 +9,14 @@ import Foundation
 import CoreData
 
 protocol RoutineManaging {
-    func createRoutine(routineTitle: String, routineTime: Int, totalSkipTime: Int) -> Routine
+    func createRoutine(routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) -> Routine
     func fetchAllRoutines() -> [Routine]
     func deleteRoutine(offsets: IndexSet, routines: [Routine])
 }
 
 protocol TaskManaging {
-    func createTask(taskIcon: String, routine: Routine, taskTime: Int, taskSkipTime: Int, taskName: String) -> Tasks
-    func fetchTasks(for routine: Routine) -> [Tasks]
+    func createTask(taskIcon: String, taskTime: Int?, taskSkipTime: Int?, taskName: String) -> Tasks
+    func fetchAllTasks(for routine: Routine) -> [Tasks]
     func deleteTask(_ task: Tasks)
 }
 

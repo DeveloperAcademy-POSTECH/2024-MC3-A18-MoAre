@@ -11,6 +11,7 @@ enum ViewDestination: Hashable {
     case main
     case routineSetting
     case routinePlanning
+    case routineDetail
     case timer
     case complete
     case tensecond
