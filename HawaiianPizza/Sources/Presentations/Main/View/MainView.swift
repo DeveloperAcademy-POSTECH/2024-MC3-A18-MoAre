@@ -160,8 +160,7 @@ struct MainView: View {
                   item: item,
                   isSelected: viewModel.selectedRoutine == item.id,
                   onSelect: {
-                    viewModel.selectedRoutine = (viewModel.selectedRoutine == item.id) ? nil : item.id
-                    viewModel.scheduleRoutineNotification(for: selectedTime)
+                    viewModel.toggleRoutineSelection(for: selectedTime, routineID: item.id)
                   })
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .cornerRadiusWithBorder(

@@ -32,7 +32,21 @@ class MainViewModel: ObservableObject {
     ]
   }
   
+  func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
+    if selectedRoutine == routineID {
+      // 같은 루틴을 다시 눌렀을 경우 모든 알림을 제거하고 선택을 해제
+      localNotificationManager.removeAllPendingNotifications()
+      selectedRoutine = nil
+    } else {
+      // 다른 루틴을 선택할 경우 기존 알림을 제거하고 새 알림 설정
+      localNotificationManager.removeAllPendingNotifications()
+      selectedRoutine = routineID
+      scheduleRoutineNotification(for: selectedTime)
+    }
+  }
+  
   func scheduleRoutineNotification(for selectedTime: (hour: Int, minute: Int)) {
+    
     guard let selectedRoutineID = selectedRoutine,
           let routine = items.first(where: { $0.id == selectedRoutineID }) else { return }
     
