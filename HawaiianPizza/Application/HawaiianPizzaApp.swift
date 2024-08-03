@@ -9,25 +9,28 @@ import SwiftUI
 
 @main
 struct HawaiianPizzaApp: App {
-  @StateObject private var coordinator = Coordinator()
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-  @StateObject var localNotificationManager = LocalNotificationManager()
-  
-  var body: some Scene {
-    WindowGroup {
-      MainView()
-        .environmentObject(coordinator)
-        .environmentObject(localNotificationManager)
-        .onAppear {
-          localNotificationManager.requestPermission()
-        }
-        .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
-          TimerView()
-            .environmentObject(localNotificationManager)
-        }
-        .transaction { transaction in
-          transaction.disablesAnimations = true
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var coordinator = Coordinator()
+    @StateObject var localNotificationManager = LocalNotificationManager()
+    
+    var body: some Scene {
+        WindowGroup {
+            MainView()
+                .environmentObject(coordinator)
+                .environmentObject(localNotificationManager)
+                .onAppear {
+                    localNotificationManager.requestPermission()
+                }
+                .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
+                    TimerView()
+                        .environmentObject(localNotificationManager)
+                }
+                .transaction { transaction in
+                    transaction.disablesAnimations = true
+                }
+            
+//            TestMain()
+//                .environmentObject(routineSettingViewModel)
         }
     }
-  }
 }

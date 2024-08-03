@@ -39,10 +39,11 @@ extension CoreDataManager: DataProtocol {
     }
     
     // MARK: - Routine Methods
-    func createRoutine(routineTitle: String, routineTime: Int, totalSkipTime: Int) -> Routine {
+    func createRoutine(routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) -> Routine {
         let routine = Routine(context: viewContext)
         routine.id = UUID()
         routine.routineTitle = routineTitle
+        routine.tasks = NSSet(array: tasks)
         routine.routineTime = Int32(routineTime)
         routine.totalSkipTime = Int32(totalSkipTime)
         saveContext()
@@ -70,28 +71,28 @@ extension CoreDataManager: DataProtocol {
         }
     
     // MARK: - Task Methods
-    func createTask(taskIcon: String, routine: Routine, taskTime: Int, taskSkipTime: Int, taskName: String) -> Tasks {
+    func createTask(taskIcon: String, taskTime: Int, taskSkipTime: Int?, taskName: String) -> Tasks {
         let task = Tasks(context: viewContext)
         task.id = UUID()
         task.taskIcon = taskIcon
-        task.routine = routine
         task.taskTime = Int32(taskTime)
-        task.taskSkipTime = Int32(taskSkipTime)
+        task.taskSkipTime = Int32(taskSkipTime ?? 0)
         task.taskName = taskName
         saveContext()
         return task
     }
     
     func fetchTasks(for routine: Routine) -> [Tasks] {
-        let request: NSFetchRequest<Tasks> = Tasks.fetchRequest()
-        request.predicate = NSPredicate(format: "routine == %@", routine)
-        do {
-            return try viewContext.fetch(request)
-        } catch {
-            print("Failed to fetch tasks: \(error)")
-            return []
-        }
-    }
+          let request: NSFetchRequest<Tasks> = Tasks.fetchRequest()
+          request.predicate = NSPredicate(format: "ANY routines == %@", routine)
+          do {
+              return try viewContext.fetch(request)
+          } catch {
+              print("Failed to fetch tasks: \(error)")
+              return []
+          }
+      }
+      
     
     func deleteTask(_ task: Tasks) {
         viewContext.delete(task)
