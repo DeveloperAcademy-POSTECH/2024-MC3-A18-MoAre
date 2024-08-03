@@ -8,6 +8,7 @@
 import SwiftUI
 
 class MainViewModel: ObservableObject {
+    @Published var routines: [Routine] = []
   @Published var items: [RoutineItem] = []
   
   @Published var selectedRoutine: RoutineItem.ID?
@@ -30,8 +31,12 @@ class MainViewModel: ObservableObject {
         TaskItem(taskIcon: "tshirt", taskName: "옷 입기", taskSkipTime: 0, taskTime: 10)
       ])
     ]
+      self.fetchRoutine()
   }
-  
+    
+    func fetchRoutine() {
+        routines = CoreDataManager.shared.fetchAllRoutines()
+    }
   func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
     if selectedRoutine == routineID {
       // 같은 루틴을 다시 눌렀을 경우 모든 알림을 제거하고 선택을 해제

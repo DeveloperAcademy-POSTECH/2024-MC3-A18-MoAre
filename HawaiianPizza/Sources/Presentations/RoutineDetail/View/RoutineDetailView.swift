@@ -6,79 +6,78 @@ struct RoutineDetailView: View {
     @Environment(\.editMode) var editMode
     
     @State private var isEditing: Bool = false
-//    var routine: Routine
+    //    var routine: Routine
     
     var body: some View {
-//        NavigationStack {
-            VStack {
-//                TextField("루틴명", text: $viewModel.routineTitle)
-//                    .padding(.top, 20)
-//                    .padding(.bottom, 8)
-//                
-//                Divider()
-//                    .frame(height: 2)
-//                    .background(.black)
-//                    .padding(.bottom, 35)
-//                
-//                HStack {
-//                    Text("세부 설정")
-//                    Spacer()
-//                    Button {
-//                        viewModel.showModal.toggle()
-//                    } label: {
-//                        Image(systemName: "plus")
-//                            .foregroundStyle(.black)
-//                    }
-//                    .sheet(isPresented: $viewModel.showModal, content: {
-//                        UpdateTaskView()
-//                            .presentationDetents([
-//                                .fraction(0.47)
-//                            ])
-//                            .presentationDragIndicator(.visible)
-//                            .presentationCornerRadius(20)
-//                    })
-//                    
-//                }
-//                .font(.system(size: 24, weight: .bold))
-//                
-//                CreateTaskList()
-//                
-//                Spacer()
-//            }
-//            .padding(.horizontal, 16)
-//            
-//            CreateCompleteBtn()
-//                .navigationTitle("루틴 설정")
-//                .navigationBarTitleDisplayMode(.inline)
-//                .navigationBarBackButtonHidden()
-//                .toolbar {
-//                    ToolbarItem(placement: .topBarLeading) {
-//                        Button {
-//                            
-//                        } label: {
-//                            Image("backIcon")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .background(.blue)
-//                                .frame(width: 30, height: 30)
-//                        }
-//                    }
-//                    
-//                    ToolbarItem(placement: .topBarTrailing) {
-//                        Button {
-//                            withAnimation {
-//                                isEditing.toggle()
-//                                editMode?.wrappedValue = isEditing ? .active : .inactive
-//                            }
-//                        } label: {
-//                            Image("editIcon")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .background(.blue)
-//                                .frame(width: 30, height: 30)
-//                        }
-//                    }
-//                }
+        VStack {
+            //                TextField("루틴명", text: $viewModel.routineTitle)
+            //                    .padding(.top, 20)
+            //                    .padding(.bottom, 8)
+            //                
+            //                Divider()
+            //                    .frame(height: 2)
+            //                    .background(.black)
+            //                    .padding(.bottom, 35)
+            //                
+            //                HStack {
+            //                    Text("세부 설정")
+            //                    Spacer()
+            //                    Button {
+            //                        viewModel.showModal.toggle()
+            //                    } label: {
+            //                        Image(systemName: "plus")
+            //                            .foregroundStyle(.black)
+            //                    }
+            //                    .sheet(isPresented: $viewModel.showModal, content: {
+            //                        UpdateTaskView()
+            //                            .presentationDetents([
+            //                                .fraction(0.47)
+            //                            ])
+            //                            .presentationDragIndicator(.visible)
+            //                            .presentationCornerRadius(20)
+            //                    })
+            //                    
+            //                }
+            //                .font(.system(size: 24, weight: .bold))
+            //                
+            //                CreateTaskList()
+            //                
+            //                Spacer()
+            //            }
+            //            .padding(.horizontal, 16)
+            //            
+            //            CreateCompleteBtn()
+            //                .navigationTitle("루틴 설정")
+            //                .navigationBarTitleDisplayMode(.inline)
+            //                .navigationBarBackButtonHidden()
+            //                .toolbar {
+            //                    ToolbarItem(placement: .topBarLeading) {
+            //                        Button {
+            //                            
+            //                        } label: {
+            //                            Image("backIcon")
+            //                                .resizable()
+            //                                .scaledToFit()
+            //                                .background(.blue)
+            //                                .frame(width: 30, height: 30)
+            //                        }
+            //                    }
+            //                    
+            //                    ToolbarItem(placement: .topBarTrailing) {
+            //                        Button {
+            //                            withAnimation {
+            //                                isEditing.toggle()
+            //                                editMode?.wrappedValue = isEditing ? .active : .inactive
+            //                            }
+            //                        } label: {
+            //                            Image("editIcon")
+            //                                .resizable()
+            //                                .scaledToFit()
+            //                                .background(.blue)
+            //                                .frame(width: 30, height: 30)
+            //                        }
+            //                    }
+            //                }
         }
     }
 }

@@ -47,7 +47,6 @@
 		CC2054D02C5A095B00155C92 /* Routine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054CC2C5A095B00155C92 /* Routine+CoreDataClass.swift */; };
 		CC2054D12C5A095B00155C92 /* Routine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054CD2C5A095B00155C92 /* Routine+CoreDataProperties.swift */; };
 		CC2054EB2C5BCEFF00155C92 /* Extension + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054EA2C5BCEFF00155C92 /* Extension + Color.swift */; };
-		CC2054F12C5BEE0000155C92 /* TestMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054F02C5BEE0000155C92 /* TestMain.swift */; };
 		CC2054F32C5BEFE500155C92 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054F22C5BEFE500155C92 /* TestMainViewModel.swift */; };
 		CC2054F52C5BF5FD00155C92 /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054F42C5BF5FD00155C92 /* RoutineDetailView.swift */; };
 		CC2054F72C5BF9DB00155C92 /* Extension + Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2054F62C5BF9DB00155C92 /* Extension + Routine.swift */; };
@@ -153,7 +152,6 @@
 		CC2054CC2C5A095B00155C92 /* Routine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CC2054CD2C5A095B00155C92 /* Routine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC2054EA2C5BCEFF00155C92 /* Extension + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Color.swift"; sourceTree = "<group>"; };
-		CC2054F02C5BEE0000155C92 /* TestMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMain.swift; sourceTree = "<group>"; };
 		CC2054F22C5BEFE500155C92 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
 		CC2054F42C5BF5FD00155C92 /* RoutineDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
 		CC2054F62C5BF9DB00155C92 /* Extension + Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Routine.swift"; sourceTree = "<group>"; };
@@ -508,7 +506,6 @@
 				6E43596E2C5E0DAE00813BC6 /* MainItemView.swift */,
 				6E60D4C62C57C8DE003D2770 /* MainRowView.swift */,
 				6EAF20212C591C7200724343 /* TimePickerView.swift */,
-				CC2054F02C5BEE0000155C92 /* TestMain.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -528,8 +525,8 @@
 		CC97396F2C52B1E200C75466 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				CC2054CA2C5A095B00155C92 /* Tasks+CoreDataClass.swift */,
 				CC2055042C5E3BEF00155C92 /* HawaiianPizza.xcdatamodeld */,
+				CC2054CA2C5A095B00155C92 /* Tasks+CoreDataClass.swift */,
 				CC2054CB2C5A095B00155C92 /* Tasks+CoreDataProperties.swift */,
 				CC2054CC2C5A095B00155C92 /* Routine+CoreDataClass.swift */,
 				CC2054CD2C5A095B00155C92 /* Routine+CoreDataProperties.swift */,
@@ -747,7 +744,6 @@
 				CC2054D02C5A095B00155C92 /* Routine+CoreDataClass.swift in Sources */,
 				CC2054D12C5A095B00155C92 /* Routine+CoreDataProperties.swift in Sources */,
 				6E60D4C72C57C8DE003D2770 /* MainRowView.swift in Sources */,
-				CC2054F12C5BEE0000155C92 /* TestMain.swift in Sources */,
 				6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
 				CC2054FC2C5CFAAD00155C92 /* (null) in Sources */,
@@ -805,7 +801,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T4KM2JP3RN;
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dynamic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Dynamic;
@@ -835,7 +831,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T4KM2JP3RN;
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Dynamic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Dynamic;
@@ -980,7 +976,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = T4KM2JP3RN;
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
@@ -1010,7 +1006,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = T4KM2JP3RN;
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
@@ -1044,7 +1040,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza/Preview Content\"";
-				DEVELOPMENT_TEAM = T4KM2JP3RN;
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;
@@ -1083,7 +1079,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HawaiianPizza/Preview Content\"";
-				DEVELOPMENT_TEAM = T4KM2JP3RN;
+				DEVELOPMENT_TEAM = GKWM8Q6TMS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HawaiianPizza;

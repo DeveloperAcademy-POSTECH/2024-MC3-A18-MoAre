@@ -5,7 +5,7 @@
         <attribute name="routineTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="routineTitle" optional="YES" attributeType="String"/>
         <attribute name="totalSkipTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tasks" inverseName="routine" inverseEntity="Tasks"/>
     </entity>
     <entity name="Tasks" representedClassName="Tasks" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -13,6 +13,7 @@
         <attribute name="taskName" optional="YES" attributeType="String"/>
         <attribute name="taskSkipTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="taskTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="routine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Routine" inverseName="tasks" inverseEntity="Routine"/>
     </entity>
     <entity name="Time" representedClassName="Time" syncable="YES" codeGenerationType="class">
         <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
