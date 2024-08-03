@@ -156,6 +156,9 @@ extension RoutineSettingView {
                 routineTime: viewModel.routineTime,
                 totalSkipTime: viewModel.totalSkipTime
             )
+            if let routine = viewModel.routines {
+                print("루틴 저장: \(routine)")
+            }
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))

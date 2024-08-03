@@ -56,7 +56,7 @@ extension AddTaskView {
         return Button {
             viewModel.createTasks(taskIcon: viewModel.taskIcon, taskName: viewModel.taskTitle)
             viewModel.showModal.toggle()
-            print("createTask 저장: \(viewModel.tasks)")
+            print("테스크 저장: \(viewModel.tasks)")
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))

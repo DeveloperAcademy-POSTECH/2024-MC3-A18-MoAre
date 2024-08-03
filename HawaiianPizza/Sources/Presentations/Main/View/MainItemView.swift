@@ -17,10 +17,6 @@ struct MainItemView: View {
       item.tasksArray.map { Int($0.taskTime) }.reduce(0, +)
   }
   
-  var routineTime: (hour: Int, minute: Int) {
-      timeFromMinutes(Int(item.routineTime))
-  }
-  
   var body: some View {
     VStack(spacing: 0) {
       HStack(spacing: 0) {
@@ -31,7 +27,7 @@ struct MainItemView: View {
 
         Spacer()
         
-        Text("\(routineTime.hour)H \(routineTime.minute)M")
+          Text("\(item.routineTime)M")
           .font(.title3)
           .bold()
           .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))

@@ -11,7 +11,11 @@ class RoutineSettingViewModel: ObservableObject {
 
     @Published var routines: Routine?
     @Published var routineTitle: String = ""
-    @Published var tasks: [Tasks] = []
+    @Published var tasks: [Tasks] = [] {
+        didSet {
+            routineTime = calculateRoutineTime()
+        }
+    }
     @Published var routineTime: Int = 0
     @Published var totalSkipTime: Int = 0
     
@@ -29,11 +33,12 @@ class RoutineSettingViewModel: ObservableObject {
             taskName: taskName
         )
         tasks.append(task)
+        routineTime = calculateRoutineTime()
         return task.id
     }
     
     func createRoutine(routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) {
-        _ = CoreDataManager.shared.createRoutine(
+        routines = CoreDataManager.shared.createRoutine(
             routineTitle: routineTitle,
             tasks: tasks,
             routineTime: routineTime,
@@ -43,12 +48,14 @@ class RoutineSettingViewModel: ObservableObject {
     
     func fetchTasks(routine: Routine) {
         tasks = CoreDataManager.shared.fetchAllTasks(for: routine)
+        routineTime = calculateRoutineTime()
     }
     
     func taskTimeUpUpdate(task: Tasks) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].taskTime += 5
             CoreDataManager.shared.saveContext()
+            routineTime = calculateRoutineTime()
             objectWillChange.send()
         }
     }
@@ -57,7 +64,12 @@ class RoutineSettingViewModel: ObservableObject {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].taskTime = max(0, tasks[index].taskTime - 5)
             CoreDataManager.shared.saveContext()
+            routineTime = calculateRoutineTime()
             objectWillChange.send()
         }
     }
+    
+    private func calculateRoutineTime() -> Int {
+        return Int(tasks.reduce(0) { $0 + $1.taskTime })
+       }
 }
