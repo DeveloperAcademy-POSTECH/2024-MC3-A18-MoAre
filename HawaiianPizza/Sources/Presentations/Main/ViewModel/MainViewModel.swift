@@ -17,17 +17,17 @@ class MainViewModel: ObservableObject {
   init(localNotificationManager: LocalNotificationManager) {
     self.localNotificationManager = localNotificationManager
     self.items = [
-      RoutineItem(title: "Daily Routine", time: (0, 1), chart: [
-        TaskItem(task: "일어나기", type: .one, ratio: 28),
-        TaskItem(task: "샤워하기", type: .two, ratio: 57),
-        TaskItem(task: "스킨케어", type: .three, ratio: 14),
-        TaskItem(task: "옷 입기", type: .one, ratio: 5)
+      RoutineItem(routineTime: 1, routineTitle: "Daily Routine", totalSkipTime: 0, tasks: [
+        TaskItem(taskIcon: "tshirt", taskName: "일어나기", taskSkipTime: 0, taskTime: 25),
+        TaskItem(taskIcon: "tshirt", taskName: "샤워하기", taskSkipTime: 0, taskTime: 55),
+        TaskItem(taskIcon: "tshirt", taskName: "스킨케어", taskSkipTime: 0, taskTime: 15),
+        TaskItem(taskIcon: "tshirt", taskName: "옷 입기", taskSkipTime: 0, taskTime: 5)
       ]),
-      RoutineItem(title: "Special Routine", time: (2, 40), chart: [
-        TaskItem(task: "샤워하기", type: .one, ratio: 50),
-        TaskItem(task: "스킨케어", type: .two, ratio: 20),
-        TaskItem(task: "메이크업", type: .three, ratio: 70),
-        TaskItem(task: "옷 입기", type: .one, ratio: 10)
+      RoutineItem(routineTime: 150, routineTitle: "Special Routine", totalSkipTime: 0, tasks: [
+        TaskItem(taskIcon: "tshirt", taskName: "샤워하기", taskSkipTime: 0, taskTime: 50),
+        TaskItem(taskIcon: "tshirt", taskName: "스킨케어", taskSkipTime: 0, taskTime: 20),
+        TaskItem(taskIcon: "tshirt", taskName: "메이크업", taskSkipTime: 0, taskTime: 70),
+        TaskItem(taskIcon: "tshirt", taskName: "옷 입기", taskSkipTime: 0, taskTime: 10)
       ])
     ]
   }
@@ -51,8 +51,7 @@ class MainViewModel: ObservableObject {
           let routine = items.first(where: { $0.id == selectedRoutineID }) else { return }
     
     let selectedTotalMinutes = selectedTime.hour * 60 + selectedTime.minute
-    let routineDurationMinutes = routine.time.hour * 60 + routine.time.minute
-    let totalMinutes = selectedTotalMinutes - routineDurationMinutes
+    let totalMinutes = selectedTotalMinutes - routine.routineTime
     // 음수일 경우 전날 시간으로 변환
     let adjustedMinutes = (totalMinutes + 1440) % 1440
     
