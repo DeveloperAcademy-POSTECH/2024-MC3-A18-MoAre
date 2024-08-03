@@ -8,10 +8,12 @@
 import SwiftUI
 import ActivityKit
 import UIKit
+import Combine
 
 class TimerViewModel: ObservableObject {
     @Published var remainingTime: TimeInterval = 0
     @Published var progress: CGFloat = 1.0
+    @StateObject private var ttsManager = TextToSpeechManager()
     var timer: Timer?
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var currentTaskIndex: Int = 0
@@ -19,11 +21,11 @@ class TimerViewModel: ObservableObject {
     var activity: Activity<DynamicAttributes>?
 
     let dummytasks = [
-        DummyTask(taskTime: 30, taskSkipTime: 10, taskName: "Task 1", iconName: "tshirt"),
-        DummyTask(taskTime: 26, taskSkipTime: 15, taskName: "Task 2", iconName: "tshirt.fill"),
-        DummyTask(taskTime: 25, taskSkipTime: 20, taskName: "Task 3", iconName: "tshirt"),
-        DummyTask(taskTime: 26, taskSkipTime: 15, taskName: "Task 4", iconName: "tshirt.fill"),
-        DummyTask(taskTime: 25, taskSkipTime: 20, taskName: "Task 5", iconName: "tshirt")
+        DummyTask(taskTime: 600, taskSkipTime: 10, taskName: "물 마시기", iconName: "tshirt"),
+        DummyTask(taskTime: 400, taskSkipTime: 15, taskName: "영양제 먹기", iconName: "tshirt.fill"),
+        DummyTask(taskTime: 500, taskSkipTime: 20, taskName: "가방 챙기기", iconName: "tshirt"),
+        DummyTask(taskTime: 600, taskSkipTime: 15, taskName: "씻기", iconName: "tshirt.fill"),
+        DummyTask(taskTime: 700, taskSkipTime: 20, taskName: "옷 입기", iconName: "tshirt")
     ]
 
     init() {
@@ -32,25 +34,36 @@ class TimerViewModel: ObservableObject {
 
     func startTask() {
         remainingTime = dummytasks[currentTaskIndex].taskTime
+        ttsManager.speak(text:"이번 루틴은" + dummytasks[currentTaskIndex].taskName + "입니다")
         progress = 1.0
         startTimer()
         startLiveActivity(iconName: dummytasks[currentTaskIndex].iconName)
     }
 
     func startTimer() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if self.remainingTime > 0 {
-                self.remainingTime -= 1
-                let taskTime = self.dummytasks[self.currentTaskIndex].taskTime
-                self.progress = CGFloat(self.remainingTime) / CGFloat(taskTime)
-                self.updateLiveActivity(iconName: self.dummytasks[self.currentTaskIndex].iconName)
-            } else {
-                self.nextTask()
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                if self.remainingTime > 0 {
+                    self.remainingTime -= 1
+                    let taskTime = self.dummytasks[self.currentTaskIndex].taskTime
+                    self.progress = CGFloat(self.remainingTime) / CGFloat(taskTime)
+                    
+                    // 알람 체크
+                    if self.remainingTime == 300 {
+                        self.ttsManager.speak(text: "루틴 종료까지 5분 남았습니다.")
+                        HapticHelper.triggerHapticFeedback()
+                    } else if self.remainingTime == 60 {
+                        self.ttsManager.speak(text: "루틴 종료까지 1분 남았습니다.")
+                        HapticHelper.triggerHapticFeedback()
+                    }
+
+                    self.updateLiveActivity(iconName: self.dummytasks[self.currentTaskIndex].iconName)
+                } else {
+                    self.nextTask()
+                }
             }
+            registerBackgroundTask()
         }
-        registerBackgroundTask()
-    }
 
     func nextTask() {
         if currentTaskIndex < dummytasks.count - 1 {

@@ -57,6 +57,7 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
+
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
