@@ -5,12 +5,6 @@
 //  Created by Pil_Gaaang on 7/26/24.
 //
 
-//
-//  TimerView.swift
-//  HawaiianPizza
-//
-//  Created by Pil_Gaaang on 7/26/24.
-//
 
 import SwiftUI
 
@@ -56,7 +50,7 @@ struct TimerView: View {
                     .stroke(Color.gray, lineWidth: 50)
                     .frame(width: 250, height: 250)
                     .rotationEffect(.degrees(-90))
-                    .animation(.linear(duration: 1.0), value: timerManager.progress)
+                    .animation(.linear(duration: 0.3), value: timerManager.progress)
                 Image(systemName: timerManager.dummytasks[timerManager.currentTaskIndex].iconName)
                     .resizable()
                     .scaledToFit()
