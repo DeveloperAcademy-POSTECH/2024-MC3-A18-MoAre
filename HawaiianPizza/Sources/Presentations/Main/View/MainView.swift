@@ -182,6 +182,9 @@ struct MainView: View {
         }
         Spacer()
       }
+      .onAppear {
+          viewModel.fetchRoutine()
+      }
       .navigationDestination(for: ViewDestination.self){ destination in
         coordinator.setView(destination: destination)
       }
