@@ -15,8 +15,8 @@ protocol RoutineManaging {
 }
 
 protocol TaskManaging {
-    func createTask(taskIcon: String, taskTime: Int, taskSkipTime: Int?, taskName: String) -> Tasks
-    func fetchTasks(for routine: Routine) -> [Tasks]
+    func createTask(taskIcon: String, taskTime: Int?, taskSkipTime: Int?, taskName: String) -> Tasks
+    func fetchAllTasks(for routine: Routine) -> [Tasks]
     func deleteTask(_ task: Tasks)
 }
 

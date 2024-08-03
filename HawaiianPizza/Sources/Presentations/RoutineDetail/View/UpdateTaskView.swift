@@ -5,4 +5,12 @@
 //  Created by LeeWanJae on 8/3/24.
 //
 
-import Foundation
+import SwiftUI
+
+struct UpdateTaskView: View {
+    var body: some View {
+        VStack {
+            Text("hi")
+        }
+    }
+}

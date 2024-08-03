@@ -8,8 +8,8 @@ import SwiftUI
 
 class RoutineSettingViewModel: ObservableObject {
     @Published var showModal: Bool = false
-    
-    @Published var selectedRoutine: Routine?
+
+    @Published var routines: Routine?
     @Published var routineTitle: String = ""
     @Published var tasks: [Tasks] = []
     @Published var routineTime: Int = 0
@@ -21,16 +21,15 @@ class RoutineSettingViewModel: ObservableObject {
     @Published var taskIcon: String = ""
     @Published var iconArr = ["tornado", "cloud.sun", "moon", "cloud.bolt.fill", "cloud", "smoke", "rainbow", "wind"]
     
-    func createTasks(taskIcon: String, taskTime: Int, taskName: String) {
-        task = CoreDataManager.shared.createTask(
+    func createTasks(taskIcon: String, taskName: String) -> UUID? {
+        let task = CoreDataManager.shared.createTask(
             taskIcon: taskIcon,
-            taskTime: taskTime,
+            taskTime: tasktime,
             taskSkipTime: 0,
             taskName: taskName
         )
-        if let task = task {
-            tasks.append(task)
-        }
+        tasks.append(task)
+        return task.id
     }
     
     func createRoutine(routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) {
@@ -43,26 +42,21 @@ class RoutineSettingViewModel: ObservableObject {
     }
     
     func fetchTasks(routine: Routine) {
-        tasks = CoreDataManager.shared.fetchTasks(for: routine)
+        tasks = CoreDataManager.shared.fetchAllTasks(for: routine)
     }
     
-    func updateTaskTime(task: Tasks, time: Int) {
-        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
-            tasks[index].taskTime = Int32(time)
-        }
-    }
-    
-   
-    func timeUp(task: Tasks) {
+    func taskTimeUpUpdate(task: Tasks) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].taskTime += 5
+            CoreDataManager.shared.saveContext()
             objectWillChange.send()
         }
     }
 
-    func timeDown(task: Tasks) {
+    func taskTimeDownUpdate(task: Tasks) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].taskTime = max(0, tasks[index].taskTime - 5)
+            CoreDataManager.shared.saveContext()
             objectWillChange.send()
         }
     }
