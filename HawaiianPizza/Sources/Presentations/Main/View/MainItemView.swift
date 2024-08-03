@@ -47,7 +47,7 @@ struct MainItemView: View {
               .padding(.bottom, 8)
           }
         }
-        .padding(.top, 16)
+        .padding(.top, 30)
         .padding(.horizontal, 20)
         
         HStack(spacing: 0) {
