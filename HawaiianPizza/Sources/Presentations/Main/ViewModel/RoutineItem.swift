@@ -24,6 +24,6 @@ struct TaskItem: Identifiable {
 struct RoutineItem: Identifiable {
   let id = UUID()
   var title: String
-  var time: (Int, Int)
+  var time: (hour: Int, minute: Int)
   var chart: [TaskItem]
 }
