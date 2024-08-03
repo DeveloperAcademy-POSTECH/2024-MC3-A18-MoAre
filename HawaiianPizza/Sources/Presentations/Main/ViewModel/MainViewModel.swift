@@ -51,6 +51,13 @@ class MainViewModel: ObservableObject {
     components.hour = hour
     components.minute = minute
     
+    // 날짜를 반드시 다음날로 설정
+    if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now) {
+      components.day = Calendar.current.component(.day, from: tomorrow)
+      components.month = Calendar.current.component(.month, from: tomorrow)
+      components.year = Calendar.current.component(.year, from: tomorrow)
+    }
+    
     if let routineStartDate = Calendar.current.date(from: components) {
       localNotificationManager.scheduleNotifications(
         startingAt: routineStartDate,
