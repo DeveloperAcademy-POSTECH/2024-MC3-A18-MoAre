@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainItemView: View {
+  @ObservedObject var viewModel: MainViewModel
+    
   let item: Routine
   let isSelected: Bool
   let onSelect: () -> Void
@@ -26,11 +28,11 @@ struct MainItemView: View {
           .foregroundStyle(isSelected ? Color.black : Color(red: 0.6, green: 0.62, blue: 0.64))
 
         Spacer()
-        
-          Text("\(item.routineTime)M")
-          .font(.title3)
-          .bold()
-          .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+          
+          Text("\(viewModel.formattedTime(from: Int(item.routineTime)))")
+              .font(.title3)
+              .bold()
+              .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
       }
       .padding(.top, 12)
       .padding(.bottom, 10)
@@ -93,9 +95,5 @@ struct MainItemView: View {
       isSelected ? Color(red: 1, green: 0.88, blue: 0.87) : Color(red: 0.92, green: 0.93, blue: 0.91))
   }
   
-  private func timeFromMinutes(_ totalMinutes: Int) -> (hour: Int, minute: Int) {
-    let hour = totalMinutes / 60
-    let minute = totalMinutes % 60
-    return (hour, minute)
-  }
+   
 }

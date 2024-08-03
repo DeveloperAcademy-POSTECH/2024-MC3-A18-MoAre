@@ -70,4 +70,15 @@ class MainViewModel: ObservableObject {
       )
     }
   }
+    
+    func formattedTime(from totalMinutes: Int) -> String {
+        let time = timeFromMinutes(totalMinutes)
+        return "\(time.hour)H \(time.minute)M"
+    }
+    
+    private func timeFromMinutes(_ totalMinutes: Int) -> (hour: Int, minute: Int) {
+        let hour = totalMinutes / 60
+        let minute = totalMinutes % 60
+        return (hour, minute)
+    }
 }
