@@ -8,24 +8,23 @@
 import SwiftUI
 
 struct MainItemView: View {
-    @EnvironmentObject var coordinator: Coordinator
-  let item: RoutineItem
+  let item: Routine
   let isSelected: Bool
   let onSelect: () -> Void
   let seeDetail: () -> Void
   
   var totalDuration: Int {
-    item.tasks.map { $0.taskTime }.reduce(0, +)
+      item.tasksArray.map { Int($0.taskTime) }.reduce(0, +)
   }
   
   var routineTime: (hour: Int, minute: Int) {
-    timeFromMinutes(item.routineTime)
+      timeFromMinutes(Int(item.routineTime))
   }
   
   var body: some View {
     VStack(spacing: 0) {
       HStack(spacing: 0) {
-        Text("\(item.routineTitle)")
+          Text(item.routineTitle ?? "루틴명이 없습니다")
           .font(.title3)
           .fontWeight(.semibold)
           .foregroundStyle(isSelected ? Color.black : Color(red: 0.6, green: 0.62, blue: 0.64))
@@ -46,9 +45,9 @@ struct MainItemView: View {
       
       ZStack(alignment: .top) {
         VStack(spacing: 0) {
-          ForEach(item.tasks.prefix(6).indices, id: \.self) { i in
-            let widthRatio = CGFloat(item.tasks[i].taskTime) / CGFloat(totalDuration)
-            MainRowView(title: item.tasks[i].taskName, duration: item.tasks[i].taskTime, widthRatio: widthRatio, isSelected: isSelected)
+          ForEach(item.tasksArray.prefix(6).indices, id: \.self) { i in
+            let widthRatio = CGFloat(item.tasksArray[i].taskTime) / CGFloat(totalDuration)
+              MainRowView(title: item.tasksArray[i].taskName, duration: Int(item.tasksArray[i].taskTime), widthRatio: widthRatio, isSelected: isSelected)
               .padding(.bottom, 8)
           }
         }
