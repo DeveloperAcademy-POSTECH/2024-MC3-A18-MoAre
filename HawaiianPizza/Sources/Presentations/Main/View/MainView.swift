@@ -160,7 +160,12 @@ struct MainView: View {
                   isSelected: viewModel.selectedRoutine == item.id,
                   onSelect: {
                     viewModel.toggleRoutineSelection(for: selectedTime, routineID: item.id)
-                  })
+                  },
+                  seeDetail: {
+                    // MARK: - 이안 선생님 여기로 이동하시면 되세요!!!!! 루틴 아이디 여기서 받으시면 돼요!!!!!!!
+                    coordinator.push(destination: .routineSetting)
+                  }
+                )
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .cornerRadiusWithBorder(
                   radius: 16,
