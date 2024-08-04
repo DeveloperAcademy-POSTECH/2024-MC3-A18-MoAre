@@ -19,12 +19,14 @@ struct RoutineSettingView: View {
             TextField("루틴명", text: $viewModel.routineTitle)
                 .padding(.top, 20)
                 .padding(.bottom, 8)
-            
+                .padding(.horizontal, 16)
+
             Divider()
                 .frame(height: 2)
                 .background(.black)
                 .padding(.bottom, 35)
-            
+                .padding(.horizontal, 16)
+
             HStack {
                 Text("DETAIL")
                 
@@ -44,11 +46,10 @@ struct RoutineSettingView: View {
                         .presentationDragIndicator(.visible)
                         .presentationCornerRadius(20)
                 })
-                
             }
             .font(.system(size: 24, weight: .bold))
             .padding(.horizontal, 16)
-
+            
             CreateTaskList()
             
             Spacer()
@@ -119,11 +120,11 @@ extension RoutineSettingView {
                                         .foregroundStyle(Color(hex: "#FF634B"))
                                 }
                                 .buttonStyle(PlainButtonStyle())
-
+                                
                                 Text("\(task.taskTime)")
                                     .foregroundStyle(.white)
                                     .padding(.horizontal, 32)
-
+                                
                                 Button {
                                     viewModel.taskTimeUpUpdate(task: task)
                                 } label: {
@@ -139,8 +140,16 @@ extension RoutineSettingView {
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             }
-            .onDelete { _ in }
-            .onMove { _,_  in }
+            .onDelete { indexSet in
+                indexSet.forEach { index in
+                    let task = viewModel.tasks[index]
+                    viewModel.deleteTasks(task: task)
+                    viewModel.tasks.remove(at: index)
+                }
+            }
+            .onMove { indexSet, newOffset in
+                viewModel.moveTasks(indexSet: indexSet, offset: newOffset)
+            }
         }
         .listStyle(.plain)
     }
