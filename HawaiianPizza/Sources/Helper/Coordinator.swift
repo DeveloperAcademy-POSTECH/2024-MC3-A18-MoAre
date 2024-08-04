@@ -37,6 +37,7 @@ final class Coordinator: ObservableObject {
             RoutinePlanningView()
         case .timer:
             TimerView()
+            .navigationBarBackButtonHidden()
         case .complete:
             CompleteView()
         case .routineDetail:
