@@ -28,6 +28,7 @@ struct MainItemView: View {
           .font(.title3)
           .fontWeight(.semibold)
           .foregroundStyle(isSelected ? Color.black : Color(red: 0.6, green: 0.62, blue: 0.64))
+          .padding(.trailing, 16)
           
           Text("\(viewModel.formattedTime(from: Int(item.routineTime)))")
               .font(.title3)
@@ -64,26 +65,28 @@ struct MainItemView: View {
         
         VStack(spacing: 0) {
           Spacer()
-          
+            HStack {
+                Spacer()
           Button(action: {
             seeDetail()
           }, label: {
-            HStack(spacing: 0) {
-                Button {
-                    coordinator.push(destination: .routineDetail, routine: item)
-                } label: {
-                    Text("더보기")
-                      .font(.system(size: 12))
-                      .fontWeight(.semibold)
-                      .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-                      .padding(.trailing, 8)
-                    Image(systemName: "chevron.forward")
-                      .resizable()
-                      .frame(width: 6, height: 13)
-                      .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-                }
-            }
+              HStack(spacing: 0) {
+                  Button {
+                      coordinator.push(destination: .routineDetail, routine: item)
+                  } label: {
+                      Text("더보기")
+                          .font(.system(size: 12))
+                          .fontWeight(.semibold)
+                          .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+                          .padding(.trailing, 8)
+                      Image(systemName: "chevron.forward")
+                          .resizable()
+                          .frame(width: 6, height: 13)
+                          .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+                  }
+              }
           })
+          }
           .padding(.top, 8)
           .padding(.trailing, 16)
         }
