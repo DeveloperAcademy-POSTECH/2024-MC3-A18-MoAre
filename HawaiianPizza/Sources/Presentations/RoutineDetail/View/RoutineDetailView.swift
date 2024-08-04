@@ -27,13 +27,13 @@ struct RoutineDetailView: View {
                 .onAppear {
                     UIApplication.shared.hideKeyboard()
                 }
-
+            
             Divider()
                 .frame(height: 2)
                 .background(.black)
                 .padding(.bottom, 35)
                 .padding(.horizontal, 16)
-
+            
             HStack {
                 Text("DETAIL")
                 
@@ -148,8 +148,8 @@ extension RoutineDetailView {
                     .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             }
             .onDelete { indexSet in
-                    viewModel.deleteTasks(atOffsets: indexSet)
-                }
+                viewModel.deleteTasks(atOffsets: indexSet)
+            }
             .onMove { indexSet, newOffset in
                 viewModel.moveTasks(fromOffsets: indexSet, toOffset: newOffset)
             }
