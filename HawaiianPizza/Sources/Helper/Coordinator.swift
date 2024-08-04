@@ -43,8 +43,6 @@ final class Coordinator: ObservableObject {
             if let routine = selectedRoutine {
                 RoutineDetailView(routine: routine)
             }
-        case .tensecond:
-            TenSecView()
       }
    }
 }

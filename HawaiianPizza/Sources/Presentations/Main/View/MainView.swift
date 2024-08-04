@@ -25,7 +25,7 @@ struct MainView: View {
     NavigationStack(path: $coordinator.path) {
       VStack(spacing: 0) {
         
-        NavigationLink(destination: TimerView()) {
+        NavigationLink(destination: TenSecView()) {
           EmptyView()
         }
         
@@ -158,7 +158,7 @@ struct MainView: View {
                       viewModel.toggleRoutineSelection(for: selectedTime, routineID: item.id ?? UUID())
                   },
                   seeDetail: {
-                    coordinator.push(destination: .routineSetting)
+                    coordinator.push(destination: .routineDetail, routine: item)
                   }, 
                   onDelete: {
                     showDeleteActionSheet(for: item)
