@@ -18,6 +18,8 @@ struct MainView: View {
     formatter.timeStyle = .short
     return formatter
   }
+  @State private var showActionSheet = false
+  @State private var routineToDelete: Routine? = nil
   
   var body: some View {
     NavigationStack(path: $coordinator.path) {
@@ -85,14 +87,7 @@ struct MainView: View {
               }
               .padding(.horizontal, 16)
               
-              if let routineStartTime = viewModel.selectedRoutine.flatMap({ selectedID in
-                viewModel.items.first { $0.id == selectedID }.map { routine in
-                  let selectedTotalMinutes = selectedTime.hour * 60 + selectedTime.minute
-                  let totalMinutes = selectedTotalMinutes - Int(routine.routineTime)
-                  let adjustedMinutes = (totalMinutes + 1440) % 1440
-                  return (hour: adjustedMinutes / 60, minute: adjustedMinutes % 60)
-                }
-              }) {
+              if let routineStartTime = viewModel.routineStartTime(for: selectedTime) {
                 HStack(spacing: 0) {
                   Text("루틴 시작 시간")
                     .fontWeight(.semibold)
@@ -164,6 +159,9 @@ struct MainView: View {
                   },
                   seeDetail: {
                     coordinator.push(destination: .routineSetting)
+                  }, 
+                  onDelete: {
+                    showDeleteActionSheet(for: item)
                   }
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -178,6 +176,15 @@ struct MainView: View {
           }
           .padding(.top, 32)
           .padding(.leading, 16)
+          .confirmationDialog("delete", isPresented: $showActionSheet) {
+            Button("루틴 삭제", role: .destructive) {
+              // MARK: - 이안 선생님!!!! 여기서 삭제하시면 돼요!!!!
+              print("루틴이 삭제되었습니다.")
+            }
+            Button("cancel", role: .cancel) {
+              print("취소되었습니다.")
+            }
+          }
           
         }
         Spacer()
@@ -189,6 +196,11 @@ struct MainView: View {
         coordinator.setView(destination: destination)
       }
     }
+  }
+  
+  private func showDeleteActionSheet(for item: Routine) {
+    routineToDelete = item
+    showActionSheet = true
   }
 }
 
