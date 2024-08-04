@@ -18,8 +18,8 @@ class LocalNotificationManager: ObservableObject {
   
   init() {
     NotificationCenter.default.addObserver(forName: NSNotification.Name("NotificationManagerUpdate"), object: nil, queue: .main) { [weak self] notification in
-      if let showTimerView = notification.userInfo?["showTimerView"] as? Bool {
-        self?.navigateToView = showTimerView
+      if let showTenSecView = notification.userInfo?["showTenSecView"] as? Bool {
+        self?.navigateToView = showTenSecView
       }
     }
   }

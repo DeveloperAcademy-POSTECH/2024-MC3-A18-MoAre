@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     DispatchQueue.main.async {
       let notificationManager = NotificationCenter.default.publisher(for: NSNotification.Name("NotificationManagerUpdate"))
-      NotificationCenter.default.post(name: NSNotification.Name("NotificationManagerUpdate"), object: nil, userInfo: ["showTimerView": true])
+      NotificationCenter.default.post(name: NSNotification.Name("NotificationManagerUpdate"), object: nil, userInfo: ["showTenSecView": true])
     }
     cancelAllNotifications()
     completionHandler()
