@@ -22,7 +22,7 @@ struct HawaiianPizzaApp: App {
                     localNotificationManager.requestPermission()
                 }
                 .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
-                    TimerView()
+                    TenSecView()
                         .environmentObject(localNotificationManager)
                 }
                 .transaction { transaction in
