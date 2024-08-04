@@ -58,10 +58,10 @@ struct UpdateTaskView: View {
 
 extension UpdateTaskView {
     func CreateCompleteBtn() -> some View {
+        
         return Button {
-            _ = viewModel.createTasks(taskIcon: viewModel.taskIcon, taskName: viewModel.taskTitle)
+            viewModel.createTasks(taskIcon: viewModel.taskIcon, taskName: viewModel.taskTitle)
             viewModel.showModal.toggle()
-            print("테스크 저장: \(viewModel.tasks)")
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))
@@ -77,5 +77,5 @@ extension UpdateTaskView {
 }
 
 #Preview {
-    UpdateTaskView(viewModel: RoutineDetailViewModel())
+    UpdateTaskView(viewModel: RoutineDetailViewModel(routine: Routine()))
 }

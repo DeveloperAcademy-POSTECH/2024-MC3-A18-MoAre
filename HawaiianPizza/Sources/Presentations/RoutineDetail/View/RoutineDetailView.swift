@@ -9,11 +9,14 @@ import SwiftUI
 
 struct RoutineDetailView: View {
     @EnvironmentObject var coordinator: Coordinator
-    @StateObject var viewModel = RoutineDetailViewModel()
+    @StateObject var viewModel: RoutineDetailViewModel
     @Environment(\.editMode) var editMode
     
     @State private var isEditing: Bool = false
-    let routine: Routine
+    
+    init(routine: Routine) {
+        _viewModel = StateObject(wrappedValue: RoutineDetailViewModel(routine: routine))
+    }
     
     var body: some View {
         VStack {
@@ -93,7 +96,7 @@ struct RoutineDetailView: View {
 extension RoutineDetailView {
     private func CreateTaskList() -> some View {
         List {
-            ForEach(routine.tasksArray, id: \.id) { task in
+            ForEach($viewModel.tasks, id: \.id) { task in
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color(hex: "#36383A"))
                     .frame(maxWidth: .infinity)
@@ -104,7 +107,7 @@ extension RoutineDetailView {
                                 .fill(Color(hex: "#D3D7DA"))
                                 .frame(width: 40, height: 40)
                                 .overlay {
-                                    Image(systemName: task.taskIcon)
+                                    Image(systemName: task.taskIcon.wrappedValue)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 29, height: 29)
@@ -112,25 +115,25 @@ extension RoutineDetailView {
                                 .padding(.leading, 12)
                                 .padding(.trailing, 20)
                             
-                            Text(task.taskName)
+                            Text(task.taskName.wrappedValue)
                                 .foregroundStyle(.white)
                             
                             Spacer()
                             if !isEditing {
                                 Button {
-                                    viewModel.taskTimeDownUpdate(task: task)
+                                    viewModel.taskTimeDownUpdate(task: task.wrappedValue)
                                 } label: {
                                     Image(systemName: "arrowtriangle.backward.fill")
                                         .foregroundStyle(Color(hex: "#FF634B"))
                                 }
                                 .buttonStyle(PlainButtonStyle())
                                 
-                                Text("\(task.taskTime)")
+                                Text("\(task.taskTime.wrappedValue)")
                                     .foregroundStyle(.white)
                                     .padding(.horizontal, 32)
                                 
                                 Button {
-                                    viewModel.taskTimeUpUpdate(task: task)
+                                    viewModel.taskTimeUpUpdate(task: task.wrappedValue)
                                 } label: {
                                     Image(systemName: "arrowtriangle.forward.fill")
                                         .foregroundStyle(Color(hex: "#FF634B"))
@@ -145,14 +148,10 @@ extension RoutineDetailView {
                     .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             }
             .onDelete { indexSet in
-                indexSet.forEach { index in
-                    let task = viewModel.tasks[index]
-                    viewModel.deleteTasks(task: task)
-                    viewModel.tasks.remove(at: index)
+                    viewModel.deleteTasks(atOffsets: indexSet)
                 }
-            }
             .onMove { indexSet, newOffset in
-                viewModel.moveTasks(indexSet: indexSet, offset: newOffset)
+                viewModel.moveTasks(fromOffsets: indexSet, toOffset: newOffset)
             }
         }
         .listStyle(.plain)
@@ -160,15 +159,7 @@ extension RoutineDetailView {
     
     private func CreateCompleteBtn() -> some View {
         Button {
-            viewModel.createRoutine(
-                routineTitle: viewModel.routineTitle,
-                tasks: viewModel.tasks,
-                routineTime: viewModel.routineTime,
-                totalSkipTime: viewModel.totalSkipTime
-            )
-            if let routine = viewModel.routines {
-                print("루틴 저장: \(routine)")
-            }
+            viewModel.updateRoutine(title: viewModel.routineTitle, tasks: viewModel.tasks)
             coordinator.popToRoot()
         } label: {
             Rectangle()
