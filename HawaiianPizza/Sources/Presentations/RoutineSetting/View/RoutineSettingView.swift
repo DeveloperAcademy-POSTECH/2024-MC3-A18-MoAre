@@ -33,7 +33,7 @@ struct RoutineSettingView: View {
                 Button {
                     viewModel.showModal.toggle()
                 } label: {
-                    Image(systemName: "plus")
+                    Image("plusIcon")
                         .foregroundStyle(.black)
                 }
                 .sheet(isPresented: $viewModel.showModal, content: {
@@ -66,8 +66,6 @@ struct RoutineSettingView: View {
                         Image("backIcon")
                             .resizable()
                             .scaledToFit()
-                            .background(.blue)
-                            .frame(width: 30, height: 30)
                     }
                 }
                 
@@ -81,8 +79,6 @@ struct RoutineSettingView: View {
                         Image("editIcon")
                             .resizable()
                             .scaledToFit()
-                            .background(.blue)
-                            .frame(width: 30, height: 30)
                     }
                 }
             }
