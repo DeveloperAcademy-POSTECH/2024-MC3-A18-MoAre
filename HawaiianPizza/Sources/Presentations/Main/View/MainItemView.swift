@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainItemView: View {
+  @EnvironmentObject var coordinator: Coordinator
   @ObservedObject var viewModel: MainViewModel
     
   let item: Routine
@@ -63,26 +64,28 @@ struct MainItemView: View {
         
         VStack(spacing: 0) {
           Spacer()
-          HStack(spacing: 0) {
-            Spacer()
-            Button(action: {
-              seeDetail()
-            }, label: {
-              HStack(spacing: 0) {
-                Text("더보기")
-                  .font(.system(size: 12))
-                  .fontWeight(.semibold)
-                  .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-                  .padding(.trailing, 8)
-                Image(systemName: "chevron.forward")
-                  .resizable()
-                  .frame(width: 6, height: 13)
-                  .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-              }
-            })
-            .padding(.bottom, 8)
-            .padding(.trailing, 16)
-          }
+          
+          Button(action: {
+            seeDetail()
+          }, label: {
+            HStack(spacing: 0) {
+                Button {
+                    coordinator.push(destination: .routineDetail, routine: item)
+                } label: {
+                    Text("더보기")
+                      .font(.system(size: 12))
+                      .fontWeight(.semibold)
+                      .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+                      .padding(.trailing, 8)
+                    Image(systemName: "chevron.forward")
+                      .resizable()
+                      .frame(width: 6, height: 13)
+                      .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
+                }
+            }
+          })
+          .padding(.top, 8)
+          .padding(.trailing, 16)
         }
       }
       
@@ -106,6 +109,4 @@ struct MainItemView: View {
     .background(
       isSelected ? Color(red: 1, green: 0.88, blue: 0.87) : Color(red: 0.92, green: 0.93, blue: 0.91))
   }
-  
-   
 }

@@ -60,10 +60,18 @@ extension CoreDataManager: DataProtocol {
         }
     }
     
-//    func deleteRoutine(_ routine: Routine) {
-//        viewContext.delete(routine)
-//        saveContext()
-//    }
+    func updateRoutine(routine: Routine, routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) {
+           routine.routineTitle = routineTitle
+           routine.tasks = NSSet(array: tasks)
+           routine.routineTime = Int32(routineTime)
+           routine.totalSkipTime = Int32(totalSkipTime)
+           saveContext()
+       }
+    
+    func deleteRoutine(_ routine: Routine) {
+        viewContext.delete(routine)
+        saveContext()
+    }
     
     func deleteRoutine(offsets: IndexSet, routines: [Routine]) {
             offsets.map { routines[$0] }.forEach(viewContext.delete)
@@ -110,6 +118,14 @@ extension CoreDataManager: DataProtocol {
         viewContext.delete(task)
         saveContext()
     }
+    
+    func updateTask(task: Tasks, taskIcon: String, taskTime: Int?, taskSkipTime: Int?, taskName: String) {
+           task.taskIcon = taskIcon
+           task.taskTime = Int32(taskTime ?? 0)
+           task.taskSkipTime = Int32(taskSkipTime ?? 0)
+           task.taskName = taskName
+           saveContext()
+       }
     
     // MARK: - Time Methods
     func createTime(startTime: Date) -> Time {

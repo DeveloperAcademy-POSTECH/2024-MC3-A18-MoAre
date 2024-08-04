@@ -90,71 +90,80 @@ struct RoutineSettingView: View {
 }
 
 extension RoutineSettingView {
+    @ViewBuilder
     private func CreateTaskList() -> some View {
-        List {
-            ForEach(viewModel.tasks, id: \.id) { task in
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color(hex: "#36383A"))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .overlay {
-                        HStack(spacing: 0) {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color(hex: "#D3D7DA"))
-                                .frame(width: 40, height: 40)
-                                .overlay {
-                                    Image(systemName: task.taskIcon)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 29, height: 29)
-                                }
-                                .padding(.leading, 12)
-                                .padding(.trailing, 20)
-                            
-                            Text(task.taskName)
-                                .foregroundStyle(.white)
-                            
-                            Spacer()
-                            if !isEditing {
-                                Button {
-                                    viewModel.taskTimeDownUpdate(task: task)
-                                } label: {
-                                    Image(systemName: "arrowtriangle.backward.fill")
-                                        .foregroundStyle(Color(hex: "#FF634B"))
-                                }
-                                .buttonStyle(PlainButtonStyle())
+        if viewModel.tasks.count == 0 {
+            Spacer()
+            Text("테스크를 추가해주세요")
+            .foregroundStyle(Color(hex: "#989DA2"))
+            .font(Font.system(size: 24, weight: .semibold))
+            Spacer()
+        } else {
+            List {
+                ForEach(viewModel.tasks, id: \.id) { task in
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color(hex: "#36383A"))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .overlay {
+                            HStack(spacing: 0) {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color(hex: "#D3D7DA"))
+                                    .frame(width: 40, height: 40)
+                                    .overlay {
+                                        Image(systemName: task.taskIcon)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 29, height: 29)
+                                    }
+                                    .padding(.leading, 12)
+                                    .padding(.trailing, 20)
                                 
-                                Text("\(task.taskTime)")
+                                Text(task.taskName)
                                     .foregroundStyle(.white)
-                                    .padding(.horizontal, 32)
                                 
-                                Button {
-                                    viewModel.taskTimeUpUpdate(task: task)
-                                } label: {
-                                    Image(systemName: "arrowtriangle.forward.fill")
-                                        .foregroundStyle(Color(hex: "#FF634B"))
-                                        .padding(.trailing, 20)
+                                Spacer()
+                                if !isEditing {
+                                    Button {
+                                        viewModel.taskTimeDownUpdate(task: task)
+                                    } label: {
+                                        Image(systemName: "arrowtriangle.backward.fill")
+                                            .foregroundStyle(Color(hex: "#FF634B"))
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    
+                                    Text("\(task.taskTime)")
+                                        .foregroundStyle(.white)
+                                        .padding(.horizontal, 32)
+                                    
+                                    Button {
+                                        viewModel.taskTimeUpUpdate(task: task)
+                                    } label: {
+                                        Image(systemName: "arrowtriangle.forward.fill")
+                                            .foregroundStyle(Color(hex: "#FF634B"))
+                                            .padding(.trailing, 20)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
-                                .buttonStyle(PlainButtonStyle())
                             }
                         }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+                }
+                .onDelete { indexSet in
+                    indexSet.forEach { index in
+                        let task = viewModel.tasks[index]
+                        viewModel.deleteTasks(task: task)
+                        viewModel.tasks.remove(at: index)
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
-            }
-            .onDelete { indexSet in
-                indexSet.forEach { index in
-                    let task = viewModel.tasks[index]
-                    viewModel.deleteTasks(task: task)
-                    viewModel.tasks.remove(at: index)
+                }
+                .onMove { indexSet, newOffset in
+                    viewModel.moveTasks(indexSet: indexSet, offset: newOffset)
                 }
             }
-            .onMove { indexSet, newOffset in
-                viewModel.moveTasks(indexSet: indexSet, offset: newOffset)
-            }
+            .listStyle(.plain)
         }
-        .listStyle(.plain)
     }
     
     private func CreateCompleteBtn() -> some View {
