@@ -16,13 +16,13 @@ class MainViewModel: ObservableObject {
   
   init(localNotificationManager: LocalNotificationManager) {
     self.localNotificationManager = localNotificationManager
-      fetchRoutine()
+    fetchRoutine()
   }
   
   func fetchRoutine() {
-      items = CoreDataManager.shared.fetchAllRoutines()
+    items = CoreDataManager.shared.fetchAllRoutines()
   }
-    
+  
   func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
     if selectedRoutine == routineID {
       // 같은 루틴을 다시 눌렀을 경우 모든 알림을 제거하고 선택을 해제
@@ -70,15 +70,25 @@ class MainViewModel: ObservableObject {
       )
     }
   }
+  
+  func routineStartTime(for selectedTime: (hour: Int, minute: Int)) -> (hour: Int, minute: Int)? {
+    guard let selectedID = selectedRoutine,
+          let routine = items.first(where: { $0.id == selectedID }) else { return nil }
     
-    func formattedTime(from totalMinutes: Int) -> String {
-        let time = timeFromMinutes(totalMinutes)
-        return "\(time.hour)H \(time.minute)M"
-    }
-    
-    private func timeFromMinutes(_ totalMinutes: Int) -> (hour: Int, minute: Int) {
-        let hour = totalMinutes / 60
-        let minute = totalMinutes % 60
-        return (hour, minute)
-    }
+    let selectedTotalMinutes = selectedTime.hour * 60 + selectedTime.minute
+    let totalMinutes = selectedTotalMinutes - Int(routine.routineTime)
+    let adjustedMinutes = (totalMinutes + 1440) % 1440
+    return (hour: adjustedMinutes / 60, minute: adjustedMinutes % 60)
+  }
+  
+  func formattedTime(from totalMinutes: Int) -> String {
+    let time = timeFromMinutes(totalMinutes)
+    return "\(time.hour)H \(time.minute)M"
+  }
+  
+  private func timeFromMinutes(_ totalMinutes: Int) -> (hour: Int, minute: Int) {
+    let hour = totalMinutes / 60
+    let minute = totalMinutes % 60
+    return (hour, minute)
+  }
 }

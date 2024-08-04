@@ -45,6 +45,6 @@ final class Coordinator: ObservableObject {
             }
         case .tensecond:
             TenSecView()
-        }
-    }
+      }
+   }
 }
