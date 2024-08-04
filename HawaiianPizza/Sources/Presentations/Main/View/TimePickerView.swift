@@ -18,6 +18,7 @@ struct TimePickerView: View {
       
       Button(action: {
         self.showTimePicker = false
+        HapticHelper.triggerImpactHaptic(style: .medium)
       }, label: {
         RoundedRectangle(cornerRadius: 10)
           .frame(height: 50)
