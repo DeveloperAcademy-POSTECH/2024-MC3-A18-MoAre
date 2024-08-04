@@ -19,7 +19,11 @@ struct AddTaskView: View {
                 .font(Font.system(size: 20, weight: .bold))
                 .padding(.bottom, 8)
                 .padding(.horizontal, 20)
-            
+                .onChange(of: viewModel.taskTitle) { oldValue, newValue in
+                    if newValue.count >= 6 {
+                        viewModel.taskTitle = String(newValue.prefix(6))
+                    }
+                }
             Divider()
                 .frame(height: 2)
                 .background(Color.black)
@@ -30,9 +34,10 @@ struct AddTaskView: View {
                 ForEach(viewModel.iconArr, id: \.self) { icon in
                     Button {
                         viewModel.taskIcon = icon
+                        viewModel.selectedIcon = icon
                     } label: {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color(hex: "#F2F2EF"))
+                            .fill(viewModel.selectedIcon == icon ? Color(hex: "#FF634B") : Color(hex: "#F2F2EF"))
                             .frame(width: 80, height: 80)
                             .overlay {
                                 Image(systemName: icon)
@@ -54,7 +59,7 @@ struct AddTaskView: View {
 extension AddTaskView {
     func CreateCompleteBtn() -> some View {
         return Button {
-            viewModel.createTasks(taskIcon: viewModel.taskIcon, taskName: viewModel.taskTitle)
+            _ = viewModel.createTasks(taskIcon: viewModel.taskIcon, taskName: viewModel.taskTitle)
             viewModel.showModal.toggle()
             print("테스크 저장: \(viewModel.tasks)")
         } label: {

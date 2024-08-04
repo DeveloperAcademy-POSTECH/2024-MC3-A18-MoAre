@@ -19,12 +19,17 @@ struct RoutineSettingView: View {
             TextField("루틴명", text: $viewModel.routineTitle)
                 .padding(.top, 20)
                 .padding(.bottom, 8)
-            
+                .padding(.horizontal, 16)
+                .onAppear {
+                    UIApplication.shared.hideKeyboard()
+                }
+
             Divider()
                 .frame(height: 2)
                 .background(.black)
                 .padding(.bottom, 35)
-            
+                .padding(.horizontal, 16)
+
             HStack {
                 Text("DETAIL")
                 
@@ -33,26 +38,25 @@ struct RoutineSettingView: View {
                 Button {
                     viewModel.showModal.toggle()
                 } label: {
-                    Image(systemName: "plus")
+                    Image("plusIcon")
                         .foregroundStyle(.black)
                 }
                 .sheet(isPresented: $viewModel.showModal, content: {
                     AddTaskView(viewModel: viewModel)
                         .presentationDetents([
-                            .fraction(0.47)
+                            .fraction(0.46)
                         ])
                         .presentationDragIndicator(.visible)
                         .presentationCornerRadius(20)
                 })
-                
             }
             .font(.system(size: 24, weight: .bold))
+            .padding(.horizontal, 16)
             
             CreateTaskList()
-            Spacer()
             
+            Spacer()
         }
-        .padding(.horizontal, 16)
         
         CreateCompleteBtn()
             .navigationTitle("루틴 설정")
@@ -66,8 +70,6 @@ struct RoutineSettingView: View {
                         Image("backIcon")
                             .resizable()
                             .scaledToFit()
-                            .background(.blue)
-                            .frame(width: 30, height: 30)
                     }
                 }
                 
@@ -81,8 +83,6 @@ struct RoutineSettingView: View {
                         Image("editIcon")
                             .resizable()
                             .scaledToFit()
-                            .background(.blue)
-                            .frame(width: 30, height: 30)
                     }
                 }
             }
@@ -123,11 +123,11 @@ extension RoutineSettingView {
                                         .foregroundStyle(Color(hex: "#FF634B"))
                                 }
                                 .buttonStyle(PlainButtonStyle())
-
+                                
                                 Text("\(task.taskTime)")
                                     .foregroundStyle(.white)
                                     .padding(.horizontal, 32)
-
+                                
                                 Button {
                                     viewModel.taskTimeUpUpdate(task: task)
                                 } label: {
@@ -140,10 +140,19 @@ extension RoutineSettingView {
                         }
                     }
                     .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             }
-            .onDelete { _ in }
-            .onMove { _,_  in }
+            .onDelete { indexSet in
+                indexSet.forEach { index in
+                    let task = viewModel.tasks[index]
+                    viewModel.deleteTasks(task: task)
+                    viewModel.tasks.remove(at: index)
+                }
+            }
+            .onMove { indexSet, newOffset in
+                viewModel.moveTasks(indexSet: indexSet, offset: newOffset)
+            }
         }
         .listStyle(.plain)
     }
@@ -159,6 +168,7 @@ extension RoutineSettingView {
             if let routine = viewModel.routines {
                 print("루틴 저장: \(routine)")
             }
+            coordinator.popToRoot()
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))

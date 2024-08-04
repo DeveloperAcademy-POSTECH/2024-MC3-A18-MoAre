@@ -17,7 +17,7 @@ struct MainRowView: View {
   var body: some View {
     HStack(spacing: 0) {
       Text(title)
-        .font(.title3)
+            .font(Font.system(size: 20))
         .fontWeight(.semibold)
         .frame(width: 70, alignment: .leading)
         .lineLimit(1)
@@ -31,7 +31,7 @@ struct MainRowView: View {
             .padding(.trailing, 12)
           Text("\(duration)m")
             .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-            .font(.title3)
+            .font(Font.system(size: 18))
             .fontWeight(.semibold)
         }
       }

@@ -8,7 +8,8 @@ import SwiftUI
 
 class RoutineSettingViewModel: ObservableObject {
     @Published var showModal: Bool = false
-
+    @Published var selectedIcon: String = ""
+    
     @Published var routines: Routine?
     @Published var routineTitle: String = ""
     @Published var tasks: [Tasks] = [] {
@@ -51,6 +52,15 @@ class RoutineSettingViewModel: ObservableObject {
         routineTime = calculateRoutineTime()
     }
     
+    func deleteTasks(task: Tasks) {
+        CoreDataManager.shared.deleteTask(task)
+        CoreDataManager.shared.saveContext()
+    }
+    
+    func moveTasks(indexSet: IndexSet , offset: Int ) {
+        tasks.move(fromOffsets: indexSet, toOffset: offset)
+        CoreDataManager.shared.saveContext()
+    }
     func taskTimeUpUpdate(task: Tasks) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].taskTime += 5

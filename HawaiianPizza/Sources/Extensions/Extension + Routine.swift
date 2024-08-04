@@ -10,6 +10,6 @@ import Foundation
 extension Routine {
     var tasksArray: [Tasks] {
         let set = tasks as? Set<Tasks> ?? []
-        return Array(set)
+        return Array(set).sorted { $0.taskTime < $1.taskTime }
     }
 }
