@@ -20,6 +20,9 @@ struct RoutineSettingView: View {
                 .padding(.top, 20)
                 .padding(.bottom, 8)
                 .padding(.horizontal, 16)
+                .onAppear {
+                    UIApplication.shared.hideKeyboard()
+                }
 
             Divider()
                 .frame(height: 2)
