@@ -131,7 +131,7 @@ struct MainView: View {
           }, label: {
             Image(systemName: "plus")
               .resizable()
-              .frame(width: 40, height: 40)
+              .frame(width: 24, height: 24)
               .foregroundStyle(.black)
           })
         }

@@ -26,9 +26,11 @@ class TenSecViewModel: ObservableObject {
                     self.progress = 0.0
                 }
 
-                // 0.9초 후에 진행 상태를 빠르게 1로 설정 (애니메이션 없이)
+                // 0.9초 후에 진행 상태를 빠르게 1로 설정
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-                    self.progress = 1.0
+                    withAnimation(.linear(duration: 0.1)) {
+                        self.progress = 1.0
+                    }
                 }
             } else {
                 self.timer?.invalidate()
