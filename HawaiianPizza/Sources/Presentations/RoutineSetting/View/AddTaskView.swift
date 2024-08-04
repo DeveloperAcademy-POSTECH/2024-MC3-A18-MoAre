@@ -60,6 +60,8 @@ extension AddTaskView {
     func CreateCompleteBtn() -> some View {
         return Button {
             _ = viewModel.createTasks(taskIcon: viewModel.taskIcon, taskName: viewModel.taskTitle)
+            viewModel.selectedIcon = ""
+            viewModel.taskTitle = ""
             viewModel.showModal.toggle()
             print("테스크 저장: \(viewModel.tasks)")
         } label: {
