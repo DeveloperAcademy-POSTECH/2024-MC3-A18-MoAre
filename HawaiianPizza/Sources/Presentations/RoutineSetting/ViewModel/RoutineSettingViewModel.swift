@@ -8,7 +8,8 @@ import SwiftUI
 
 class RoutineSettingViewModel: ObservableObject {
     @Published var showModal: Bool = false
-
+    @Published var selectedIcon: String = ""
+    
     @Published var routines: Routine?
     @Published var routineTitle: String = ""
     @Published var tasks: [Tasks] = [] {

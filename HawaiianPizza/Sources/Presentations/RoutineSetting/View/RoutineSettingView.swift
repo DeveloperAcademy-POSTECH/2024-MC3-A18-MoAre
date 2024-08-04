@@ -39,7 +39,7 @@ struct RoutineSettingView: View {
                 .sheet(isPresented: $viewModel.showModal, content: {
                     AddTaskView(viewModel: viewModel)
                         .presentationDetents([
-                            .fraction(0.47)
+                            .fraction(0.46)
                         ])
                         .presentationDragIndicator(.visible)
                         .presentationCornerRadius(20)
@@ -47,12 +47,12 @@ struct RoutineSettingView: View {
                 
             }
             .font(.system(size: 24, weight: .bold))
-            
+            .padding(.horizontal, 16)
+
             CreateTaskList()
-            Spacer()
             
+            Spacer()
         }
-        .padding(.horizontal, 16)
         
         CreateCompleteBtn()
             .navigationTitle("루틴 설정")
@@ -136,7 +136,8 @@ extension RoutineSettingView {
                         }
                     }
                     .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             }
             .onDelete { _ in }
             .onMove { _,_  in }
@@ -155,6 +156,7 @@ extension RoutineSettingView {
             if let routine = viewModel.routines {
                 print("루틴 저장: \(routine)")
             }
+            coordinator.popToRoot()
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))
