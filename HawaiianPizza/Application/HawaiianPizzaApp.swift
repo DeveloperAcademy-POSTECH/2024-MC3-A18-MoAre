@@ -23,6 +23,7 @@ struct HawaiianPizzaApp: App {
                 }
                 .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
                     TenSecView()
+                        .environmentObject(coordinator)
                         .environmentObject(localNotificationManager)
                 }
                 .transaction { transaction in
