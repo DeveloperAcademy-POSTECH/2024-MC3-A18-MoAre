@@ -9,8 +9,12 @@ import SwiftUI
 
 final class Coordinator: ObservableObject {
     @Published var path: [ViewDestination] = []
+    @Published var selectedRoutine: Routine? = nil
     
-    func push(destination: ViewDestination) {
+    func push(destination: ViewDestination, routine: Routine? = nil) {
+        if let routine = routine {
+            selectedRoutine = routine
+        }
         path.append(destination)
     }
     
@@ -36,9 +40,11 @@ final class Coordinator: ObservableObject {
         case .complete:
             CompleteView()
         case .routineDetail:
-            RoutineDetailView()
+            if let routine = selectedRoutine {
+                RoutineDetailView(routine: routine)
+            }
         case .tensecond:
-                   TenSecView()
+            TenSecView()
         }
     }
 }
