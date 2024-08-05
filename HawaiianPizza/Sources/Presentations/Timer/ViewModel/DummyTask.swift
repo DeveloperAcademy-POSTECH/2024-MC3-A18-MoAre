@@ -3,7 +3,7 @@
 //  HawaiianPizza
 //
 //  Created by Pil_Gaaang on 7/31/24.
-//
+// 이제 조만간 삭제해도 된당!
 
 import SwiftUI
 

@@ -36,18 +36,18 @@ struct TimerView: View {
             
             VStack(spacing: 0) {
                 // 현재 작업
-                Text(timerManager.dummytasks[timerManager.currentTaskIndex].taskName)
+                Text(timerManager.tasks[timerManager.currentTaskIndex].taskName)
                     .font(.system(size: 40, weight: .bold, design: .monospaced))
                     .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))  // 텍스트 색상 설정
                     .padding(.bottom, 8) // 현재 단계와 다음 단계 사이의 구분선 간격을 좁게 설정
                 
                 // 현재 작업과 다음 작업 사이의 구분선
-                if timerManager.currentTaskIndex < timerManager.dummytasks.count - 1 {
+                if timerManager.currentTaskIndex < timerManager.tasks.count - 1 {
                     Image(systemName: "chevron.down")
                         .foregroundColor(.gray)
                         .padding(.bottom, 8) // 구분선과 다음 단계 task 사이의 간격을 좁게 설정
                     
-                    Text(timerManager.dummytasks[timerManager.currentTaskIndex + 1].taskName)
+                    Text(timerManager.tasks[timerManager.currentTaskIndex + 1].taskName)
                         .font(.system(size: 24, weight: .medium))
                         .foregroundColor(.gray)
                         .padding(.bottom, 16) // 다음 단계 task와 타이머 ZStack 사이 간격을 좁게 설정
@@ -74,7 +74,7 @@ struct TimerView: View {
                     .resizable()
                     .frame(width: 294, height: 294)
                 
-                Image(systemName: timerManager.dummytasks[timerManager.currentTaskIndex].iconName)
+                Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
@@ -113,7 +113,7 @@ struct TimerView: View {
                 timerManager.nextTask()
                 HapticHelper.triggerSuccessHaptic()
             }) {
-                Text(timerManager.currentTaskIndex == timerManager.dummytasks.count - 1 ? "완료" : "다음 루틴")
+                Text(timerManager.currentTaskIndex == timerManager.tasks.count - 1 ? "완료" : "다음 루틴")
                     .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy)) // Pretendard Variable 폰트와 heavy weight 사용
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white) // 텍스트 색상을 white로 설정
@@ -128,7 +128,7 @@ struct TimerView: View {
         .onAppear {
             timerManager.startTask()
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) { oldPhase, newPhase in
             timerManager.handleScenePhaseChange(newPhase)
         }
     }
