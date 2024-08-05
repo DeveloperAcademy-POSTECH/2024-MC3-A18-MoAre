@@ -12,49 +12,56 @@ struct TenSecView: View {
     @StateObject private var timerManager = TenSecViewModel()
     @EnvironmentObject var coordinator: Coordinator  // Coordinator를 EnvironmentObject로 추가
     @State private var cancellables = Set<AnyCancellable>() // Combine cancellables를 @State로 정의
+  
+    var routineID: String?
 
     var body: some View {
       NavigationStack(path: $coordinator.path) {
         VStack {
-          Text("Daily Routine")
-            .font(
-              Font.custom("Pretendard Variable", size: 24)
-                .weight(.bold)
-            )
-            .multilineTextAlignment(.center)
-            .foregroundColor(Color(red: 0.21, green: 0.22, blue: 0.23))
-            .frame(width: 361, height: 42, alignment: .center)
-          Spacer()
-          HStack {
+          if let routine = timerManager.routine {
+            Text(routine.routineTitle ?? "루틴명이 없습니다")
+              .font(
+                Font.custom("Pretendard Variable", size: 24)
+                  .weight(.bold)
+              )
+              .multilineTextAlignment(.center)
+              .foregroundColor(Color(red: 0.21, green: 0.22, blue: 0.23))
+              .frame(width: 361, height: 42, alignment: .center)
             Spacer()
-            ZStack {
-              Image("timer")
-                .resizable()
-                .frame(width: 276, height: 276)
-              
-              Circle()
-                .trim(from: 0, to: timerManager.progress)  // 진행 상태가 시계방향으로 줄어들도록 설정
-                .stroke(Color(red: 1, green: 0.39, blue: 0.29), lineWidth: 70) // 변경된 색상
-                .frame(width: 168, height: 168)
-                .rotationEffect(.degrees(-90))  // 12시 방향에서 시작
-                .scaleEffect(x: -1, y: 1, anchor: .center)  // 좌우 반전
-                .animation(timerManager.progress == 0 ? .linear(duration: 0.9) : .none, value: timerManager.progress)  // 회전 애니메이션 적용
-              
-              Image("timer center")
-                .resizable()
-                .frame(width: 294, height: 294)
-              
-              Text("\(timerManager.remainingTime)")
-                .font(
-                  Font.custom("Pretendard Variable", size: 64)
-                    .weight(.heavy)
-                )
-                .multilineTextAlignment(.center)
-                .foregroundColor(Color(red: 0.21, green: 0.22, blue: 0.23))
-                .frame(width: 160, height: 94, alignment: .center)
+            
+            
+            HStack {
+              Spacer()
+              ZStack {
+                Image("timer")
+                  .resizable()
+                  .frame(width: 276, height: 276)
+                
+                Circle()
+                  .trim(from: 0, to: timerManager.progress)  // 진행 상태가 시계방향으로 줄어들도록 설정
+                  .stroke(Color(red: 1, green: 0.39, blue: 0.29), lineWidth: 70) // 변경된 색상
+                  .frame(width: 168, height: 168)
+                  .rotationEffect(.degrees(-90))  // 12시 방향에서 시작
+                  .scaleEffect(x: -1, y: 1, anchor: .center)  // 좌우 반전
+                  .animation(timerManager.progress == 0 ? .linear(duration: 0.9) : .none, value: timerManager.progress)  // 회전 애니메이션 적용
+                
+                Image("timer center")
+                  .resizable()
+                  .frame(width: 294, height: 294)
+                
+                Text("\(timerManager.remainingTime)")
+                  .font(
+                    Font.custom("Pretendard Variable", size: 64)
+                      .weight(.heavy)
+                  )
+                  .multilineTextAlignment(.center)
+                  .foregroundColor(Color(red: 0.21, green: 0.22, blue: 0.23))
+                  .frame(width: 160, height: 94, alignment: .center)
+              }
+              Spacer()
             }
-            Spacer()
           }
+          
           Spacer()
           
           // "바로 시작" 버튼 추가
@@ -77,6 +84,9 @@ struct TenSecView: View {
         .padding()
         .onAppear {
           timerManager.startCountdown()
+          if let routineID = routineID {
+            timerManager.loadRoutine(with: routineID)
+          }
           timerManager.$shouldNavigate
             .sink { shouldNavigate in
               if shouldNavigate {

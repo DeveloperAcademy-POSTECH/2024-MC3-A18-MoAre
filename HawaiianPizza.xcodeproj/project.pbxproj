@@ -525,6 +525,7 @@
 				00BCE5742C5C7F6500911B36 /* HapticHelper.swift */,
 				CC1E06EF2C5645B800B35763 /* LocationHelper.swift */,
 				CC1E06FC2C58C95D00B35763 /* Coordinator.swift */,
+				6EAF20192C58C9C200724343 /* LocalNotificationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -554,7 +555,6 @@
 			children = (
 				CC75051A2C512B4100394D1B /* MainViewModel.swift */,
 				6E60D4C42C57C765003D2770 /* RoutineItem.swift */,
-				6EAF20192C58C9C200724343 /* LocalNotificationManager.swift */,
 				6EAF201F2C591A8900724343 /* UIDatePickerWrapper.swift */,
 				CC2054F22C5BEFE500155C92 /* TestMainViewModel.swift */,
 			);

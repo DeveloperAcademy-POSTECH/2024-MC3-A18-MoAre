@@ -12,16 +12,21 @@ struct Noti {
   var title: String
 }
 
-class LocalNotificationManager: ObservableObject {
+class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
   @Published var navigateToView: Bool = false
+  @Published var selectedRoutineID: String? = nil
   var notifications = [Noti]()
   
-  init() {
+  override init() {
+    super.init()
+    
     NotificationCenter.default.addObserver(forName: NSNotification.Name("NotificationManagerUpdate"), object: nil, queue: .main) { [weak self] notification in
       if let showTenSecView = notification.userInfo?["showTenSecView"] as? Bool {
         self?.navigateToView = showTenSecView
       }
     }
+    
+    UNUserNotificationCenter.current().delegate = self
   }
   
   func requestPermission() -> Void {
@@ -38,7 +43,7 @@ class LocalNotificationManager: ObservableObject {
     notifications.append(Noti(id: UUID().uuidString, title: title))
   }
   
-  func scheduleNotifications(startingAt startDate: Date, interval: TimeInterval, count: Int) -> Void {
+  func scheduleNotifications(startingAt startDate: Date, interval: TimeInterval, count: Int, userInfo: [AnyHashable: Any]) -> Void {
     let center = UNUserNotificationCenter.current()
     
     let content = UNMutableNotificationContent()
@@ -47,6 +52,7 @@ class LocalNotificationManager: ObservableObject {
     // 알람 사운드 예시 파일 넣어뒀어용 여기서 바꾸면 됩니다!
     content.subtitle = "이제 일어나야 해요 🔥"
     content.body = "알림을 누르고 오늘의 루틴을 시작해 보세요!"
+    content.userInfo = userInfo
     
     for i in 0..<count {
       let triggerDate = startDate.addingTimeInterval(interval * Double(i))
@@ -73,5 +79,18 @@ class LocalNotificationManager: ObservableObject {
   // MARK: - 나중에 알람 말고 새로운 알림을 만들 때 사용할 듯 (특정 알림 삭제)
   func removeNotification(identifier: String) {
     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+  }
+  
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
+    
+    if let routineID = userInfo["routineID"] as? String {
+      DispatchQueue.main.async {
+        self.selectedRoutineID = routineID
+        self.navigateToView = true
+      }
+    }
+    
+    completionHandler()
   }
 }
