@@ -59,6 +59,17 @@ extension CoreDataManager: DataProtocol {
             return []
         }
     }
+  
+    func fetchRoutine(by id: UUID) -> Routine? {
+      let request: NSFetchRequest<Routine> = Routine.fetchRequest()
+      request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+      do {
+        return try viewContext.fetch(request).first
+      } catch {
+        print("Failed to fetch routine: \(error)")
+        return nil
+      }
+  }
     
     func updateRoutine(routine: Routine, routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) {
            routine.routineTitle = routineTitle
