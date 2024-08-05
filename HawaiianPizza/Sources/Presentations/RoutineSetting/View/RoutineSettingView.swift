@@ -37,6 +37,7 @@ struct RoutineSettingView: View {
                 
                 Button {
                     viewModel.showModal.toggle()
+                    HapticHelper.triggerImpactHaptic(style: .light) 
                 } label: {
                     Image("plusIcon")
                         .foregroundStyle(.black)
@@ -66,6 +67,7 @@ struct RoutineSettingView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         coordinator.pop()
+                        HapticHelper.triggerImpactHaptic(style: .rigid)
                     } label: {
                         Image("backIcon")
                             .resizable()
@@ -79,6 +81,7 @@ struct RoutineSettingView: View {
                             isEditing.toggle()
                             editMode?.wrappedValue = isEditing ? .active : .inactive
                         }
+                        HapticHelper.triggerImpactHaptic(style: .light)
                     } label: {
                         Image("editIcon")
                             .resizable()
@@ -126,6 +129,7 @@ extension RoutineSettingView {
                                 if !isEditing {
                                     Button {
                                         viewModel.taskTimeDownUpdate(task: task)
+                                        HapticHelper.triggerImpactHaptic(style: .soft)
                                     } label: {
                                         Image(systemName: "arrowtriangle.backward.fill")
                                             .foregroundStyle(Color(hex: "#FF634B"))
@@ -138,6 +142,7 @@ extension RoutineSettingView {
                                     
                                     Button {
                                         viewModel.taskTimeUpUpdate(task: task)
+                                        HapticHelper.triggerImpactHaptic(style: .soft)
                                     } label: {
                                         Image(systemName: "arrowtriangle.forward.fill")
                                             .foregroundStyle(Color(hex: "#FF634B"))
@@ -178,6 +183,7 @@ extension RoutineSettingView {
                 print("루틴 저장: \(routine)")
             }
             coordinator.popToRoot()
+            HapticHelper.triggerSuccessHaptic()
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))

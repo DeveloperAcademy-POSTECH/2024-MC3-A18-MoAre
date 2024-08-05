@@ -35,6 +35,7 @@ struct AddTaskView: View {
                     Button {
                         viewModel.taskIcon = icon
                         viewModel.selectedIcon = icon
+                        HapticHelper.triggerImpactHaptic(style: .soft)
                     } label: {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(viewModel.selectedIcon == icon ? Color(hex: "#FF634B") : Color(hex: "#F2F2EF"))
@@ -64,6 +65,7 @@ extension AddTaskView {
             viewModel.taskTitle = ""
             viewModel.showModal.toggle()
             print("테스크 저장: \(viewModel.tasks)")
+            HapticHelper.triggerSuccessHaptic()
         } label: {
             Rectangle()
                 .fill(Color(hex: "#FF634B"))

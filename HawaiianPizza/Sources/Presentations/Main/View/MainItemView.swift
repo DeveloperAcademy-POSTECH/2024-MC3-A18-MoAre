@@ -38,6 +38,7 @@ struct MainItemView: View {
         
         Button(action: {
           onDelete()
+          HapticHelper.triggerImpactHaptic(style: .rigid)
         }, label: {
           Text("삭제하기")
             .font(.system(size: 12, weight: .semibold))
@@ -69,6 +70,7 @@ struct MainItemView: View {
             Spacer()
             Button(action: {
               seeDetail()
+              HapticHelper.triggerImpactHaptic(style: .light)
             }, label: {
               Text("더보기")
                 .font(.system(size: 12))
@@ -89,6 +91,7 @@ struct MainItemView: View {
       
       Button(action: {
         onSelect()
+          HapticHelper.triggerSuccessHaptic()
       }, label: {
         Rectangle()
           .frame(height: 52)

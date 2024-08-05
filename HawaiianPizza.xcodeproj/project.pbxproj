@@ -24,6 +24,7 @@
 		00CF47E52C5A17B8000562A9 /* DynamicExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 00CF47D12C5A17B7000562A9 /* DynamicExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		00CF47EA2C5A182F000562A9 /* DynamicAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CF47DC2C5A17B7000562A9 /* DynamicAttributes.swift */; };
 		00CF47EB2C5A1834000562A9 /* DynamicLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CF47DA2C5A17B7000562A9 /* DynamicLiveActivity.swift */; };
+		00D2149E2C5FF96600193B6D /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00D2149C2C5FF96600193B6D /* HawaiianPizza.xcdatamodeld */; };
 		6E1A58FC2C566DE900590664 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A58FB2C566DE900590664 /* AddTaskView.swift */; };
 		6E43596F2C5E0DAE00813BC6 /* MainItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43596E2C5E0DAE00813BC6 /* MainItemView.swift */; };
 		6E4ACB562C540753008AACCD /* RoutineSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB552C540753008AACCD /* RoutineSettingView.swift */; };
@@ -135,6 +136,7 @@
 		00CF47DC2C5A17B7000562A9 /* DynamicAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicAttributes.swift; sourceTree = "<group>"; };
 		00CF47E02C5A17B8000562A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00CF47E22C5A17B8000562A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00D2149D2C5FF96600193B6D /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
 		6E1A58FB2C566DE900590664 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		6E43596E2C5E0DAE00813BC6 /* MainItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemView.swift; sourceTree = "<group>"; };
 		6E4ACB552C540753008AACCD /* RoutineSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingView.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				00BCE5742C5C7F6500911B36 /* HapticHelper.swift */,
 				CC1E06EF2C5645B800B35763 /* LocationHelper.swift */,
 				CC1E06FC2C58C95D00B35763 /* Coordinator.swift */,
+				6EAF20192C58C9C200724343 /* LocalNotificationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -554,7 +557,6 @@
 			children = (
 				CC75051A2C512B4100394D1B /* MainViewModel.swift */,
 				6E60D4C42C57C765003D2770 /* RoutineItem.swift */,
-				6EAF20192C58C9C200724343 /* LocalNotificationManager.swift */,
 				6EAF201F2C591A8900724343 /* UIDatePickerWrapper.swift */,
 				CC2054F22C5BEFE500155C92 /* TestMainViewModel.swift */,
 			);
