@@ -162,6 +162,7 @@ struct MainView: View {
                     coordinator.push(destination: .routineDetail, routine: item)
                   }, 
                   onDelete: {
+                    viewModel.deleteRoutine = item
                     showDeleteActionSheet(for: item)
                   }
                 )
@@ -179,7 +180,9 @@ struct MainView: View {
           .padding(.leading, 16)
           .confirmationDialog("delete", isPresented: $showActionSheet) {
             Button("루틴 삭제", role: .destructive) {
-              // MARK: - 이안 선생님!!!! 여기서 삭제하시면 돼요!!!!
+                if let deleteRoutine = viewModel.deleteRoutine {
+                    viewModel.deleteRoutine(routine: deleteRoutine )
+                }
               print("루틴이 삭제되었습니다.")
             }
             Button("cancel", role: .cancel) {
