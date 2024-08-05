@@ -43,7 +43,7 @@ extension CoreDataManager: DataProtocol {
         let routine = Routine(context: viewContext)
         routine.id = UUID()
         routine.routineTitle = routineTitle
-        routine.tasks = NSSet(array: tasks)
+        routine.tasks = NSOrderedSet(array: tasks)
         routine.routineTime = Int32(routineTime)
         routine.totalSkipTime = Int32(totalSkipTime)
         saveContext()
@@ -73,7 +73,7 @@ extension CoreDataManager: DataProtocol {
     
     func updateRoutine(routine: Routine, routineTitle: String, tasks: [Tasks], routineTime: Int, totalSkipTime: Int) {
            routine.routineTitle = routineTitle
-           routine.tasks = NSSet(array: tasks)
+            routine.tasks = NSOrderedSet(array: tasks)
            routine.routineTime = Int32(routineTime)
            routine.totalSkipTime = Int32(totalSkipTime)
            saveContext()
