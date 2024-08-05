@@ -53,13 +53,16 @@ struct MainItemView: View {
         .background(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
       
       ZStack(alignment: .top) {
-        VStack(spacing: 0) {
-          ForEach(item.tasksArray.prefix(6).indices, id: \.self) { i in
-            let widthRatio = CGFloat(item.tasksArray[i].taskTime) / CGFloat(totalDuration)
-              MainRowView(title: item.tasksArray[i].taskName, duration: Int(item.tasksArray[i].taskTime), widthRatio: widthRatio, isSelected: isSelected)
-              .padding(.bottom, 8)
+          let sortedTasks = item.tasksArray.prefix(6)
+
+          VStack(spacing: 0) {
+              let sortedTasks = item.tasksArray.prefix(6)
+              ForEach(sortedTasks.indices, id: \.self) { i in
+                  let widthRatio = CGFloat(sortedTasks[i].taskTime) / CGFloat(totalDuration)
+                  MainRowView(title: sortedTasks[i].taskName ?? "", duration: Int(sortedTasks[i].taskTime), widthRatio: widthRatio, isSelected: isSelected)
+                      .padding(.bottom, 8)
+              }
           }
-        }
         .padding(.top, 30)
         .padding(.horizontal, 20)
         

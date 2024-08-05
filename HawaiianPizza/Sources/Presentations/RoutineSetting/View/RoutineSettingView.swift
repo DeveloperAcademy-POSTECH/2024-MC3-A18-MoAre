@@ -114,7 +114,7 @@ extension RoutineSettingView {
                                     .fill(Color(hex: "#D3D7DA"))
                                     .frame(width: 40, height: 40)
                                     .overlay {
-                                        Image(systemName: task.taskIcon)
+                                        Image(systemName: task.taskIcon ?? "")
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 29, height: 29)
@@ -122,7 +122,7 @@ extension RoutineSettingView {
                                     .padding(.leading, 12)
                                     .padding(.trailing, 20)
                                 
-                                Text(task.taskName)
+                                Text(task.taskName ?? "")
                                     .foregroundStyle(.white)
                                 
                                 Spacer()

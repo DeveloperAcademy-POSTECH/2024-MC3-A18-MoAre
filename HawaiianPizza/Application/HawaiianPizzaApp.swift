@@ -29,9 +29,6 @@ struct HawaiianPizzaApp: App {
                 .transaction { transaction in
                     transaction.disablesAnimations = true
                 }
-            
-            //            TestMain()
-            //                .environmentObject(routineSettingViewModel)
         }
     }
 }
