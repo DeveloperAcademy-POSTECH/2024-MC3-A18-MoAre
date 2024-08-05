@@ -9,9 +9,9 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
   @Published var items: [Routine] = []
-  
   @Published var selectedRoutine: RoutineItem.ID?
-  
+  @Published var deleteRoutine: Routine?
+    
   var localNotificationManager: LocalNotificationManager
   
   init(localNotificationManager: LocalNotificationManager) {
@@ -22,6 +22,11 @@ class MainViewModel: ObservableObject {
   func fetchRoutine() {
     items = CoreDataManager.shared.fetchAllRoutines()
   }
+    
+    func deleteRoutine(routine: Routine) {
+        CoreDataManager.shared.deleteRoutine(routine)
+        items.removeAll { $0.id == routine.id }
+    }
   
   func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
     if selectedRoutine == routineID {
