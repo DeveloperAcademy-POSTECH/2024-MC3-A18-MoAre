@@ -67,6 +67,7 @@ struct TenSecView: View {
           // "바로 시작" 버튼 추가
           Button(action: {
             coordinator.push(destination: .timer)
+            HapticHelper.triggerSuccessHaptic()
           }) {
             Text("바로 시작")
               .font(.system(size: 20, weight: .bold))

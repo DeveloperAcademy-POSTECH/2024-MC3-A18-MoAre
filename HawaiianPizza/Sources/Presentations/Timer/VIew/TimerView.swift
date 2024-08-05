@@ -111,6 +111,7 @@ struct TimerView: View {
             
             Button(action: {
                 timerManager.nextTask()
+                HapticHelper.triggerSuccessHaptic()
             }) {
                 Text(timerManager.currentTaskIndex == timerManager.dummytasks.count - 1 ? "완료" : "다음 루틴")
                     .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy)) // Pretendard Variable 폰트와 heavy weight 사용

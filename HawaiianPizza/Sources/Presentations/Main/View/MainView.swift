@@ -128,6 +128,7 @@ struct MainView: View {
           
           Button(action: {
             coordinator.push(destination: .routineSetting)
+            HapticHelper.triggerImpactHaptic(style: .light)
           }, label: {
             Image(systemName: "plus")
               .resizable()
