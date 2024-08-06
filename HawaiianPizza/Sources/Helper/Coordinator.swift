@@ -16,14 +16,18 @@ final class Coordinator: ObservableObject {
             selectedRoutine = routine
         }
         path.append(destination)
+        print("Path: \(path)")
+        print("Selected Routine: \(String(describing: selectedRoutine))")
     }
     
     func pop() {
         path.removeLast()
+        print("Path after pop: \(path)")
     }
     
     func popToRoot() {
-        path.removeLast(path.count)
+        path.removeAll()
+        print("Path after popToRoot: \(path)")
     }
     
     @ViewBuilder
@@ -37,15 +41,24 @@ final class Coordinator: ObservableObject {
             RoutinePlanningView()
         case .timer:
             if let routine = selectedRoutine {
-              TimerView(routine: routine)
-                    .navigationBarBackButtonHidden()
+                if let routineID = routine.id?.uuidString {
+                    TimerView(routineID: routineID)
+                        .navigationBarBackButtonHidden()
+                        .onAppear {
+                            print("TimerView 나타남 with routineID: \(routineID)")
+                        }
+                }
+            } else {
+                Text("루틴이 선택되지 않았습니다.")
             }
         case .complete:
             CompleteView()
         case .routineDetail:
             if let routine = selectedRoutine {
                 RoutineDetailView(routine: routine)
+            } else {
+                Text("루틴이 선택되지 않았습니다.")
             }
-      }
-   }
+        }
+    }
 }

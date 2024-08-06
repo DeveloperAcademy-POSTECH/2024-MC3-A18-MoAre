@@ -24,12 +24,12 @@
 		00CF47E52C5A17B8000562A9 /* DynamicExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 00CF47D12C5A17B7000562A9 /* DynamicExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		00CF47EA2C5A182F000562A9 /* DynamicAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CF47DC2C5A17B7000562A9 /* DynamicAttributes.swift */; };
 		00CF47EB2C5A1834000562A9 /* DynamicLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CF47DA2C5A17B7000562A9 /* DynamicLiveActivity.swift */; };
+		00D214A42C6202ED00193B6D /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00D214A22C6202ED00193B6D /* HawaiianPizza.xcdatamodeld */; };
 		6E1A58FC2C566DE900590664 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A58FB2C566DE900590664 /* AddTaskView.swift */; };
 		6E43596F2C5E0DAE00813BC6 /* MainItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E43596E2C5E0DAE00813BC6 /* MainItemView.swift */; };
 		6E4ACB562C540753008AACCD /* RoutineSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB552C540753008AACCD /* RoutineSettingView.swift */; };
 		6E4ACB612C5407A1008AACCD /* RoutineSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */; };
 		6E4ACB692C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB682C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift */; };
-		6E53428B2C611528004E6008 /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E5342892C611528004E6008 /* HawaiianPizza.xcdatamodeld */; };
 		6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60D4C42C57C765003D2770 /* RoutineItem.swift */; };
 		6E60D4C72C57C8DE003D2770 /* MainRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60D4C62C57C8DE003D2770 /* MainRowView.swift */; };
 		6E94643B2C52569400995FB9 /* RoutinePlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94643A2C52569400995FB9 /* RoutinePlanningView.swift */; };
@@ -135,12 +135,12 @@
 		00CF47DC2C5A17B7000562A9 /* DynamicAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicAttributes.swift; sourceTree = "<group>"; };
 		00CF47E02C5A17B8000562A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00CF47E22C5A17B8000562A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00D214A32C6202ED00193B6D /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
 		6E1A58FB2C566DE900590664 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		6E43596E2C5E0DAE00813BC6 /* MainItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemView.swift; sourceTree = "<group>"; };
 		6E4ACB552C540753008AACCD /* RoutineSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingView.swift; sourceTree = "<group>"; };
 		6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingViewModel.swift; sourceTree = "<group>"; };
 		6E4ACB682C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusWithBorderModifier.swift; sourceTree = "<group>"; };
-		6E53428A2C611528004E6008 /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
 		6E60D4C42C57C765003D2770 /* RoutineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItem.swift; sourceTree = "<group>"; };
 		6E60D4C62C57C8DE003D2770 /* MainRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowView.swift; sourceTree = "<group>"; };
 		6E94643A2C52569400995FB9 /* RoutinePlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePlanningView.swift; sourceTree = "<group>"; };
@@ -261,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				00CF47C72C5A16CE000562A9 /* TimerViewModel.swift */,
-				00CF47CB2C5A1705000562A9 /* SceneDelegate.swift */,
 				00CF47C92C5A16D6000562A9 /* DummyTask.swift */,
 			);
 			path = ViewModel;
@@ -511,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7504EC2C5124E300394D1B /* HawaiianPizzaApp.swift */,
+				00CF47CB2C5A1705000562A9 /* SceneDelegate.swift */,
 				6EAF20172C58C8CA00724343 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -564,7 +564,7 @@
 		CC97396F2C52B1E200C75466 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				6E5342892C611528004E6008 /* HawaiianPizza.xcdatamodeld */,
+				00D214A22C6202ED00193B6D /* HawaiianPizza.xcdatamodeld */,
 				CCCEFBF02C610C2500AD2812 /* Routine+CoreDataClass.swift */,
 				CCCEFBF12C610C2500AD2812 /* Routine+CoreDataProperties.swift */,
 				CCCEFBF22C610C2500AD2812 /* Tasks+CoreDataClass.swift */,
@@ -787,7 +787,7 @@
 				6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
 				CC2054FC2C5CFAAD00155C92 /* (null) in Sources */,
-				6E53428B2C611528004E6008 /* HawaiianPizza.xcdatamodeld in Sources */,
+				00D214A42C6202ED00193B6D /* HawaiianPizza.xcdatamodeld in Sources */,
 				CCE054E22C560FD300E4E54F /* CompleteView.swift in Sources */,
 				CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */,
 				CCCEFBF42C610C2500AD2812 /* Routine+CoreDataClass.swift in Sources */,
@@ -1213,14 +1213,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		6E5342892C611528004E6008 /* HawaiianPizza.xcdatamodeld */ = {
+		00D214A22C6202ED00193B6D /* HawaiianPizza.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6E53428A2C611528004E6008 /* HawaiianPizza.xcdatamodel */,
+				00D214A32C6202ED00193B6D /* HawaiianPizza.xcdatamodel */,
 			);
-			currentVersion = 6E53428A2C611528004E6008 /* HawaiianPizza.xcdatamodel */;
+			currentVersion = 00D214A32C6202ED00193B6D /* HawaiianPizza.xcdatamodel */;
 			name = HawaiianPizza.xcdatamodeld;
-			path = "/Users/jisuryu/2024-MC3-A18-Hawaiian-pizza/HawaiianPizza/Sources/Data/HawaiianPizza.xcdatamodeld";
+			path = "/Users/pil_gaaang/Desktop/ADA/MC3/2024-MC3-A18-Hawaiian-pizza/HawaiianPizza/Sources/Data/HawaiianPizza.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
