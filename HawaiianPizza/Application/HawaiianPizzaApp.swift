@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct HawaiianPizzaApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var coordinator = Coordinator()
     @StateObject var localNotificationManager = LocalNotificationManager()
+  
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -19,6 +21,7 @@ struct HawaiianPizzaApp: App {
                 .environmentObject(coordinator)
                 .environmentObject(localNotificationManager)
                 .onAppear {
+                    appDelegate.configure(localNotificationManager: localNotificationManager)
                     localNotificationManager.requestPermission()
                 }
                 .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
@@ -29,6 +32,13 @@ struct HawaiianPizzaApp: App {
                 .transaction { transaction in
                     transaction.disablesAnimations = true
                 }
+        }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+          if newPhase == .active {
+            if localNotificationManager.navigateToView, let routineID = localNotificationManager.selectedRoutineID {
+              localNotificationManager.navigateToView = true
+            }
+          }
         }
     }
 }
