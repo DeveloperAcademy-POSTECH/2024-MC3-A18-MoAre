@@ -8,34 +8,50 @@
 import UIKit
 import SwiftUI
 import UserNotifications
-import CoreLocation
 
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, CLLocationManagerDelegate {
-    
-    @EnvironmentObject var localNotificationManager: LocalNotificationManager
-    var window: UIWindow?
-    let locationManager = CLLocationManager()
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Notification Center delegate setting
-        UNUserNotificationCenter.current().delegate = self
-        
-        _ = LocationHelper.shared
-    
-        return true
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+  var window: UIWindow?
+  var localNotificationManager: LocalNotificationManager?
+  
+//  @EnvironmentObject var localNotificationManager: LocalNotificationManager
+  
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    UNUserNotificationCenter.current().delegate = self
+    _ = LocationHelper.shared
+    return true
+  }
+  
+  func configure(localNotificationManager: LocalNotificationManager) {
+    self.localNotificationManager = localNotificationManager
+  }
+  
+  // 알림 눌렀을 때 호출되는 메소드
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    guard let localNotificationManager = localNotificationManager else {
+      completionHandler()
+      return
     }
     
-    // 알림 눌렀을 때 호출되는 메소드
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            let notificationManager = NotificationCenter.default.publisher(for: NSNotification.Name("NotificationManagerUpdate"))
-            NotificationCenter.default.post(name: NSNotification.Name("NotificationManagerUpdate"), object: nil, userInfo: ["showTenSecView": true])
-        }
-        cancelAllNotifications()
-        completionHandler()
+    if let routineID = response.notification.request.content.userInfo["routineID"] as? String {
+      DispatchQueue.main.async {
+        localNotificationManager.selectedRoutineID = routineID
+        localNotificationManager.navigateToView = true
+      }
     }
-    
-    func cancelAllNotifications() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    cancelAllNotifications()
+    completionHandler()
+  }
+  
+  func navigateToTenSecView() {
+    let tenSecView = TenSecView()
+    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+       let keyWindow = windowScene.windows.first {
+      keyWindow.rootViewController = UIHostingController(rootView: tenSecView)
+      keyWindow.makeKeyAndVisible()
     }
+  }
+  
+  func cancelAllNotifications() {
+    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+  }
 }
