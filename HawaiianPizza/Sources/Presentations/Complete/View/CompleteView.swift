@@ -1,6 +1,8 @@
 import SwiftUI
 import CoreLocation
 
+// MARK: - 변경되는 UI에 맞게 수정해야 하니 요소정도만 표출 해놨습니다.
+
 struct CompleteView: View {
     @StateObject private var viewModel = CompleteViewModel()
     @State private var showProgressView = false
@@ -56,21 +58,18 @@ extension CompleteView {
                 Text(viewModel.formattedDate)
                     .font(.system(size: 32, weight: .bold))
                 
-                Circle()
-                    .fill(.gray)
-                    .frame(width: 178, height: 178)
-                    .overlay {
-                        Image(systemName: "\(viewModel.dailyWeather[0].symbolName)")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100)
-                    }
+                Image(systemName: "\(viewModel.symbolName)")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 178)
                     .padding()
+                
                 VStack {
                     Text("현재온도")
                     Text(viewModel.weatherCondition)
                     Text(viewModel.highTemperature)
                     Text(viewModel.lowTemperature)
+                    Text(viewModel.precipitationChance)
                 }
                 .font(.system(size: 17, weight: .semibold))
             }
