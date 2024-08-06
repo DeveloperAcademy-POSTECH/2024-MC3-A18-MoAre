@@ -12,7 +12,7 @@ struct Noti {
   var title: String
 }
 
-class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+class LocalNotificationManager: NSObject, ObservableObject {
   @Published var navigateToView: Bool = false
   @Published var selectedRoutineID: String? = nil
   var notifications = [Noti]()
@@ -25,8 +25,6 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         self?.navigateToView = showTenSecView
       }
     }
-    
-    UNUserNotificationCenter.current().delegate = self
   }
   
   func requestPermission() -> Void {
@@ -49,7 +47,6 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
     let content = UNMutableNotificationContent()
     content.title = "오늘의 루틴"
     content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "alarm.caf"))
-    // 알람 사운드 예시 파일 넣어뒀어용 여기서 바꾸면 됩니다!
     content.subtitle = "이제 일어나야 해요 🔥"
     content.body = "알림을 누르고 오늘의 루틴을 시작해 보세요!"
     content.userInfo = userInfo
@@ -79,18 +76,5 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
   // MARK: - 나중에 알람 말고 새로운 알림을 만들 때 사용할 듯 (특정 알림 삭제)
   func removeNotification(identifier: String) {
     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-  }
-  
-  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
-    
-    if let routineID = userInfo["routineID"] as? String {
-      DispatchQueue.main.async {
-        self.selectedRoutineID = routineID
-        self.navigateToView = true
-      }
-    }
-    
-    completionHandler()
   }
 }
