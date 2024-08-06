@@ -15,20 +15,21 @@ struct HawaiianPizzaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(coordinator)
-                .environmentObject(localNotificationManager)
-                .onAppear {
-                    localNotificationManager.requestPermission()
-                }
-                .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
-                  TenSecView(routineID: localNotificationManager.selectedRoutineID)
-                        .environmentObject(coordinator)
-                        .environmentObject(localNotificationManager)
-                }
-                .transaction { transaction in
-                    transaction.disablesAnimations = true
-                }
+//            MainView()
+//                .environmentObject(coordinator)
+//                .environmentObject(localNotificationManager)
+//                .onAppear {
+//                    localNotificationManager.requestPermission()
+//                }
+//                .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
+//                  TenSecView(routineID: localNotificationManager.selectedRoutineID)
+//                        .environmentObject(coordinator)
+//                        .environmentObject(localNotificationManager)
+//                }
+//                .transaction { transaction in
+//                    transaction.disablesAnimations = true
+//                }
+            CompleteView()
         }
     }
 }

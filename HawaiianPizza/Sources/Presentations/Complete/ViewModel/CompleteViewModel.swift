@@ -9,13 +9,17 @@ import Foundation
 import CoreLocation
 import WeatherKit
 
+// MARK: - formattedDate: 날짜, weatherCondition: 현재 날씨, highTem: 최고온도, lowTem: 최저, preciptiationChance: 강수확률
+// MARK: 위에 녀석들 View에 표출하면 사용자 위치 기반으로 얻을 수 있음.
 class CompleteViewModel: ObservableObject {
     @Published var completeRoutine: Routine?
+    @Published var symbolName: String = ""
     @Published var dailyWeather: [DayWeather] = []
     @Published var formattedDate: String = ""
     @Published var weatherCondition: String = ""
     @Published var highTemperature: String = ""
     @Published var lowTemperature: String = ""
+    @Published var precipitationChance: String = ""
     @Published var currentLocation: CLLocation?
     
     init() {
@@ -48,12 +52,10 @@ class CompleteViewModel: ObservableObject {
         }
     }
     
-    // 이게 차후에 Routine 타이머가 다 돌아가고 나서 선택된 루틴의 ID와 같은지 확인하고 같을 때 completeRoutine으로 할당
-    // completeRoutine을 View에 바인딩해서 completeRoutine.totalSkipTime을 표출
+    //TODO: 타이머 뷰에서 받은 routine을 심어주고
+    //TODO: CheckView에선 SkipTime을 표출해주면 됩니다.
     func fetchRoutines(selectedRoutineID: UUID?) {
-        let routines = CoreDataManager.shared.fetchAllRoutines()
-        completeRoutine = routines.first
-        //        completeRoutine = routines.first(where: { $0.id == selectedRoutineID })
+        completeRoutine = CoreDataManager.shared.fetchRoutine(by: selectedRoutineID ?? UUID())
     }
 
     func fetchDailyWeather() async {
@@ -64,6 +66,7 @@ class CompleteViewModel: ObservableObject {
                 self.dateFormatter()
                 self.matchingWeatherCase()
                 self.temperatureFormatter()
+                self.precipitationChanceFormatter()
             }
             for day in daily {
                 print("날씨 \(day.condition)")
@@ -105,8 +108,16 @@ class CompleteViewModel: ObservableObject {
     func temperatureFormatter() {
         guard let high = dailyWeather.first?.highTemperature else { return }
         guard let low = dailyWeather.first?.lowTemperature else { return }
+        guard let symbol = dailyWeather.first?.symbolName else { return }
         
+        symbolName = symbol
         highTemperature = "최고: \(Int(high.value))도"
         lowTemperature = "최저: \(Int(low.value))도"
+    }
+    
+    func precipitationChanceFormatter() {
+        guard let preChance = dailyWeather.first?.precipitationChance else { return }
+        let precipitationChancePercent = preChance * 100
+        precipitationChance = String(format: "강수 확률: %.0f%%", precipitationChancePercent)
     }
 }
