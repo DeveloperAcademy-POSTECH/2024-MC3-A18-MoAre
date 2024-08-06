@@ -23,7 +23,6 @@ class CompleteViewModel: ObservableObject {
     @Published var currentLocation: CLLocation?
     
     init() {
-        LocationHelper.shared.checkLocationAuthorization()
         addNotiObserver()
         fetchLocation()
         fetchRoutines(selectedRoutineID: nil)
