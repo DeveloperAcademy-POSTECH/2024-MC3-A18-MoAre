@@ -36,8 +36,10 @@ final class Coordinator: ObservableObject {
         case .routinePlanning:
             RoutinePlanningView()
         case .timer:
-            TimerView()
-            .navigationBarBackButtonHidden()
+            if let routine = selectedRoutine {
+              TimerView(routine: routine)
+                    .navigationBarBackButtonHidden()
+            }
         case .complete:
             CompleteView()
         case .routineDetail:
