@@ -19,28 +19,27 @@ class TimerViewModel: ObservableObject {
     var currentTaskIndex: Int = 0
     var totalSkipTime: TimeInterval = 0
     var activity: Activity<DynamicAttributes>?
-    var tasks: [Tasks] = []
+    var routineTitle: String = ""
+    var tasks: [Tasks]
 
-    init() {
-        loadTasks()
+    init(routine: Routine) {
+      self.routineTitle = routine.routineTitle ?? "루틴명이 없습니다"
+      if let orderedTasks = routine.tasks {
+            self.tasks = orderedTasks.compactMap { $0 as? Tasks }
+        } else {
+            self.tasks = []
+        }
     }
-    func loadTasks() {
-           let routineID = UUID(uuidString: "YOUR_ROUTINE_UUID_STRING")!
-           if let routine = CoreDataManager.shared.fetchRoutine(by: routineID) {
-               tasks = CoreDataManager.shared.fetchAllTasks(for: routine)
-           }
-       }
-
 
     func startTask() {
-            guard currentTaskIndex < tasks.count else { return }
-            let currentTask = tasks[currentTaskIndex]
-            remainingTime = TimeInterval(currentTask.taskTime)
-            ttsManager.speak(text: "이번 루틴은 \(currentTask.taskName)입니다")
-            progress = 1.0
-            startTimer()
-            startLiveActivity(iconName: currentTask.taskIcon)
-        }
+        guard currentTaskIndex < tasks.count else { return }
+        let currentTask = tasks[currentTaskIndex]
+        remainingTime = TimeInterval(currentTask.taskTime)
+        ttsManager.speak(text: "이번 루틴은 \(String(describing: currentTask.taskName))입니다")
+        progress = 1.0
+        startTimer()
+        startLiveActivity(iconName: currentTask.taskIcon ?? "")
+    }
 
     func startTimer() {
         timer?.invalidate()
@@ -58,8 +57,8 @@ class TimerViewModel: ObservableObject {
                     self.ttsManager.speak(text: "루틴 종료까지 1분 남았습니다.")
                     HapticHelper.triggerHapticFeedback()
                 }
-
-                self.updateLiveActivity(iconName: self.tasks[self.currentTaskIndex].taskIcon)
+              
+                self.updateLiveActivity(iconName: self.tasks[self.currentTaskIndex].taskIcon ?? "")
             } else {
                 self.nextTask()
             }
@@ -75,7 +74,7 @@ class TimerViewModel: ObservableObject {
                 remainingTime = TimeInterval(currentTask.taskTime)
                 progress = 1.0
                 startTimer()
-                updateLiveActivity(iconName: currentTask.taskIcon)
+                updateLiveActivity(iconName: currentTask.taskIcon ?? "")
             } else {
                 timer?.invalidate()
                 remainingTime = 0

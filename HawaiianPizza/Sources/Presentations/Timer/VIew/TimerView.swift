@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct TimerView: View {
-    @StateObject private var timerManager = TimerViewModel()
+    @StateObject private var timerManager: TimerViewModel
     @Environment(\.scenePhase) var scenePhase
+  
+  init(routine: Routine) {
+    _timerManager = StateObject(wrappedValue: TimerViewModel(routine: routine))
+    }
     
     var body: some View {
         VStack(spacing: 0) {
-            Text("Daily Routine")
+          Text(timerManager.routineTitle)
                 .font(
                     Font.custom("Pretendard Variable", size: 24)
                         .weight(.bold)
@@ -36,7 +40,7 @@ struct TimerView: View {
             
             VStack(spacing: 0) {
                 // 현재 작업
-                Text(timerManager.tasks[timerManager.currentTaskIndex].taskName)
+                Text(timerManager.tasks[timerManager.currentTaskIndex].taskName ?? "태스크명이 없습니다")
                     .font(.system(size: 40, weight: .bold, design: .monospaced))
                     .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))  // 텍스트 색상 설정
                     .padding(.bottom, 8) // 현재 단계와 다음 단계 사이의 구분선 간격을 좁게 설정
@@ -47,7 +51,7 @@ struct TimerView: View {
                         .foregroundColor(.gray)
                         .padding(.bottom, 8) // 구분선과 다음 단계 task 사이의 간격을 좁게 설정
                     
-                    Text(timerManager.tasks[timerManager.currentTaskIndex + 1].taskName)
+                    Text(timerManager.tasks[timerManager.currentTaskIndex + 1].taskName ?? "태스크명이 없습니다")
                         .font(.system(size: 24, weight: .medium))
                         .foregroundColor(.gray)
                         .padding(.bottom, 16) // 다음 단계 task와 타이머 ZStack 사이 간격을 좁게 설정
@@ -74,7 +78,7 @@ struct TimerView: View {
                     .resizable()
                     .frame(width: 294, height: 294)
                 
-                Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon)
+                Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon ?? "")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)

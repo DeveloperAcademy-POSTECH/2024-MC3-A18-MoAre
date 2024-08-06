@@ -29,6 +29,7 @@
 		6E4ACB562C540753008AACCD /* RoutineSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB552C540753008AACCD /* RoutineSettingView.swift */; };
 		6E4ACB612C5407A1008AACCD /* RoutineSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */; };
 		6E4ACB692C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4ACB682C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift */; };
+		6E53428B2C611528004E6008 /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E5342892C611528004E6008 /* HawaiianPizza.xcdatamodeld */; };
 		6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60D4C42C57C765003D2770 /* RoutineItem.swift */; };
 		6E60D4C72C57C8DE003D2770 /* MainRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60D4C62C57C8DE003D2770 /* MainRowView.swift */; };
 		6E94643B2C52569400995FB9 /* RoutinePlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94643A2C52569400995FB9 /* RoutinePlanningView.swift */; };
@@ -66,7 +67,6 @@
 		CC9739792C52B1E900C75466 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9739772C52B1E900C75466 /* DataProtocol.swift */; };
 		CCCEFBBD2C5F383700AD2812 /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCEFBBC2C5F383700AD2812 /* Extension + Keyboard.swift */; };
 		CCCEFBBF2C5F420500AD2812 /* RoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCEFBBE2C5F420500AD2812 /* RoutineDetailView.swift */; };
-		CCCEFBE72C5FC35D00AD2812 /* HawaiianPizza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCCEFBE52C5FC35D00AD2812 /* HawaiianPizza.xcdatamodeld */; };
 		CCCEFBF42C610C2500AD2812 /* Routine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCEFBF02C610C2500AD2812 /* Routine+CoreDataClass.swift */; };
 		CCCEFBF52C610C2500AD2812 /* Routine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCEFBF12C610C2500AD2812 /* Routine+CoreDataProperties.swift */; };
 		CCCEFBF62C610C2500AD2812 /* Tasks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCEFBF22C610C2500AD2812 /* Tasks+CoreDataClass.swift */; };
@@ -140,6 +140,7 @@
 		6E4ACB552C540753008AACCD /* RoutineSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingView.swift; sourceTree = "<group>"; };
 		6E4ACB602C5407A1008AACCD /* RoutineSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingViewModel.swift; sourceTree = "<group>"; };
 		6E4ACB682C5407F2008AACCD /* CornerRadiusWithBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusWithBorderModifier.swift; sourceTree = "<group>"; };
+		6E53428A2C611528004E6008 /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
 		6E60D4C42C57C765003D2770 /* RoutineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItem.swift; sourceTree = "<group>"; };
 		6E60D4C62C57C8DE003D2770 /* MainRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRowView.swift; sourceTree = "<group>"; };
 		6E94643A2C52569400995FB9 /* RoutinePlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePlanningView.swift; sourceTree = "<group>"; };
@@ -176,7 +177,6 @@
 		CC9739772C52B1E900C75466 /* DataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 		CCCEFBBC2C5F383700AD2812 /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		CCCEFBBE2C5F420500AD2812 /* RoutineDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailView.swift; sourceTree = "<group>"; };
-		CCCEFBE62C5FC35D00AD2812 /* HawaiianPizza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HawaiianPizza.xcdatamodel; sourceTree = "<group>"; };
 		CCCEFBF02C610C2500AD2812 /* Routine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CCCEFBF12C610C2500AD2812 /* Routine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Routine+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CCCEFBF22C610C2500AD2812 /* Tasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tasks+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -564,7 +564,7 @@
 		CC97396F2C52B1E200C75466 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				CCCEFBE52C5FC35D00AD2812 /* HawaiianPizza.xcdatamodeld */,
+				6E5342892C611528004E6008 /* HawaiianPizza.xcdatamodeld */,
 				CCCEFBF02C610C2500AD2812 /* Routine+CoreDataClass.swift */,
 				CCCEFBF12C610C2500AD2812 /* Routine+CoreDataProperties.swift */,
 				CCCEFBF22C610C2500AD2812 /* Tasks+CoreDataClass.swift */,
@@ -784,10 +784,10 @@
 				00BCE57C2C5C7F9B00911B36 /* TenSecViewModel.swift in Sources */,
 				00BCE5732C5C7F5C00911B36 /* TTSHelper.swift in Sources */,
 				6E60D4C72C57C8DE003D2770 /* MainRowView.swift in Sources */,
-				CCCEFBE72C5FC35D00AD2812 /* HawaiianPizza.xcdatamodeld in Sources */,
 				6E60D4C52C57C765003D2770 /* RoutineItem.swift in Sources */,
 				CC7504ED2C5124E300394D1B /* HawaiianPizzaApp.swift in Sources */,
 				CC2054FC2C5CFAAD00155C92 /* (null) in Sources */,
+				6E53428B2C611528004E6008 /* HawaiianPizza.xcdatamodeld in Sources */,
 				CCE054E22C560FD300E4E54F /* CompleteView.swift in Sources */,
 				CC75051B2C512B4100394D1B /* MainViewModel.swift in Sources */,
 				CCCEFBF42C610C2500AD2812 /* Routine+CoreDataClass.swift in Sources */,
@@ -1213,14 +1213,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		CCCEFBE52C5FC35D00AD2812 /* HawaiianPizza.xcdatamodeld */ = {
+		6E5342892C611528004E6008 /* HawaiianPizza.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CCCEFBE62C5FC35D00AD2812 /* HawaiianPizza.xcdatamodel */,
+				6E53428A2C611528004E6008 /* HawaiianPizza.xcdatamodel */,
 			);
-			currentVersion = CCCEFBE62C5FC35D00AD2812 /* HawaiianPizza.xcdatamodel */;
+			currentVersion = 6E53428A2C611528004E6008 /* HawaiianPizza.xcdatamodel */;
 			name = HawaiianPizza.xcdatamodeld;
-			path = "/Users/leewanjae/Desktop/apple/2024-MC3-A18-Hawaiian-pizza/HawaiianPizza/Sources/Data/HawaiianPizza.xcdatamodeld";
+			path = "/Users/jisuryu/2024-MC3-A18-Hawaiian-pizza/HawaiianPizza/Sources/Data/HawaiianPizza.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
