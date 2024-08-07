@@ -59,7 +59,8 @@ class TimerViewModel: ObservableObject {
         let currentTask = tasks[currentTaskIndex]
         remainingTime = TimeInterval(currentTask.taskTime * 60)
         print("현재 태스크 시작: \(String(describing: currentTask.taskName)), 시간: \(remainingTime)")
-        ttsManager.speak(text: "이번 루틴은 \(String(describing: currentTask.taskName))입니다")
+        let taskName = currentTask.taskName ?? "새 루틴"
+        ttsManager.speak(text: "이번 루틴은 \(taskName)입니다")
         progress = 1.0
         startTimer()
         startLiveActivity(iconName: currentTask.taskIcon ?? "")
