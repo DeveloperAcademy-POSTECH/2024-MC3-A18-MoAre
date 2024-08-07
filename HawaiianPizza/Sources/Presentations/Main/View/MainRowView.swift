@@ -24,10 +24,11 @@ struct MainRowView: View {
         .padding(.trailing, 20)
       
       GeometryReader { geometry in
+        let maxWidth = geometry.size.width - 40
         HStack(spacing: 0) {
           RoundedRectangle(cornerRadius: 4)
             .fill(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
-            .frame(width: geometry.size.width * widthRatio, height: 24)
+            .frame(width: min(maxWidth * widthRatio, maxWidth), height: 24)
             .padding(.trailing, 12)
           Text("\(duration)m")
             .foregroundStyle(isSelected ? Color(red: 1, green: 0.39, blue: 0.29) : Color(red: 0.6, green: 0.62, blue: 0.64))
