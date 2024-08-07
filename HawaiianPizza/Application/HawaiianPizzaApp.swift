@@ -21,13 +21,17 @@ struct HawaiianPizzaApp: App {
                 .environmentObject(coordinator)
                 .environmentObject(localNotificationManager)
                 .onAppear {
-                    appDelegate.configure(localNotificationManager: localNotificationManager)
-                    localNotificationManager.requestPermission()
+                  appDelegate.configure(localNotificationManager: localNotificationManager)
+                  localNotificationManager.requestPermission()
                 }
-                .fullScreenCover(isPresented: $localNotificationManager.navigateToView) {
-                  TenSecView(routineID: localNotificationManager.selectedRoutineID)
-                        .environmentObject(coordinator)
-                        .environmentObject(localNotificationManager)
+                .fullScreenCover(isPresented: $localNotificationManager.navigateToView, onDismiss: {
+                  localNotificationManager.navigateToView = false
+                }) {
+                  if let routineID = localNotificationManager.selectedRoutineID {
+                    TenSecView(routineID: routineID)
+                      .environmentObject(coordinator)
+                      .environmentObject(localNotificationManager)
+                  }
                 }
                 .transaction { transaction in
                     transaction.disablesAnimations = true
@@ -35,7 +39,7 @@ struct HawaiianPizzaApp: App {
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
           if newPhase == .active {
-            if localNotificationManager.navigateToView, let routineID = localNotificationManager.selectedRoutineID {
+            if localNotificationManager.navigateToView, let _ = localNotificationManager.selectedRoutineID {
               localNotificationManager.navigateToView = true
             }
           }

@@ -13,11 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   var window: UIWindow?
   var localNotificationManager: LocalNotificationManager?
   
-//  @EnvironmentObject var localNotificationManager: LocalNotificationManager
-  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     UNUserNotificationCenter.current().delegate = self
     _ = LocationHelper.shared
+    
+    if let notificationResponse = launchOptions?[.remoteNotification] as? UNNotificationResponse {
+      handleNotification(userInfo: notificationResponse.notification.request.content.userInfo)
+    }
     return true
   }
   
@@ -27,23 +29,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   
   // 알림 눌렀을 때 호출되는 메소드
   func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    guard let localNotificationManager = localNotificationManager else {
-      completionHandler()
-      return
-    }
-    
-    if let routineID = response.notification.request.content.userInfo["routineID"] as? String {
-      DispatchQueue.main.async {
-        localNotificationManager.selectedRoutineID = routineID
-        localNotificationManager.navigateToView = true
-      }
-    }
+    handleNotification(userInfo: response.notification.request.content.userInfo)
     cancelAllNotifications()
     completionHandler()
   }
   
+  private func handleNotification(userInfo: [AnyHashable: Any]) {
+    // guard let localNotificationManager = localNotificationManager else { return }
+    guard let routineID = userInfo["routineID"] as? String else { return }
+    
+    DispatchQueue.main.async {
+      self.localNotificationManager?.selectedRoutineID = routineID
+      self.localNotificationManager?.navigateToView = true
+    }
+  }
+  
   func navigateToTenSecView() {
+    guard let routineID = localNotificationManager?.selectedRoutineID else { return }
     let tenSecView = TenSecView()
+    
     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
        let keyWindow = windowScene.windows.first {
       keyWindow.rootViewController = UIHostingController(rootView: tenSecView)
