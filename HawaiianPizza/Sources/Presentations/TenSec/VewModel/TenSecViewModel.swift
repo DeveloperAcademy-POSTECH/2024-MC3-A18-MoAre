@@ -4,7 +4,6 @@
 //
 //  Created by Pil_Gaaang on 8/1/24.
 //
-
 import SwiftUI
 import Combine
 
@@ -21,6 +20,7 @@ class TenSecViewModel: ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.remainingTime > 0 {
                 self.remainingTime -= 1
+                print("남은 시간: \(self.remainingTime)")
 
                 // 진행 상태를 천천히 줄이기
                 withAnimation(.linear(duration: 0.9)) {
@@ -34,8 +34,11 @@ class TenSecViewModel: ObservableObject {
                     }
                 }
             } else {
+                print("타이머 끝남")
                 self.timer?.invalidate()
-                self.shouldNavigate = true  // 카운트다운이 끝나면 상태 변경
+                if !self.shouldNavigate { // 이미 이동하지 않은 경우에만 상태 변경
+                    self.shouldNavigate = true  // 카운트다운이 끝나면 상태 변경
+                }
             }
         }
     }
@@ -47,7 +50,18 @@ class TenSecViewModel: ObservableObject {
     }
   
     func loadRoutine(with routineID: String) {
-      guard let uuid = UUID(uuidString: routineID) else { return }
+      guard let uuid = UUID(uuidString: routineID) else {
+          print("루틴 ID가 잘못되었습니다.")
+          return
+      }
       self.routine = CoreDataManager.shared.fetchRoutine(by: uuid)
+      print("루틴 로드 완료: \(String(describing: self.routine))")
+    }
+
+    func handleButtonPress() {
+        if !shouldNavigate { // 이미 이동하지 않은 경우에만 상태 변경
+            self.timer?.invalidate()
+            self.shouldNavigate = true
+        }
     }
 }

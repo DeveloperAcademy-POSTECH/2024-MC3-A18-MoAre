@@ -9,15 +9,18 @@ import SwiftUI
 
 struct TimerView: View {
     @StateObject private var timerManager: TimerViewModel
-    @Environment(\.scenePhase) var scenePhase
-  
-  init(routine: Routine) {
-    _timerManager = StateObject(wrappedValue: TimerViewModel(routine: routine))
-    }
-    
+    @Environment(\.scenePhase) private var scenePhase
+
+    init(routineID: String) {
+            let manager = TimerViewModel.shared // 싱글톤 인스턴스 사용
+            manager.loadRoutine(with: routineID)
+            _timerManager = StateObject(wrappedValue: manager) // 초기화
+            print("TimerView 초기화됨, routineID: \(routineID)")
+        }
+
     var body: some View {
         VStack(spacing: 0) {
-          Text(timerManager.routineTitle)
+            Text(timerManager.routineTitle)
                 .font(
                     Font.custom("Pretendard Variable", size: 24)
                         .weight(.bold)
@@ -26,9 +29,9 @@ struct TimerView: View {
                 .foregroundColor(Color(red: 0.21, green: 0.22, blue: 0.23))
                 .frame(width: 361, height: 42, alignment: .center)
                 .padding(.top, 20)
-            
-            Spacer().frame(height: 46) // 데일리 루틴과 현재 단계 텍스트들 사이 간격을 좁게 설정
-            
+
+            Spacer().frame(height: 46)
+
             Text("현재 단계")
                 .font(
                     Font.custom("Pretendard Variable", size: 20)
@@ -36,55 +39,52 @@ struct TimerView: View {
                 )
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 0.21, green: 0.22, blue: 0.23))
-                .padding(.bottom, 4) // 현재 단계와 현재 단계 task의 사이 간격을 좁게 설정
-            
+                .padding(.bottom, 4)
+
             VStack(spacing: 0) {
-                // 현재 작업
                 Text(timerManager.tasks[timerManager.currentTaskIndex].taskName ?? "태스크명이 없습니다")
                     .font(.system(size: 40, weight: .bold, design: .monospaced))
-                    .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))  // 텍스트 색상 설정
-                    .padding(.bottom, 8) // 현재 단계와 다음 단계 사이의 구분선 간격을 좁게 설정
-                
-                // 현재 작업과 다음 작업 사이의 구분선
+                    .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))
+                    .padding(.bottom, 8)
+
                 if timerManager.currentTaskIndex < timerManager.tasks.count - 1 {
                     Image(systemName: "chevron.down")
                         .foregroundColor(.gray)
-                        .padding(.bottom, 8) // 구분선과 다음 단계 task 사이의 간격을 좁게 설정
-                    
+                        .padding(.bottom, 8)
+
                     Text(timerManager.tasks[timerManager.currentTaskIndex + 1].taskName ?? "태스크명이 없습니다")
                         .font(.system(size: 24, weight: .medium))
                         .foregroundColor(.gray)
-                        .padding(.bottom, 16) // 다음 단계 task와 타이머 ZStack 사이 간격을 좁게 설정
+                        .padding(.bottom, 16)
                 } else {
-                   
                     Spacer().frame(height: 60)
                 }
             }
-            
+
             ZStack {
                 Image("timer")
                     .resizable()
                     .frame(width: 276, height: 276)
-                
+
                 Circle()
-                    .trim(from: 0, to: timerManager.progress)  // 진행 상태가 시계방향으로 줄어들도록 설정
+                    .trim(from: 0, to: timerManager.progress)
                     .stroke(Color(red: 1, green: 0.39, blue: 0.29), lineWidth: 70)
                     .frame(width: 168, height: 168)
-                    .rotationEffect(.degrees(-90))  // 12시 방향에서 시작
-                    .scaleEffect(x: -1, y: 1, anchor: .center)  // 좌우 반전
-                    .animation(timerManager.progress == 0 ? .linear(duration: 0.9) : .none, value: timerManager.progress)  // 회전 애니메이션 적용
-                
+                    .rotationEffect(.degrees(-90))
+                    .scaleEffect(x: -1, y: 1, anchor: .center)
+                    .animation(timerManager.progress == 0 ? .linear(duration: 0.9) : .none, value: timerManager.progress)
+
                 Image("timer center")
                     .resizable()
                     .frame(width: 294, height: 294)
-                
+
                 Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon ?? "")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
             }
-            .padding(.bottom, 38) // 타이머 ZStack과 남은 시간 Text 사이 간격을 좁게 설정
-            
+            .padding(.bottom, 38)
+
             Text("남은 시간")
                 .font(
                     Font.custom("Pretendard Variable", size: 12)
@@ -92,8 +92,8 @@ struct TimerView: View {
                 )
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 0.6, green: 0.62, blue: 0.64))
-                .padding(.bottom, 10) // 남은 시간 Text와 타이머 텍스트 사이의 간격을 좁게 설정
-            
+                .padding(.bottom, 10)
+
             ZStack{
                 Rectangle()
                     .foregroundColor(.clear)
@@ -111,29 +111,39 @@ struct TimerView: View {
                         .frame(width: 220, height: 80, alignment: .center)
                 }
             }
-            .padding(.bottom, 20) // 타이머 텍스트와 다음 루틴 버튼 사이의 간격을 좁게 설정
-            
+            .padding(.bottom, 20)
+
             Button(action: {
+                print("다음 루틴 버튼 클릭됨")
                 timerManager.nextTask()
                 HapticHelper.triggerSuccessHaptic()
             }) {
                 Text(timerManager.currentTaskIndex == timerManager.tasks.count - 1 ? "완료" : "다음 루틴")
-                    .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy)) // Pretendard Variable 폰트와 heavy weight 사용
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white) // 텍스트 색상을 white로 설정
-                    .padding(.vertical, 12) // vertical padding을 12로 설정
-                    .frame(width: 361, alignment: .center) // 너비와 정렬 설정
-                    .background(Color(red: 1, green: 0.39, blue: 0.29)) // 배경색 설정
-                    .cornerRadius(8) // 코너 반경 설정
+                    .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy))
+                    .foregroundColor(.white)
+                    .padding(.vertical, 12)
+                    .frame(width: 361, alignment: .center)
+                    .background(Color(red: 1, green: 0.39, blue: 0.29))
+                    .cornerRadius(8)
             }
             .padding(.horizontal)
         }
         .padding()
         .onAppear {
+            print("TimerView 나타남, 루틴 시작")
             timerManager.startTask()
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
-            timerManager.handleScenePhaseChange(newPhase)
+                }
+        .onDisappear {
+            timerManager.stopTimer()
+            timerManager.endLiveActivity()
         }
+    }
+}
+
+struct TimerView_Previews: PreviewProvider {
+    static var previews: some View {
+        TimerView(routineID: "SampleRoutineID")
     }
 }
