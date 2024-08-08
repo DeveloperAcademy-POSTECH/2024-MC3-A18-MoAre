@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TimerView: View {
+    @StateObject var localNotificationManager = LocalNotificationManager()
     @StateObject private var timerManager: TimerViewModel
     @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var coordinator: Coordinator

@@ -36,6 +36,9 @@ final class Coordinator: ObservableObject {
         case .main:
             MainView()
                 .navigationBarBackButtonHidden()
+                .transaction { transaction in
+                  transaction.disablesAnimations = true
+                }
         case .routineSetting:
             RoutineSettingView()
         case .routinePlanning:

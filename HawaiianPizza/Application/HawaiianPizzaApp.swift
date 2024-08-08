@@ -23,6 +23,9 @@ struct HawaiianPizzaApp: App {
                 .onAppear {
                   appDelegate.configure(localNotificationManager: localNotificationManager)
                   localNotificationManager.requestPermission()
+                  
+                  localNotificationManager.navigateToView = false
+                  localNotificationManager.selectedRoutineID = nil
                 }
                 .fullScreenCover(isPresented: $localNotificationManager.navigateToView, onDismiss: {
                   localNotificationManager.navigateToView = false
