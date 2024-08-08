@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - DatePicker에서 선택한 시간을 변환
 struct UIDatePickerWrapper: UIViewRepresentable {
-  @Binding var selectedTime: (hour: Int, minute: Int)
+  @Binding var selectedTime: Date
   
   class Coordinator: NSObject {
     var parent: UIDatePickerWrapper
@@ -20,11 +20,7 @@ struct UIDatePickerWrapper: UIViewRepresentable {
     }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
-      let calendar = Calendar.current
-      let components = calendar.dateComponents([.hour, .minute], from: sender.date)
-      if let hour = components.hour, let minute = components.minute {
-        parent.selectedTime = (hour, minute)
-      }
+      parent.selectedTime = sender.date
     }
   }
   
@@ -42,12 +38,6 @@ struct UIDatePickerWrapper: UIViewRepresentable {
   }
   
   func updateUIView(_ uiView: UIDatePicker, context: Context) {
-    var components = DateComponents()
-    components.hour = selectedTime.hour
-    components.minute = selectedTime.minute
-    let calendar = Calendar.current
-    if let date = calendar.date(from: components) {
-      uiView.date = date
-    }
+    uiView.date = selectedTime
   }
 }

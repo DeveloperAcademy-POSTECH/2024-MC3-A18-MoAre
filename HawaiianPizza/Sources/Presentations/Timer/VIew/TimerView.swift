@@ -83,7 +83,7 @@ struct TimerView: View {
                     .frame(width: 294, height: 294)
 
                 if timerManager.currentTaskIndex < timerManager.tasks.count {
-                    Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon ?? "")
+                    Image(timerManager.tasks[timerManager.currentTaskIndex].taskIcon ?? "")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 60, height: 60)
