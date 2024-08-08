@@ -17,6 +17,7 @@ struct MainView: View {
     formatter.timeStyle = .short
     return formatter
   }
+  
   @State private var showActionSheet = false
   @State private var routineToDelete: Routine? = nil
   
@@ -37,14 +38,10 @@ struct MainView: View {
             
             VStack(spacing: 0) {
               HStack(spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                  Text("Moare")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundStyle(Color(red: 1, green: 0.39, blue: 0.29))
-                  Text("moring assistant")
-                    .foregroundStyle(Color(red: 0.92, green: 0.93, blue: 0.91))
-                }
+                Image("typelogo")
+                  .resizable()
+                  .frame(width: 128, height: 42)
+                
                 Spacer()
               }
               .padding(.horizontal, 34)
@@ -160,7 +157,7 @@ struct MainView: View {
                   },
                   seeDetail: {
                     coordinator.push(destination: .routineDetail, routine: item)
-                  }, 
+                  },
                   onDelete: {
                     viewModel.deleteRoutine = item
                     showDeleteActionSheet(for: item)
@@ -180,16 +177,15 @@ struct MainView: View {
           .padding(.leading, 16)
           .confirmationDialog("delete", isPresented: $showActionSheet) {
             Button("루틴 삭제", role: .destructive) {
-                if let deleteRoutine = viewModel.deleteRoutine {
-                    viewModel.deleteRoutine(routine: deleteRoutine )
-                }
+              if let deleteRoutine = viewModel.deleteRoutine {
+                viewModel.deleteRoutine(routine: deleteRoutine )
+              }
               print("루틴이 삭제되었습니다.")
             }
             Button("cancel", role: .cancel) {
               print("취소되었습니다.")
             }
           }
-          
         }
         Spacer()
       }
@@ -208,7 +204,9 @@ struct MainView: View {
       }
     }
   }
-  
+}
+
+extension MainView {
   private func showDeleteActionSheet(for item: Routine) {
     routineToDelete = item
     showActionSheet = true
