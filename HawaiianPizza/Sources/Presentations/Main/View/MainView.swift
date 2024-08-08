@@ -74,6 +74,7 @@ struct MainView: View {
                       )
                   })
                   .buttonStyle(PlainButtonStyle())
+                  .disabled(viewModel.isNotificationSet)
                   .sheet(isPresented: $showTimePicker) {
                     TimePickerView(
                       selectedTime: $viewModel.selectedTime,
