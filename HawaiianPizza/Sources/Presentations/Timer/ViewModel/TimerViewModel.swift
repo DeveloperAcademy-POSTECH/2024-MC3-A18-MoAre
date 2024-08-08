@@ -29,10 +29,6 @@ class TimerViewModel: ObservableObject {
     
     @ObservedObject private var ttsManager = TextToSpeechManager()
     
-    static let shared = TimerViewModel()
-    
-    private init() {}
-    
     func loadRoutine(with routineID: String) {
         print("루틴 로드 시작: \(routineID)")
         guard let uuid = UUID(uuidString: routineID) else {
