@@ -41,8 +41,6 @@ final class Coordinator: ObservableObject {
                 }
         case .routineSetting:
             RoutineSettingView()
-        case .routinePlanning:
-            RoutinePlanningView()
         case .timer:
             if let routine = selectedRoutine {
                 TimerView(routine: routine)
