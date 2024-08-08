@@ -25,11 +25,6 @@ struct MainView: View {
   var body: some View {
     NavigationStack(path: $coordinator.path) {
       VStack(spacing: 0) {
-        
-        NavigationLink(destination: TenSecView()) {
-          EmptyView()
-        }
-        
         GeometryReader { geometry in
           ZStack {
             Rectangle()

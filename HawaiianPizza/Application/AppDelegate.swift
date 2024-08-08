@@ -36,7 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   
   private func handleNotification(userInfo: [AnyHashable: Any]) {
     // guard let localNotificationManager = localNotificationManager else { return }
-    guard let routineID = userInfo["routineID"] as? String else { return }
+    guard let routineID = userInfo["routineID"] as? String else {
+      DispatchQueue.main.async {
+        self.localNotificationManager?.selectedRoutineID = ""
+        self.localNotificationManager?.navigateToView = true
+      }
+      return
+    }
     
     DispatchQueue.main.async {
       self.localNotificationManager?.selectedRoutineID = routineID
@@ -44,16 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
   }
   
-  func navigateToTenSecView() {
-    guard let routineID = localNotificationManager?.selectedRoutineID else { return }
-    let tenSecView = TenSecView()
-    
-    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-       let keyWindow = windowScene.windows.first {
-      keyWindow.rootViewController = UIHostingController(rootView: tenSecView)
-      keyWindow.makeKeyAndVisible()
-    }
-  }
   
   func cancelAllNotifications() {
     UNUserNotificationCenter.current().removeAllPendingNotificationRequests()

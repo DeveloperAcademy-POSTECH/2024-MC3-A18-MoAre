@@ -140,5 +140,6 @@ class CompleteViewModel: ObservableObject {
   
     func deleteRoutineID() {
         UserDefaults.standard.removeObject(forKey: "selectedRoutine")
+        UserDefaults.standard.removeObject(forKey: "isNotificationSet")
     }
 }
