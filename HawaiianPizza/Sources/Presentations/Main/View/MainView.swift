@@ -40,7 +40,8 @@ struct MainView: View {
               HStack(spacing: 0) {
                 Image("typelogo")
                   .resizable()
-                  .frame(width: 128, height: 42)
+                  .scaledToFit()
+                  .frame(width: 128)
                 
                 Spacer()
               }
