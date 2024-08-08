@@ -151,7 +151,6 @@ struct TimerView: View {
         }
         .onDisappear {
             timerManager.stopTimer()
-            timerManager.endLiveActivity()
         }
     }
 }

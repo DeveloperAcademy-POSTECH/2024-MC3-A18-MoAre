@@ -5,7 +5,6 @@
 //  Created by Pil_Gaaang on 7/31/24.
 //
 import SwiftUI
-import ActivityKit
 import UIKit
 import Combine
 import CoreData
@@ -18,16 +17,13 @@ class TimerViewModel: ObservableObject {
     @Published var isCompleted = false
     
     var timer: Timer?
-    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var currentTaskIndex: Int = 0
     var totalSkipTime: TimeInterval = 0
-    var activity: Activity<DynamicAttributes>?
     var routine: Routine?
     var isTimerRunning = false
-    var isActivityRunning = false
     var currentTask: Tasks?
     
-    @ObservedObject private var ttsManager = TextToSpeechManager()
+    private var ttsManager = TextToSpeechManager()
     
     func loadRoutine(with routineID: String) {
         print("루틴 로드 시작: \(routineID)")
@@ -59,7 +55,6 @@ class TimerViewModel: ObservableObject {
         
         progress = 1.0
         startTimer()
-        startLiveActivity(iconName: currentTask?.taskIcon ?? "")
     }
     
     func startTimer() {
@@ -77,7 +72,6 @@ class TimerViewModel: ObservableObject {
             self?.updateTimer()
         }
         isTimerRunning = true
-        registerBackgroundTask()
     }
     
     func updateTimer() {
@@ -97,15 +91,12 @@ class TimerViewModel: ObservableObject {
         default:
             break
         }
-        
-        updateLiveActivity(iconName: tasks[currentTaskIndex].taskIcon ?? "")
         print("남은 시간: \(remainingTime), 진행도: \(progress)")
     }
     
     func stopTimer() {
         timer?.invalidate()
         isTimerRunning = false
-        endLiveActivity()
     }
     
     func nextTask() {
@@ -140,77 +131,6 @@ class TimerViewModel: ObservableObject {
         saveTotalSkipTime()
         DispatchQueue.main.async {
             self.isCompleted = true
-        }
-    }
-    
-    private func startLiveActivity(iconName: String) {
-        endLiveActivity()
-        
-        print("라이브 액티비티 시작 시도")
-        let attributes = DynamicAttributes(name: "Sample Task")
-        let state = DynamicAttributes.ContentState(remainingTime: remainingTime, iconName: iconName)
-        let content = ActivityContent(state: state, staleDate: Date().addingTimeInterval(3600))
-        
-        do {
-            activity = try Activity<DynamicAttributes>.request(
-                attributes: attributes,
-                content: content,
-                pushType: nil
-            )
-            isActivityRunning = true
-            print("라이브 액티비티 시작됨")
-        } catch {
-            print("라이브 액티비티 시작 에러: \(error.localizedDescription)")
-        }
-    }
-    
-    func updateLiveActivity(iconName: String) {
-        guard let activity = activity else {
-            print("라이브 액티비티가 실행 중이지 않습니다.")
-            startLiveActivity(iconName: iconName)
-            return
-        }
-        
-        print("라이브 액티비티 업데이트 시도")
-        let state = DynamicAttributes.ContentState(remainingTime: remainingTime, iconName: iconName)
-        let content = ActivityContent(state: state, staleDate: Date().addingTimeInterval(3600))
-        
-        Task {
-            await activity.update(content)
-            print("라이브 액티비티 업데이트됨")
-        }
-    }
-    
-    func endLiveActivity() {
-        guard let activity = activity else {
-            print("종료할 라이브 액티비티가 없습니다.")
-            return
-        }
-        
-        print("라이브 액티비티 종료 시도")
-        let state = DynamicAttributes.ContentState(remainingTime: remainingTime, iconName: "iconName")
-        let content = ActivityContent(state: state, staleDate: Date().addingTimeInterval(3600))
-        
-        Task {
-            await activity.end(content, dismissalPolicy: .immediate)
-            isActivityRunning = false
-            print("라이브 액티비티 종료됨")
-        }
-    }
-    
-    private func registerBackgroundTask() {
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "MyBackgroundTask") {
-            UIApplication.shared.endBackgroundTask(self.backgroundTask)
-            self.backgroundTask = .invalid
-            print("백그라운드 작업 종료됨")
-        }
-    }
-    
-    func handleScenePhaseChange(_ newPhase: ScenePhase) {
-        if newPhase == .background {
-            stopTimer()
-        } else if newPhase == .active {
-            startTimer()
         }
     }
     
