@@ -57,12 +57,10 @@ class TimerViewModel: ObservableObject {
             print("태스크 인덱스 범위 초과")
             return
         }
-      
-        let currentTask = tasks[currentTaskIndex]
-        remainingTime = TimeInterval(currentTask.taskTime * 60)
-        print("현재 태스크 시작: \(String(describing: currentTask.taskName)), 시간: \(remainingTime)")
-        let taskName = currentTask.taskName ?? "새 루틴"
-        ttsManager.speak(text: "이번 루틴은 \(taskName)입니다")
+        currentTask = tasks[currentTaskIndex]
+        remainingTime = TimeInterval(currentTask!.taskTime * 60)
+        print("현재 태스크 시작: \(String(describing: currentTask!.taskName)), 시간: \(remainingTime)")
+        
         progress = 1.0
         startTimer()
         startLiveActivity(iconName: currentTask.taskIcon ?? "")
@@ -84,6 +82,7 @@ class TimerViewModel: ObservableObject {
     
     func updateTimer() {
         guard remainingTime > 0 else {
+            print("타이머가 0이 되어 다음 태스크로 이동합니다.")
             nextTask()
             return
         }
@@ -133,7 +132,7 @@ class TimerViewModel: ObservableObject {
         }
     }
 
-    private func completeRoutine() {
+    func completeRoutine() {
         stopTimer()
         remainingTime = 0
         progress = 0.0
@@ -219,11 +218,11 @@ class TimerViewModel: ObservableObject {
         guard let routine = routine else { return }
         routine.totalSkipTime = Int32(totalSkipTime)
         CoreDataManager.shared.saveContext()
-        listTaskSkipTimes()
     }
+    
     func listTaskSkipTimes() {
-            tasks.forEach { task in
-                print("Task: \(task.taskName ?? "No Name"), Skip Time: \(task.taskSkipTime)")
-            }
+        tasks.forEach { task in
+            print("Task: \(task.taskName ?? "No Name"), Skip Time: \(task.taskSkipTime)")
         }
+    }
 }

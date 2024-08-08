@@ -128,8 +128,15 @@ struct TimerView: View {
                         coordinator.push(destination: .complete)
                         print("모든 루틴 완료, 완료 화면으로 이동")
                     } else {
-                        timerManager.nextTask()
-                        print("다음 루틴 버튼 클릭됨")
+                        if timerManager.currentTaskIndex == timerManager.tasks.count - 1 {
+                                    timerManager.completeRoutine()
+                                    coordinator.push(destination: .complete)
+                                    print("마지막 태스크 완료, 완료 화면으로 이동")
+                                } else {
+                                    timerManager.nextTask()
+                                    print("다음 루틴 버튼 클릭됨")
+                                }
+                                HapticHelper.triggerSuccessHaptic()
                     }
             }) {
                 Text(timerManager.currentTaskIndex == timerManager.tasks.count - 1 ? "완료" : "다음 루틴")
