@@ -18,6 +18,7 @@ class MainViewModel: ObservableObject {
   @Published var selectedTime: Date = Date()
   @Published var startTime: Time?
   @AppStorage("selectedRoutine") var selectedRoutineID: String = ""
+  @AppStorage("isNotificationSet") var isNotificationSet: Bool = false
   
   var localNotificationManager: LocalNotificationManager
   
@@ -56,6 +57,7 @@ class MainViewModel: ObservableObject {
       // 같은 루틴을 다시 눌렀을 경우 모든 알림을 제거하고 선택을 해제
       localNotificationManager.removeAllPendingNotifications()
       selectedRoutine = nil
+      isNotificationSet = false
     } else {
       // 다른 루틴을 선택할 경우 기존 알림을 제거하고 새 알림 설정
       localNotificationManager.removeAllPendingNotifications()
@@ -69,6 +71,8 @@ class MainViewModel: ObservableObject {
       } else {
         createTime(startTime: selectedTimeAsDate(selectedTime))
       }
+      
+      isNotificationSet = true
     }
   }
   
@@ -146,6 +150,4 @@ class MainViewModel: ObservableObject {
     let components = calendar.dateComponents([.hour, .minute], from: selectedTime)
     return (components.hour ?? 0, components.minute ?? 0)
   }
-  
-  
 }
