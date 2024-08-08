@@ -45,13 +45,13 @@ final class Coordinator: ObservableObject {
             RoutinePlanningView()
         case .timer:
             if let routine = selectedRoutine {
-                if let routineID = routine.id?.uuidString {
-                    TimerView(routineID: routineID)
-                        .navigationBarBackButtonHidden()
-                        .onAppear {
+                TimerView(routine: routine)
+                    .navigationBarBackButtonHidden()
+                    .onAppear {
+                        if let routineID = routine.id?.uuidString {
                             print("TimerView 나타남 with routineID: \(routineID)")
                         }
-                }
+                    }
             } else {
                 Text("루틴이 선택되지 않았습니다.")
             }

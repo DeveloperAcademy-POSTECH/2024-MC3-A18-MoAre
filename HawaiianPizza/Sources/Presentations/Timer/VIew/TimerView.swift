@@ -9,17 +9,11 @@ import SwiftUI
 
 struct TimerView: View {
     @StateObject var localNotificationManager = LocalNotificationManager()
-    @StateObject private var timerManager: TimerViewModel
+    @StateObject private var timerManager = TimerViewModel()
     @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var coordinator: Coordinator
-
-    init(routineID: String) {
-        let manager = TimerViewModel.shared // 싱글톤 인스턴스 사용
-        manager.loadRoutine(with: routineID)
-        _timerManager = StateObject(wrappedValue: manager) // 초기화
-        print("TimerView 초기화됨, routineID: \(routineID)")
-    }
-
+    let routine: Routine?
+    
     var body: some View {
         VStack(spacing: 0) {
             Text(timerManager.routineTitle)
@@ -125,14 +119,17 @@ struct TimerView: View {
             .padding(.bottom, 20)
 
             Button(action: {
-                if timerManager.isCompleted {
-                        coordinator.push(destination: .complete)
-                        print("모든 루틴 완료, 완료 화면으로 이동")
-                    } else {
-                        timerManager.nextTask()
-                        print("다음 루틴 버튼 클릭됨")
+                        if timerManager.currentTaskIndex == timerManager.tasks.count - 1 {
+                                    timerManager.completeRoutine()
+                                    coordinator.push(destination: .complete)
+                                    print("마지막 태스크 완료, 완료 화면으로 이동")
+                                } else {
+                                    timerManager.nextTask()
+                                    print("다음 루틴 버튼 클릭됨")
+                                }
+                                HapticHelper.triggerSuccessHaptic()
                     }
-            }) {
+            ) {
                 Text(timerManager.currentTaskIndex == timerManager.tasks.count - 1 ? "완료" : "다음 루틴")
                     .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy))
                     .foregroundColor(.white)
@@ -146,6 +143,9 @@ struct TimerView: View {
         .padding()
         .onAppear {
             print("TimerView 나타남, 루틴 시작")
+            if let routineID = routine?.id?.uuidString {
+                timerManager.loadRoutine(with: routineID)
+            }
             timerManager.startTask()  // 여기에 startTask를 호출하여 타이머 시작
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -159,6 +159,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(routineID: "SampleRoutineID")
+        TimerView(routine: Routine())
     }
 }

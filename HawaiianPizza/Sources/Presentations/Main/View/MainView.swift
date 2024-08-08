@@ -10,7 +10,8 @@ import SwiftUI
 struct MainView: View {
   @EnvironmentObject var coordinator: Coordinator
   @StateObject private var viewModel = MainViewModel(localNotificationManager: LocalNotificationManager())
-  
+   
+  @AppStorage("onboarding") var showOnboard: Bool = true
   @State private var showTimePicker = false
   private var timeFormatter: DateFormatter {
     let formatter = DateFormatter()
@@ -185,6 +186,25 @@ struct MainView: View {
         }
         Spacer()
       }
+      .alert(isPresented: $showOnboard) {
+             Alert(
+                 title: Text("Watch 앱 알림 설정 필요"),
+                 message: Text("'Watch 앱으로 이동'을 눌러 Watch 앱에서 '알림 -> Moare -> 알림 끔'으로 설정하십시오."),
+                 primaryButton: .default(Text("Watch 앱으로 이동").fontWeight(.bold), action: {
+                     if let url = URL(string: "itms-watchs://") {
+                         if UIApplication.shared.canOpenURL(url) {
+                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                             showOnboard = false
+                         } else {
+                             print("Unable to open the Watch app.")
+                         }
+                     }
+                 }),
+                 secondaryButton: .default(Text("나중에"), action: {
+                     showOnboard = false
+                 })
+             )
+         }
       .onAppear {
         viewModel.fetchRoutine()
         viewModel.fetchTime()
