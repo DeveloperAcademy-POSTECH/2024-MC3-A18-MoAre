@@ -42,8 +42,7 @@ extension CompleteView {
         }
         .font(.system(size: 17, weight: .semibold))
       } else {
-        Text("예상보다 \((Double(viewModel.completeRoutine?.totalSkipTime ?? 0)/60)) 초가 줄었네요!")
-          .font(.system(size: 17, weight: .semibold))
+          Text(String(format: "예상보다 %.1f 초가 줄었네요!", (Double(viewModel.completeRoutine?.totalSkipTime ?? 0) / 60)))          .font(.system(size: 17, weight: .semibold))
       }
     }
   }
