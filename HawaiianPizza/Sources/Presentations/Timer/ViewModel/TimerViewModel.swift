@@ -63,7 +63,7 @@ class TimerViewModel: ObservableObject {
         
         progress = 1.0
         startTimer()
-        startLiveActivity(iconName: currentTask!.taskIcon ?? "")
+        startLiveActivity(iconName: currentTask.taskIcon ?? "")
     }
     
     func startTimer() {

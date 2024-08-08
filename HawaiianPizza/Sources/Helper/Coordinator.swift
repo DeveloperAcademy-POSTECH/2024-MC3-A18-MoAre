@@ -35,6 +35,7 @@ final class Coordinator: ObservableObject {
         switch destination {
         case .main:
             MainView()
+                .navigationBarBackButtonHidden()
         case .routineSetting:
             RoutineSettingView()
         case .routinePlanning:

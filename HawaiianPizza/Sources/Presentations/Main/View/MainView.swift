@@ -193,7 +193,14 @@ struct MainView: View {
         Spacer()
       }
       .onAppear {
-          viewModel.fetchRoutine()
+        viewModel.fetchRoutine()
+        viewModel.fetchTime()
+        
+        if let selectedRoutineID = UUID(uuidString: viewModel.selectedRoutineID) {
+          if let routine = viewModel.items.first(where: { $0.id == selectedRoutineID }) {
+            viewModel.selectedRoutine = routine.id
+          }
+        }
       }
       .navigationDestination(for: ViewDestination.self){ destination in
         coordinator.setView(destination: destination)

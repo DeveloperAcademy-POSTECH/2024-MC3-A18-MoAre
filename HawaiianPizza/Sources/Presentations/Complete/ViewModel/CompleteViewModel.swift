@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import WeatherKit
+import SwiftUI
 
 class CompleteViewModel: ObservableObject {
     @Published var completeRoutine: Routine?
@@ -20,6 +21,7 @@ class CompleteViewModel: ObservableObject {
     @Published var precipitationChance: String = ""
     @Published var currentLocation: CLLocation?
     @Published var tasks: [Tasks] = []
+    @AppStorage("selectedRoutine") var selectedRoutineID: String?
 
     init() {
         addNotiObserver()
@@ -126,13 +128,17 @@ class CompleteViewModel: ObservableObject {
         guard let symbol = dailyWeather.first?.symbolName else { return }
 
         symbolName = symbol
-        highTemperature = "최고: \(Int(high.value))도"
-        lowTemperature = "최저: \(Int(low.value))도"
+        highTemperature = "최고 : \(Int(high.value))도"
+        lowTemperature = "최저 : \(Int(low.value))도"
     }
 
     func precipitationChanceFormatter() {
         guard let preChance = dailyWeather.first?.precipitationChance else { return }
         let precipitationChancePercent = preChance * 100
-        precipitationChance = String(format: "강수 확률: %.0f%%", precipitationChancePercent)
+        precipitationChance = String(format: "강수 확률 : %.0f%%", precipitationChancePercent)
+    }
+  
+    func deleteRoutineID() {
+        UserDefaults.standard.removeObject(forKey: "selectedRoutine")
     }
 }
