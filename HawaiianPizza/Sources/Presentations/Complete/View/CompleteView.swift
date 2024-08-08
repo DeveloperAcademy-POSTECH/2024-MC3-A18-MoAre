@@ -6,31 +6,37 @@ protocol CompleteViewDelegate: AnyObject {
 }
 
 struct CompleteView: View {
-  weak var delegate: CompleteViewDelegate?
-  @StateObject private var viewModel = CompleteViewModel()
-  @EnvironmentObject var coordinator: Coordinator
-  @EnvironmentObject var localNotificationManager: LocalNotificationManager
-  @State private var showProgressView = false
-  let routineID: UUID?
-  
-  var body: some View {
-    VStack {
-      if !showProgressView {
-        CheckView()
-          .task {
-            viewModel.fetchRoutines(selectedRoutineID: routineID)
-            await viewModel.fetchDailyWeather()
-          }
-          .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-              showProgressView = true
+    weak var delegate: CompleteViewDelegate?
+    @StateObject private var viewModel = CompleteViewModel()
+    @EnvironmentObject var coordinator: Coordinator
+    @EnvironmentObject var localNotificationManager: LocalNotificationManager
+    @State private var showProgressView = false
+    @State private var navigateToMain = false
+
+    let routineID: UUID?
+    
+    var body: some View {
+        VStack {
+            if !showProgressView {
+                CheckView()
+                    .task {
+                        viewModel.fetchRoutines(selectedRoutineID: routineID)
+                        await viewModel.fetchDailyWeather()
+                    }
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showProgressView = true
+                        }
+                    }
+            } else {
+                WeatherView()
             }
-          }
-      } else {
-        WeatherView()
-      }
+        }
+        .navigationDestination(isPresented: $navigateToMain) {
+            MainView()
+                .navigationBarBackButtonHidden()
+        }
     }
-  }
 }
 
 extension CompleteView {
@@ -86,23 +92,27 @@ extension CompleteView {
         .font(.system(size: 18, weight: .semibold))
         
         Spacer()
-        
-        Button(action: {
-          viewModel.deleteRoutineID()
-          localNotificationManager.navigateToView = false
-          coordinator.push(destination: .main)
-        }, label: {
-          RoundedRectangle(cornerRadius: 8)
-            .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))
-            .frame(height: 48)
-            .overlay(
-              Text("완료")
-                .font(.system(size: 20, weight: .semibold))
-                .foregroundStyle(.white)
-            )
-        })
-        .padding(.horizontal, 16)
-        
+          
+          NavigationLink {
+              MainView()
+          } label: {
+              Button(action: {
+                  viewModel.deleteRoutineID()
+                  localNotificationManager.navigateToView = false
+                  navigateToMain = true
+              }, label: {
+                  RoundedRectangle(cornerRadius: 8)
+                      .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))
+                      .frame(height: 48)
+                      .overlay(
+                        Text("완료")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundStyle(.white)
+                      )
+              })
+          }
+          .padding(.horizontal, 16)
+          
       }
     }
   }
