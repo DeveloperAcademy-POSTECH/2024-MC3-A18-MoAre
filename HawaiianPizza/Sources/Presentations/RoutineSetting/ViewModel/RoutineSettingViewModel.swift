@@ -24,7 +24,7 @@ class RoutineSettingViewModel: ObservableObject {
     @Published var tasktime: Int = 0
     @Published var taskTitle: String = ""
     @Published var taskIcon: String = ""
-    @Published var iconArr = ["tornado", "cloud.sun", "moon", "cloud.bolt.fill", "cloud", "smoke", "rainbow", "wind"]
+    @Published var iconArr = ["getup", "shower", "makeup", "tshirt", "food", "pill", "exercise", "etc"]
     
     func createTasks(taskIcon: String, taskName: String) -> UUID? {
         let task = CoreDataManager.shared.createTask(

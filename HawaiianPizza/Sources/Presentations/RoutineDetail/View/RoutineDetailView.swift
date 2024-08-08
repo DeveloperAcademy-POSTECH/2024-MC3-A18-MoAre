@@ -107,10 +107,10 @@ extension RoutineDetailView {
                                 .fill(Color(hex: "#D3D7DA"))
                                 .frame(width: 40, height: 40)
                                 .overlay {
-                                    Image(systemName: task.taskIcon.wrappedValue ?? "")
+                                    Image(task.taskIcon.wrappedValue ?? "")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 29, height: 29)
+                                        .frame(width: 35, height: 35)
                                 }
                                 .padding(.leading, 12)
                                 .padding(.trailing, 20)

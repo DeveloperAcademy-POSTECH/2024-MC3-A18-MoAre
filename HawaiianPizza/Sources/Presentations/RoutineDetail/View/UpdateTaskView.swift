@@ -40,9 +40,9 @@ struct UpdateTaskView: View {
                             .fill(viewModel.selectedIcon == icon ? Color(hex: "#FF634B") : Color(hex: "#F2F2EF"))
                             .frame(width: 80, height: 80)
                             .overlay {
-                                Image(systemName: icon)
+                                Image(icon)
                                     .resizable()
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 60, height: 60)
                                     .foregroundStyle(.black)
                             }
                     }

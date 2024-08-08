@@ -61,7 +61,7 @@ struct MainItemView: View {
                       .padding(.bottom, 8)
               }
           }
-        .padding(.top, 30)
+        .padding(.top, 16)
         .padding(.horizontal, 20)
         
         VStack(spacing: 0) {
@@ -105,7 +105,7 @@ struct MainItemView: View {
           )
       })
     }
-    .frame(width: 361, height: 331)
+    .frame(width: 361)
     .background(
       isSelected ? Color(red: 1, green: 0.88, blue: 0.87) : Color(red: 0.92, green: 0.93, blue: 0.91))
   }
