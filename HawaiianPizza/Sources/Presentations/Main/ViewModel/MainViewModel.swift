@@ -16,7 +16,7 @@ class MainViewModel: ObservableObject {
   }
   @Published var deleteRoutine: Routine?
   @Published var selectedTime: Date = Date()
-  
+  @Published var startTime: Time?
   @AppStorage("selectedRoutine") var selectedRoutineID: String = ""
   
   var localNotificationManager: LocalNotificationManager
@@ -47,6 +47,10 @@ class MainViewModel: ObservableObject {
     selectedTime = CoreDataManager.shared.fetchTime()?.startTime ?? Date()
   }
   
+  func updateTime(time: Time, selectedTime: Date) {
+    CoreDataManager.shared.updateTime(time: time, startTime: selectedTime)
+  }
+  
   func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
     if selectedRoutine == routineID {
       // 같은 루틴을 다시 눌렀을 경우 모든 알림을 제거하고 선택을 해제
@@ -57,7 +61,26 @@ class MainViewModel: ObservableObject {
       localNotificationManager.removeAllPendingNotifications()
       selectedRoutine = routineID
       scheduleRoutineNotification(for: selectedTime)
+      
+      if isTimeSaved(for: selectedTime) {
+        if let time = CoreDataManager.shared.fetchTime() {
+          updateTime(time: time, selectedTime: selectedTimeAsDate(selectedTime))
+        }
+      } else {
+        createTime(startTime: selectedTimeAsDate(selectedTime))
+      }
     }
+  }
+  
+  private func selectedTimeAsDate(_ selectedTime: (hour: Int, minute: Int)) -> Date {
+    var components = DateComponents()
+    components.hour = selectedTime.hour
+    components.minute = selectedTime.minute
+    return Calendar.current.date(from: components) ?? Date()
+  }
+  
+  private func isTimeSaved(for selectedTime: (hour: Int, minute: Int)) -> Bool {
+    return CoreDataManager.shared.fetchTime() != nil
   }
   
   func scheduleRoutineNotification(for selectedTime: (hour: Int, minute: Int)) {

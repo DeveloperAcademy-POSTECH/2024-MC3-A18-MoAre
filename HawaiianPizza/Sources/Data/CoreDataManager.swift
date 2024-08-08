@@ -156,6 +156,11 @@ extension CoreDataManager: DataProtocol {
         }
     }
     
+    func updateTime(time: Time, startTime: Date) {
+        time.startTime = startTime
+        saveContext()
+    }
+  
     func deleteTime(_ time: Time) {
         viewContext.delete(time)
         saveContext()

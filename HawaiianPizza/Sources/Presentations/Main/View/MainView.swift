@@ -156,7 +156,6 @@ struct MainView: View {
                   isSelected: viewModel.selectedRoutine == item.id,
                   onSelect: {
                     viewModel.toggleRoutineSelection(for: viewModel.selectedFormattedTime, routineID: item.id ?? UUID())
-                    viewModel.createTime(startTime: viewModel.selectedTime)
                   },
                   seeDetail: {
                     coordinator.push(destination: .routineDetail, routine: item)
