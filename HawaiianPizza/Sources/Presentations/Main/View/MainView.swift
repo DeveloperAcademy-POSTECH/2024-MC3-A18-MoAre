@@ -12,7 +12,6 @@ struct MainView: View {
   @StateObject private var viewModel = MainViewModel(localNotificationManager: LocalNotificationManager())
   
   @State private var showTimePicker = false
-  @State private var selectedTime = (hour: 00, minute: 00)
   private var timeFormatter: DateFormatter {
     let formatter = DateFormatter()
     formatter.timeStyle = .short
@@ -68,7 +67,7 @@ struct MainView: View {
                       .fill(Color(red: 0.92, green: 0.93, blue: 0.91))
                       .frame(width: 208, height: 85)
                       .overlay(
-                        Text("\(String(format: "%02d", selectedTime.hour)):\(String(format: "%02d", selectedTime.minute))")
+                        Text("\(String(format: "%02d", viewModel.selectedFormattedTime.hour)):\(String(format: "%02d", viewModel.selectedFormattedTime.minute))")
                           .font(.system(size: 64))
                           .bold()
                           .foregroundStyle(Color(red: 0.21, green: 0.22, blue: 0.23))
@@ -77,7 +76,7 @@ struct MainView: View {
                   .buttonStyle(PlainButtonStyle())
                   .sheet(isPresented: $showTimePicker) {
                     TimePickerView(
-                      selectedTime: $selectedTime,
+                      selectedTime: $viewModel.selectedTime,
                       showTimePicker: $showTimePicker
                     )
                     .presentationDetents([.fraction(0.4)])
@@ -87,7 +86,7 @@ struct MainView: View {
               }
               .padding(.horizontal, 16)
               
-              if let routineStartTime = viewModel.routineStartTime(for: selectedTime) {
+              if let routineStartTime = viewModel.routineStartTime(for: viewModel.selectedFormattedTime) {
                 HStack(spacing: 0) {
                   Text("루틴 시작 시간")
                     .fontWeight(.semibold)
@@ -156,7 +155,7 @@ struct MainView: View {
                   item: item,
                   isSelected: viewModel.selectedRoutine == item.id,
                   onSelect: {
-                      viewModel.toggleRoutineSelection(for: selectedTime, routineID: item.id ?? UUID())
+                    viewModel.toggleRoutineSelection(for: viewModel.selectedFormattedTime, routineID: item.id ?? UUID())
                   },
                   seeDetail: {
                     coordinator.push(destination: .routineDetail, routine: item)

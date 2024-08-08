@@ -11,6 +11,9 @@ class MainViewModel: ObservableObject {
   @Published var items: [Routine] = []
   @Published var selectedRoutine: RoutineItem.ID?
   @Published var deleteRoutine: Routine?
+  
+  // MARK: - 이안선생님 여기에요!!!!! Date 타입으로 받았습니다!!!!
+  @Published var selectedTime: Date = Date()
     
   var localNotificationManager: LocalNotificationManager
   
@@ -97,5 +100,11 @@ class MainViewModel: ObservableObject {
     let hour = totalMinutes / 60
     let minute = totalMinutes % 60
     return (hour, minute)
+  }
+  
+  var selectedFormattedTime: (hour: Int, minute: Int) {
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([.hour, .minute], from: selectedTime)
+    return (components.hour ?? 0, components.minute ?? 0)
   }
 }

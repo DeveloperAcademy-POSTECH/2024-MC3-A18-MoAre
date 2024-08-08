@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimePickerView: View {
-  @Binding var selectedTime: (hour: Int, minute: Int)
+  @Binding var selectedTime: Date
   @Binding var showTimePicker: Bool
   
   var body: some View {
@@ -33,15 +33,4 @@ struct TimePickerView: View {
     }
     .padding()
   }
-  
-//  func setNotification() -> Void {
-//    let startDate = Calendar.current.date(bySettingHour: selectedTime.hour, minute: selectedTime.minute, second: 0, of: Date()) ?? Date()
-//    let interval: TimeInterval = 3
-//    let count = 10
-//    
-//    let manager = LocalNotificationManager()
-//    manager.requestPermission()
-//    manager.addNotification(title: "오늘의 루틴")
-//    manager.scheduleNotifications(startingAt: startDate, interval: interval, count: count)
-//  }
 }
