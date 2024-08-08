@@ -10,13 +10,14 @@ import SwiftUI
 struct TimerView: View {
     @StateObject private var timerManager: TimerViewModel
     @Environment(\.scenePhase) private var scenePhase
+    @EnvironmentObject var coordinator: Coordinator
 
     init(routineID: String) {
-            let manager = TimerViewModel.shared // 싱글톤 인스턴스 사용
-            manager.loadRoutine(with: routineID)
-            _timerManager = StateObject(wrappedValue: manager) // 초기화
-            print("TimerView 초기화됨, routineID: \(routineID)")
-        }
+        let manager = TimerViewModel.shared // 싱글톤 인스턴스 사용
+        manager.loadRoutine(with: routineID)
+        _timerManager = StateObject(wrappedValue: manager) // 초기화
+        print("TimerView 초기화됨, routineID: \(routineID)")
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -42,22 +43,25 @@ struct TimerView: View {
                 .padding(.bottom, 4)
 
             VStack(spacing: 0) {
-                Text(timerManager.tasks[timerManager.currentTaskIndex].taskName ?? "태스크명이 없습니다")
-                    .font(.system(size: 40, weight: .bold, design: .monospaced))
-                    .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))
-                    .padding(.bottom, 8)
-
-                if timerManager.currentTaskIndex < timerManager.tasks.count - 1 {
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(.gray)
+                if timerManager.currentTaskIndex < timerManager.tasks.count {
+                    Text(timerManager.tasks[timerManager.currentTaskIndex].taskName ?? "태스크명이 없습니다")
+                        .font(.system(size: 40, weight: .bold, design: .monospaced))
+                        .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))
                         .padding(.bottom, 8)
-
-                    Text(timerManager.tasks[timerManager.currentTaskIndex + 1].taskName ?? "태스크명이 없습니다")
-                        .font(.system(size: 24, weight: .medium))
-                        .foregroundColor(.gray)
-                        .padding(.bottom, 16)
+                    
+                    if timerManager.currentTaskIndex < timerManager.tasks.count - 1 {
+                        Image(systemName: "chevron.down")
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 8)
+                        
+                        Text(timerManager.tasks[timerManager.currentTaskIndex + 1].taskName ?? "태스크명이 없습니다")
+                            .font(.system(size: 24, weight: .medium))
+                    }
                 } else {
-                    Spacer().frame(height: 60)
+                    Text("유효한 태스크가 없습니다")
+                        .font(.system(size: 40, weight: .bold, design: .monospaced))
+                        .foregroundColor(Color(red: 1, green: 0.39, blue: 0.29))
+                        .padding(.bottom, 8)
                 }
             }
 
@@ -78,10 +82,16 @@ struct TimerView: View {
                     .resizable()
                     .frame(width: 294, height: 294)
 
-                Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon ?? "")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
+                if timerManager.currentTaskIndex < timerManager.tasks.count {
+                    Image(systemName: timerManager.tasks[timerManager.currentTaskIndex].taskIcon ?? "")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 60, height: 60)
+                } else {
+                    Text("아이콘 없음")
+                        .font(.system(size: 20))
+                        .foregroundColor(.gray)
+                }
             }
             .padding(.bottom, 38)
 
@@ -114,9 +124,13 @@ struct TimerView: View {
             .padding(.bottom, 20)
 
             Button(action: {
-                print("다음 루틴 버튼 클릭됨")
-                timerManager.nextTask()
-                HapticHelper.triggerSuccessHaptic()
+                if timerManager.isCompleted {
+                        coordinator.push(destination: .complete)
+                        print("모든 루틴 완료, 완료 화면으로 이동")
+                    } else {
+                        timerManager.nextTask()
+                        print("다음 루틴 버튼 클릭됨")
+                    }
             }) {
                 Text(timerManager.currentTaskIndex == timerManager.tasks.count - 1 ? "완료" : "다음 루틴")
                     .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy))
@@ -131,10 +145,10 @@ struct TimerView: View {
         .padding()
         .onAppear {
             print("TimerView 나타남, 루틴 시작")
-            timerManager.startTask()
+            timerManager.startTask()  // 여기에 startTask를 호출하여 타이머 시작
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
-                }
+        }
         .onDisappear {
             timerManager.stopTimer()
             timerManager.endLiveActivity()
