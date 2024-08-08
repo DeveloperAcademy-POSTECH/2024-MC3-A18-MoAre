@@ -71,7 +71,11 @@ class TimerViewModel: ObservableObject {
             print("현재 태스크가 설정되지 않았거나 타이머가 이미 실행 중입니다.")
             return
         }
-        ttsManager.speak(text: "이번 루틴은 \(String(describing: currentTask.taskName))입니다")
+        if let taskName = currentTask.taskName {
+            ttsManager.speak(text: "이번 루틴은 \(taskName)입니다")
+        } else {
+            ttsManager.speak(text: "이번 루틴은 이름이 없습니다")
+        }
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.updateTimer()
