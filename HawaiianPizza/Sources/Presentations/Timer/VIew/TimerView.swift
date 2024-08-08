@@ -124,10 +124,6 @@ struct TimerView: View {
             .padding(.bottom, 20)
 
             Button(action: {
-                if timerManager.isCompleted {
-                        coordinator.push(destination: .complete)
-                        print("모든 루틴 완료, 완료 화면으로 이동")
-                    } else {
                         if timerManager.currentTaskIndex == timerManager.tasks.count - 1 {
                                     timerManager.completeRoutine()
                                     coordinator.push(destination: .complete)
@@ -138,7 +134,7 @@ struct TimerView: View {
                                 }
                                 HapticHelper.triggerSuccessHaptic()
                     }
-            }) {
+            ) {
                 Text(timerManager.currentTaskIndex == timerManager.tasks.count - 1 ? "완료" : "다음 루틴")
                     .font(Font.custom("Pretendard Variable", size: 20).weight(.heavy))
                     .foregroundColor(.white)
