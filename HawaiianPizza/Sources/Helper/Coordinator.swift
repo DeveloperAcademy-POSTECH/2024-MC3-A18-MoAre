@@ -52,7 +52,12 @@ final class Coordinator: ObservableObject {
                 Text("루틴이 선택되지 않았습니다.")
             }
         case .complete:
-            CompleteView()
+            if let routine = selectedRoutine {
+                            CompleteView(routineID: routine.id)
+                                .navigationBarBackButtonHidden()
+                        } else {
+                            Text("루틴이 선택되지 않았습니다.")
+                        }
         case .routineDetail:
             if let routine = selectedRoutine {
                 RoutineDetailView(routine: routine)

@@ -1,17 +1,17 @@
 import SwiftUI
 import CoreLocation
 
-// MARK: - 변경되는 UI에 맞게 수정해야 하니 요소정도만 표출 해놨습니다.
-
 struct CompleteView: View {
     @StateObject private var viewModel = CompleteViewModel()
     @State private var showProgressView = false
-    
+    let routineID: UUID?
+
     var body: some View {
         VStack {
             if !showProgressView {
                 CheckView()
                     .task {
+                        viewModel.fetchRoutines(selectedRoutineID: routineID)
                         await viewModel.fetchDailyWeather()
                     }
                     .onAppear {
@@ -29,7 +29,7 @@ struct CompleteView: View {
 extension CompleteView {
     //MARK: Lottie Check View
     func CheckView() -> some View {
-        return VStack {
+        VStack {
             LottieView(loopMode: .playOnce, jsonName: "complete")
                 .frame(width: 178, height: 178)
                 .padding(.bottom, 50)
@@ -41,7 +41,7 @@ extension CompleteView {
                 }
                 .font(.system(size: 17, weight: .semibold))
             } else {
-                Text("예상보다 \(viewModel.completeRoutine?.totalSkipTime ?? 0)분이 줄었네요")
+                Text("예상보다 \((Double(viewModel.completeRoutine?.totalSkipTime ?? 0)/60)) 초가 줄었네요!")
                     .font(.system(size: 17, weight: .semibold))
             }
         }
@@ -94,6 +94,6 @@ extension CompleteView {
     }
 }
 
-#Preview {
-    CompleteView()
-}
+//#Preview {
+//    CompleteView()
+//}
