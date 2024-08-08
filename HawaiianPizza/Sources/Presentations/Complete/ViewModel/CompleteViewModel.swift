@@ -128,14 +128,14 @@ class CompleteViewModel: ObservableObject {
         guard let symbol = dailyWeather.first?.symbolName else { return }
 
         symbolName = symbol
-        highTemperature = "최고: \(Int(high.value))도"
-        lowTemperature = "최저: \(Int(low.value))도"
+        highTemperature = "최고 : \(Int(high.value))도"
+        lowTemperature = "최저 : \(Int(low.value))도"
     }
 
     func precipitationChanceFormatter() {
         guard let preChance = dailyWeather.first?.precipitationChance else { return }
         let precipitationChancePercent = preChance * 100
-        precipitationChance = String(format: "강수 확률: %.0f%%", precipitationChancePercent)
+        precipitationChance = String(format: "강수 확률 : %.0f%%", precipitationChancePercent)
     }
   
     func deleteRoutineID() {

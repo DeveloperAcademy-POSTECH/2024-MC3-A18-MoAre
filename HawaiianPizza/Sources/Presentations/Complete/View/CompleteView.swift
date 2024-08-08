@@ -56,13 +56,15 @@ extension CompleteView {
         .progressViewStyle(.circular)
     } else {
       VStack {
+        Spacer()
+        
         Text(viewModel.formattedDate)
           .font(.system(size: 32, weight: .bold))
         
         Image(systemName: "\(viewModel.symbolName)")
           .resizable()
           .scaledToFit()
-          .frame(width: 178)
+          .frame(width: 100)
           .padding()
         
         Text("오늘의 날씨")
@@ -71,10 +73,14 @@ extension CompleteView {
         
         VStack {
           Text(viewModel.weatherCondition)
-          Text("최고 : \(viewModel.highTemperature)도 / 최저 : \(viewModel.lowTemperature)도")
-          Text("강수 확률 : \(viewModel.precipitationChance)%")
+            .padding(.bottom, 5)
+          Text("\(viewModel.highTemperature) / \(viewModel.lowTemperature)")
+            .padding(.bottom, 5)
+          Text(viewModel.precipitationChance)
         }
         .font(.system(size: 18, weight: .semibold))
+        
+        Spacer()
         
         Button(action: {
           coordinator.push(destination: .main)
