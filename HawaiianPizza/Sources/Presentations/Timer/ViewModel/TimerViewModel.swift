@@ -65,7 +65,7 @@ class TimerViewModel: ObservableObject {
         ttsManager.speak(text: "이번 루틴은 \(taskName)입니다")
         progress = 1.0
         startTimer()
-        startLiveActivity(iconName: currentTask!.taskIcon ?? "")
+        startLiveActivity(iconName: currentTask.taskIcon ?? "")
     }
     
     func startTimer() {

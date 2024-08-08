@@ -146,13 +146,13 @@ extension CoreDataManager: DataProtocol {
         return time
     }
     
-    func fetchAllTimes() -> [Time] {
+    func fetchTime() -> Time? {
         let request: NSFetchRequest<Time> = Time.fetchRequest()
         do {
-            return try viewContext.fetch(request)
+          return try viewContext.fetch(request).first
         } catch {
             print("Failed to fetch times: \(error)")
-            return []
+            return nil
         }
     }
     

@@ -9,27 +9,43 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
   @Published var items: [Routine] = []
-  @Published var selectedRoutine: RoutineItem.ID?
+  @Published var selectedRoutine: RoutineItem.ID? {
+    didSet {
+      selectedRoutineID = selectedRoutine?.uuidString ?? ""
+    }
+  }
   @Published var deleteRoutine: Routine?
-  
-  // MARK: - 이안선생님 여기에요!!!!! Date 타입으로 받았습니다!!!!
   @Published var selectedTime: Date = Date()
-    
+  
+  @AppStorage("selectedRoutine") var selectedRoutineID: String = ""
+  
   var localNotificationManager: LocalNotificationManager
   
   init(localNotificationManager: LocalNotificationManager) {
     self.localNotificationManager = localNotificationManager
     fetchRoutine()
+    
+    if let storedID = UUID(uuidString: selectedRoutineID) {
+      selectedRoutine = storedID
+    }
   }
   
   func fetchRoutine() {
     items = CoreDataManager.shared.fetchAllRoutines()
   }
-    
-    func deleteRoutine(routine: Routine) {
-        CoreDataManager.shared.deleteRoutine(routine)
-        items.removeAll { $0.id == routine.id }
-    }
+  
+  func deleteRoutine(routine: Routine) {
+    CoreDataManager.shared.deleteRoutine(routine)
+    items.removeAll { $0.id == routine.id }
+  }
+  
+  func createTime(startTime: Date) {
+    CoreDataManager.shared.createTime(startTime: startTime)
+  }
+  
+  func fetchTime() {
+    selectedTime = CoreDataManager.shared.fetchTime()?.startTime ?? Date()
+  }
   
   func toggleRoutineSelection(for selectedTime: (hour: Int, minute: Int), routineID: RoutineItem.ID) {
     if selectedRoutine == routineID {
@@ -63,12 +79,12 @@ class MainViewModel: ObservableObject {
     components.hour = hour
     components.minute = minute
     
-//    // 날짜를 반드시 다음날로 설정
-//    if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now) {
-//      components.day = Calendar.current.component(.day, from: tomorrow)
-//      components.month = Calendar.current.component(.month, from: tomorrow)
-//      components.year = Calendar.current.component(.year, from: tomorrow)
-//    }
+    //    // 날짜를 반드시 다음날로 설정
+    //    if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now) {
+    //      components.day = Calendar.current.component(.day, from: tomorrow)
+    //      components.month = Calendar.current.component(.month, from: tomorrow)
+    //      components.year = Calendar.current.component(.year, from: tomorrow)
+    //    }
     
     if let routineStartDate = Calendar.current.date(from: components) {
       let userInfo: [AnyHashable: Any] = ["routineID": selectedRoutineID.uuidString]
@@ -107,4 +123,6 @@ class MainViewModel: ObservableObject {
     let components = calendar.dateComponents([.hour, .minute], from: selectedTime)
     return (components.hour ?? 0, components.minute ?? 0)
   }
+  
+  
 }
